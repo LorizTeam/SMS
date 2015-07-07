@@ -174,11 +174,31 @@
     						<h3 class="panel-title">Stap 3</h3>
   						</div>
   						<div class="panel-body">
-    						Panel content
+    						<div class="row">
+    							<div class="col-md-6 col-md-offset-3">	
+                                	<label>Send Type.</label>
+                                </div>
+                                <div class="col-md-6 col-md-offset-3">	
+                                	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Send New.
+                                </div>
+                                <div class="col-md-6 col-md-offset-3 form-inline">	
+                                	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Set Date Time :
+                                	<input class="form-control" placeholder="Date Time">
+                                </div>
+    						</div>
+    						<div><br/></div>
+    						<div class="row">
+    							<div class="col-md-4 col-md-offset-3">
+                                	<button type="button" class="btn btn-primary btn-lg btn-block">Send SMS</button>
+                                </div>
+    						</div>
   						</div>
 					</div>
             	</div>
             	<!-- /#row -->
+            	<div class="thumbnail">
+            		
+            	</div>
             </div>
             <!-- /.container-fluid -->
         </div>
