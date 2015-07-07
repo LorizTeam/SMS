@@ -25,16 +25,16 @@
     <title>SMS</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -128,14 +128,57 @@
 
         <!-- Page Content -->
         <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">Edit Conent Here</h1>
-                    </div>
-                    <!-- /.col-lg-12 -->
-                </div>
-                <!-- /.row -->
+            <div class="container">
+            	<br/>
+            	<div class="row">
+            		<div class="panel panel-primary">
+  						<div class="panel-heading">
+    						<h3 class="panel-title">Stap 1</h3>
+  						</div>
+  						<div class="panel-body">
+    						<div class="row">
+    							<div class="col-md-6 col-md-offset-3">	
+                                	<label>Phone Number.</label>
+                                    <textarea class="form-control" rows="3"></textarea>
+                                </div>
+    						</div>
+  						</div>
+					</div>
+            	</div>
+            	<!-- /#row -->
+            	<div class="row">
+            		<div class="panel panel-primary">
+  						<div class="panel-heading">
+    						<h3 class="panel-title">Stap 2</h3>
+  						</div>
+  						<div class="panel-body">
+    						<div class="row">
+    							<div class="col-md-6 col-md-offset-3">
+    								<label>Name Sending.</label>
+    								<input class="form-control" placeholder="Name">
+    							</div>
+    						</div>
+    						<div class="row">
+    							<div class="col-md-6 col-md-offset-3">	
+                                	<label>Message.</label>
+                                    <textarea class="form-control" rows="3"></textarea>
+                                </div>
+    						</div>
+  						</div>
+					</div>
+            	</div>
+            	<!-- /#row -->
+            	<div class="row">
+            		<div class="panel panel-primary">
+  						<div class="panel-heading">
+    						<h3 class="panel-title">Stap 3</h3>
+  						</div>
+  						<div class="panel-body">
+    						Panel content
+  						</div>
+					</div>
+            	</div>
+            	<!-- /#row -->
             </div>
             <!-- /.container-fluid -->
         </div>
@@ -145,16 +188,16 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="dist/js/sb-admin-2.js"></script>
+    <script src="../dist/js/sb-admin-2.js"></script>
 
 </body>
 
