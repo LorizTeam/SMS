@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+  <data-sources />
+ <form-beans> 
+  	<form-bean name="loginForm" type="com.smsimobile.form.LoginForm" />
+  </form-beans>
+  <global-exceptions />
+  <global-forwards />
+  
+	<action-mappings>
+  
+  <!--################################     Login     #################################-->
+   <action
+      attribute="loginForm"
+      input="/login.jsp"
+      name="loginForm"
+      path="/login"
+      scope="request"
+      type="com.smsimobile.action.LoginAction" >
+      
+      <forward name="error" path="/login.jsp" />
+      <forward name="success_amd" path="/supervisor.jsp" />
+      <forward name="success_agt" path="/jsp/main.jsp" />
+      <forward name="success_acc" path="/mainAccounting.jsp" />
+    </action>
+  <!--################################     Login     #################################-->
+  
+  </action-mappings>
+
+  <message-resources parameter="com.yourcompany.struts.ApplicationResources" />
+</struts-config>
+

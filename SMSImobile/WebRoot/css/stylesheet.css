@@ -1,0 +1,581 @@
+.title {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 18px; PADDING-BOTTOM: 5px; COLOR: #547e7e; PADDING-TOP: 5px; FONT-FAMILY: Tahoma
+}
+A:hover {
+COLOR: #FF0000; TEXT-DECORATION: underline
+}
+A.menu:link {
+	FONT: bold 10px/15pt Verdana; COLOR: #052478; TEXT-DECORATION: none
+}
+A.menu:visited {
+	FONT: bold 10px/15pt Verdana; COLOR: #052478; TEXT-DECORATION: none
+}
+A.menu:hover {
+	FONT: bold 10px/15pt Verdana; COLOR: #052478; TEXT-DECORATION: underline
+}
+A.menu:active {
+	FONT: bold 10px/15pt Verdana; COLOR: #052478; TEXT-DECORATION: none
+}
+.tiny {
+	FONT-WEIGHT: normal; FONT-SIZE: 9px; COLOR: #666666; FONT-FAMILY: Tahoma
+}
+.heading {
+	FONT-WEIGHT: bold; FONT-SIZE: 13px; COLOR: #ff6666; FONT-FAMILY: Tahoma
+}
+.txt_menu_lightblue {
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #CCCCFF;
+}
+
+.boxed_mainDisplay {
+	border: 2px solid #FB8111;
+}
+
+.smallprint {
+	FONT-SIZE: 10px; COLOR: #999999; FONT-FAMILY: Tahoma
+}
+A.smallprint:link {
+	FONT-SIZE: 9px; COLOR: #999999; FONT-FAMILY: Tahoma
+}
+.heading2 {
+	FONT-SIZE: 14px; COLOR: #568383; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+.heading1 {
+	FONT-WEIGHT: bold; FONT-SIZE: 13px; COLOR: #52a400; FONT-FAMILY: Tahoma
+}
+.error {
+	FONT-SIZE: 12px; COLOR: #ff0000; FONT-FAMILY: Arial
+}
+.orderdetail TD {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px; BORDER-LEFT: #cccccc 1px; BORDER-BOTTOM: #cccccc 1px solid
+}
+.orderdetail {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; MARGIN: 5px; BORDER-LEFT: #cccccc 1px solid; BORDER-BOTTOM: #cccccc 1px solid
+}
+.tahoma12_bold_black {
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+}
+.banner_text {
+	FONT-SIZE: 12px; COLOR: #339999; FONT-FAMILY: "MS Sans Serif"
+}
+.heading2 {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px; FONT-FAMILY: Tahoma
+}
+A.footer:link {
+	FONT-SIZE: 9px; COLOR: #999999; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+A.footer:visited {
+	FONT-SIZE: 9px; COLOR: #999999; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+A.footer:hover {
+	FONT-SIZE: 9px; COLOR: #999999; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+A.footer:active {
+	FONT-SIZE: 9px; COLOR: #999999; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.box {
+	BORDER-RIGHT: #b0baa8 1px solid; BORDER-TOP: #b0baa8 1px solid; BORDER-LEFT: #b0baa8 1px solid; BORDER-BOTTOM: #b0baa8 1px solid
+}
+.bgtabledetail {
+	BACKGROUND: #e5e5e5; FONT-FAMILY: Tahoma
+}
+.buttonpay {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; BACKGROUND: #FF0000; COLOR: #ffffff; FONT-FAMILY: Tahoma
+}
+.buttondel {
+	BACKGROUND: #5b9cfd; FONT: bolder 12px Tahoma; COLOR: #ffffff
+}
+.txterror {
+	FONT: bold 12px Tahoma; COLOR: #ff0000
+}
+.txtbox {
+	FONT: 12px Tahoma; COLOR: #000000
+}
+.bgtabledetail2 {
+	BACKGROUND: #f3f3f3
+}
+.bgtablemain {
+	BACKGROUND: #e7f5f1
+}
+.txtorder {
+	FONT: 12px Tahoma; COLOR: #000000
+}
+.bgpending {
+	BACKGROUND: #fedfa5; FONT: bold 12px Arial; COLOR: #000000
+}
+.bgplanaccount {
+	BACKGROUND: #bff2c0; FONT: bold 12px Arial; COLOR: #000000
+}
+.txtlinksupport {
+	FONT: 12px Arial; COLOR: #6633cc
+}
+.txtsettle {
+	FONT: 11px Tahoma; COLOR: #009933
+}
+.txtpending {
+	FONT: 11px Tahoma; COLOR: #ff6464
+}
+.bgtablehead {
+	BACKGROUND: #ebebeb; FONT: bold 11px Tahoma
+}
+.txtsupportinfo {
+	FONT: 13px Tahoma; COLOR: #000000
+}
+.boxbold {
+	BORDER-RIGHT: #99cc99 1px solid; PADDING-RIGHT: 1px; BORDER-TOP: #99cc99 1px solid; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; FONT: 12px Tahoma; BORDER-LEFT: #99cc99 1px solid; COLOR: #000000; PADDING-TOP: 1px; BORDER-BOTTOM: #99cc99 1px solid
+}
+.txtsubshow {
+	FONT: 11px Tahoma; COLOR: #555555
+}
+.bgfail {
+	BACKGROUND: #ffb0b0; FONT: bold 12px Arial; COLOR: #000000
+}
+.bgfree10 {
+	BACKGROUND: #abe3fe; FONT: bold 12px Arial; COLOR: #000000
+}
+.txtsubmenu {
+	FONT: 12px Tahoma; COLOR: #777777
+}
+.txtorderhead {
+	FONT: bold 20px Arial; COLOR: #000000
+}
+.txtshipping {
+	FONT: 11px Tahoma; COLOR: #ff9933
+}
+.txtred {
+	FONT: bold 13px Arial; COLOR: #ff6666
+}
+.txtinfo {
+	FONT: 11px Tahoma; COLOR: #666666
+}
+.txtchar {
+	COLOR: #ff6666;
+	font-family: Tahoma;
+	font-size: 16px;
+	font-weight: bold;
+}
+.linebottom {
+	BORDER-BOTTOM: #e2e2e2 1px solid
+}
+.lineleft {
+	BORDER-LEFT: #b0baa8 1px solid
+}
+.buttonchange {
+	FONT: bolder 11px Tahoma;
+	COLOR: #359f6a;
+	background-color: #DFFFEA;
+}
+.txtboxlogin {
+	FONT: 11px Tahoma; COLOR: #000000
+}
+.heading3 {
+	FONT-WEIGHT: bold; FONT-SIZE: 13px; COLOR: #777777; FONT-FAMILY: Tahoma
+}
+.heading4 {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #777777; FONT-FAMILY: Tahoma
+}
+.txtprepaid {
+	FONT: bold 12px Tahoma; COLOR: #6666ff
+}
+.txtpostpaid {
+	FONT: bold 12px Tahoma; COLOR: #cc3366
+}
+.txttopup {
+	COLOR: #009966;
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+}
+.txtspecialplan {
+	FONT: bold 12px Tahoma; COLOR: #ff6699
+}
+.txtretailactivation {
+	FONT: bold 12px Tahoma; COLOR: #0099cc
+}
+.txtretail {
+	FONT: 11px Tahoma; COLOR: #660099
+}
+.bgrow {
+	COLOR: #666666;
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: normal;
+	background-color: #EEEEFF;
+}
+.buttonmodify {
+	COLOR: #3300CC;
+	font-family: Tahoma;
+	font-size: 9px;
+	font-weight: bold;
+}
+.buttondelete {
+	COLOR: #CC0000;
+	font-family: Tahoma;
+	font-size: 9px;
+	font-weight: bold;
+}
+.buttonsearch {
+
+	COLOR: #333333;
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	background-color: #DDDDDD;
+}
+.buttonsave {
+	COLOR: #006600;
+	font-family: Tahoma;
+	font-size: 11px;
+	background-color: #DFFFEA;
+	font-weight: bold;
+}
+.txt_menu_white {
+
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+.buttonprint {
+
+	COLOR: #333399;
+	font-family: Tahoma;
+	font-size: 9px;
+	font-weight: bold;
+}
+.newBG_Table {
+	COLOR: #333333;
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight: bold;
+	background-color: #CCCCFF;
+}
+A:link {
+
+COLOR: #0000FF; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #052478;
+	TEXT-DECORATION: none;
+}
+.tahoma11_bold_black {
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #000000;
+}
+.tahoma11_black {
+
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #000000;
+}
+.tahoma11_bold_red {
+
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FF0000;
+}
+.tahoma18_bold_black {
+
+	font-family: Tahoma;
+	font-size: 18px;
+	font-weight: bold;
+	color: #000000;
+}
+.tahoma12_bold_red {
+
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FF0000;
+}
+.tahoma12_black {
+	font-family: Tahoma;
+	font-size: 12px;
+	color: #000000;
+}
+.tahoma10_black {
+
+	font-family: Tahoma;
+	font-size: 10px;
+	color: #000000;
+}
+.tahoma11_bold_blue {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #0000FF;
+	font-weight: bold;
+}
+.tahoma11_bold_light_blue {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #00CCFF;
+	font-weight: bold;
+}
+.tahoma11_bold_orange {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #FF6600;
+	font-weight: bold;
+}
+.tahoma11_bold_green {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #009966;
+	font-weight: bold;
+}
+.tahoma11_bold_gray {
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #999999;
+}
+.tahoma11_red {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #FF0000;
+}
+.tahoma11_gray {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #333333;
+}
+.tahoma11_blue {
+	font-family: Tahoma;
+	font-size: 12px;
+	color: #0000FF;
+}
+.tahoma11_green {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #009966;
+}
+.bg_job_request_blue {
+	COLOR: #000000;
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: normal;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	background-color: #FFFFFF;
+}
+.box_dot {
+	border: 1px dashed #999999;
+}
+.tahoma12_bold_blue {
+
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight: bold;
+	color: #0000FF;
+}
+.tahoma12_green {
+
+	font-family: Tahoma;
+	font-size: 12px;
+	color: #009900;
+}
+.tahoma12_gray {
+	font-family: Tahoma;
+	font-size: 12px;
+	color: #333333;
+	font-weight: bold;
+}
+.box_white {
+	border: 1px solid #FFFFFF;
+}
+.tahoma10_red {
+
+	font-family: Tahoma;
+	font-size: 10px;
+	color: #FF0000;
+}
+.tahoma12_bold_yellow {
+
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FEC600;
+}
+.tahoma14_bold_red {
+	font-family: Tahoma;
+	font-size: 18px;
+	font-weight: bold;
+	color: #FF0000;
+}
+.tahoma14_bold_black {
+	font-family: Tahoma;
+	font-size: 14px;
+	font-weight: bold;
+	color: #000000;
+}
+.tahoma16_bold_black {
+	font-family: Tahoma;
+	font-size: 16px;
+	font-weight: bold;
+	color: #000000;
+}
+.tahoma14_black {
+	font-family: Tahoma;
+	font-size: 14px;
+	font-weight: normal;
+	color: #000000;
+}
+.tahoma12_red {
+	font-family: Tahoma;
+	font-size: 12px;
+	color: #FF0000;
+}
+.tahoma12_gray {
+	font-family: Tahoma;
+	font-size: 12px;
+	color: #333333;
+	font-weight: normal;
+}
+.line_dot {
+	background-image: url(../newimages/bg/dot.gif);
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight: normal;
+}
+.green_button{
+	border:0px;
+	background-repeat: repeat-x;
+	background-image: url(../i/button/green/btn_green_middle.png);
+	height: 40px;
+	background-repeat: repeat-x;
+	font-family: Segoe UI, Arial, Verdana, Sans-Serif;
+	font-weight: bold;
+	font-style: normal;
+	font-size: 13px;
+	color: #FFFFFF;
+	text-align: center;
+	padding-top: 6px;
+	width: 40px;
+}
+.green_bt_left{
+	cursor: pointer;
+	border:0px;
+	background-image: url(../i/button/green/btn_green_middle.png);
+	height: 40px;
+	background-repeat: repeat-x;
+	width: 40px;
+.green_button_left{background-image: url(../i/button/green/btn_green_left.png);}
+.green_button_center{background-image: url(../i/button/green/btn_green_middle.png);}
+.green_button_right{background-image: url(../i/button/green/btn_green_right.png);}
+.tahoma12_light_gray {
+	font-family: Tahoma;
+	font-size: 12px;
+	color: #666666;
+}
+.l {
+	padding: 0px;
+	width: 10px;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #999999;
+}
+.r {
+	padding: 0px;
+	width: 10px;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #999999;
+}
+.b {
+	padding: 0px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #999999;
+	height: 10px;
+}
+.SIForBtn { margin-right:5px; }
+.SIForBtn .b1,.SIForBtn .b2,.SIForBtn .b3 { color:#000000;padding:10px 0;cursor:pointer;text-decoration:none;white-space:nowrap;line-height:29px; }
+.SIForBtn .b1 { background-image:url(../i/button/grey/btn2left.gif) repeat-x left center; }
+.SIForBtn .b2 { margin-left:15px;background-image:url(..i/button/grey/btn2Right.gif) repeat-x right center; }
+.SIForBtn .b3 { margin-right:15px;background-image:url(..i/button/grey/btn2Bkgd.jpg) repeat-x center; }
+.boxed_subDisplay { border: 2px solid #0099FF;}
+
+.buttonYellow{
+	padding:1px 1px 1px;
+	color:#000;
+	white-space:nowrap;
+	border:1px solid #999b9a;
+	background-color:#ce9200;
+	background-position:0 -450px;
+	background-image:url(../i/button/bg/ybg.gif);
+	background-repeat:repeat-x;
+	cursor:pointer;
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+}
+.inputText{
+	border:1px solid #f0f0f0;
+	border-color:#7c7c7c #cecece #c3c3c3 #7c7c7c;
+	height:24px;
+	margin-left:0;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-image: url(../i/icon/btnSearch.gif);
+	background-repeat: no-repeat;
+	padding-top: 3px;
+	padding-right: 3px;
+	padding-bottom: 3px;
+	padding-left: 23px;
+	background-position: 1px center;
+}
+.listText{
+	margin: 2px;
+}	
+.borderSearch{
+	background-attachment: fixed;
+	background-color: #fff;
+	background: url(../i/bg/border_search.png) no-repeat;
+	background-repeat: repeat-y;
+	background-position: right center;	
+}
+.TextFieldInUsed {
+	font-family: Tahoma;
+	font-size: 12px;
+	color: #000000;
+	background-color: #E5B7B2;
+}
+.TextFieldNotUse {
+	font-family: Tahoma;
+	font-size: 12px;
+	color: #000000;
+	background-color: #AEDEA5;
+}.textFieldBorder {
+	border: 3px solid #FF0000;
+	font-family: Tahoma;
+	font-size: 12px;
+}
+.tahoma12_bold_green {
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight: bold;
+	color: #339966;
+}
+.tahoma14_bold_green {
+	font-family: Tahoma;
+	font-size: 18px;
+	font-weight: bold;
+	color: #529940;
+}
+.tahoma12_bold_gold {
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight: normal;
+	color: #9A8202;
+}
