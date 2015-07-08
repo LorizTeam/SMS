@@ -7,6 +7,8 @@
  	<form-bean name="loginForm" type="com.smsimobile.form.LoginForm" />
  	<form-bean name="importForm" type="com.smsimobile.form.ImportForm" />
   	<form-bean name="customerForm" type="com.smsimobile.form.CustomerForm" />
+  	<form-bean name="sendSMSForm" type="com.smsimobile.form.SendSMSForm" />
+  	<form-bean name="smstemplateForm" type="com.smsimobile.form.SMSTemplateForm" />
   </form-beans>
  <global-exceptions />
   <global-forwards />
@@ -45,14 +47,14 @@
    <!--################################     import excel     #################################-->
   
   <!--################################     send SMS    #################################-->
-  	<action path="/sendSMSStart" 	name="customerForm"  
+  	<action path="/sendSMSStart" 	name="sendSMSForm"  
   		type="com.smsimobile.action.SendSMSStartAction">
       	<forward name="success"  	path="/jsp/send_sms.jsp" />
     </action>
     <action
-      attribute="customerForm"
+      attribute="sendSMSForm"
       input="/jsp/send_sms.jsp"
-      name="customerForm"
+      name="sendSMSForm"
       path="/sendSMS"
       scope="request"
       type="com.smsimobile.action.SendSMSAction" >

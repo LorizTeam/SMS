@@ -10,6 +10,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import com.smsimobile.data.SMSTemplateDB;
 import com.smsimobile.data.TBLCustomer;
 
 public class SendSMSStartAction extends Action {
@@ -22,6 +23,10 @@ public class SendSMSStartAction extends Action {
 		TBLCustomer tblcustomer = new TBLCustomer();
 		List customerList = tblcustomer.GetCustomerList("", "");
 		request.setAttribute("customerList", customerList);
+		
+		SMSTemplateDB smstemplateDB = new SMSTemplateDB();
+		List smsTemplateList = smstemplateDB.GetSMSTemplateList("");
+		request.setAttribute("smsTemplateList", smsTemplateList);
 		
 		forwardText = "success";
 				
