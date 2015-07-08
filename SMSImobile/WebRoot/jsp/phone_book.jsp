@@ -128,14 +128,40 @@
 
         <!-- Page Content -->
         <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">Edit Conent Here</h1>
-                    </div>
-                    <!-- /.col-lg-12 -->
-                </div>
-                <!-- /.row -->
+            <div class="container">
+            	<br/>
+            	<div class="thumbnail">
+            		<br/>
+            		<div class="row">
+	    				<div class="col-md-6 col-md-offset-3">	
+	                    	<label>เพิ่มรายชื่อลงสมุดโทรศัพท์</label>
+	                	</div>
+                	</div>
+                	<!-- /.row -->
+                	<div class="row">
+	    				<div class="col-md-6 col-md-offset-3">	
+	                    	<label>Name</label>
+    						<input class="form-control" placeholder="Name">
+	                	</div>
+                	</div>
+                	<!-- /.row -->
+                	<div class="row">
+	    				<div class="col-md-6 col-md-offset-3">	
+	                    	<label>Phone Number</label>
+    						<input class="form-control" placeholder="Phone Number">
+	                	</div>
+                	</div>
+                	<!-- /.row -->
+                	<br/>
+                	<div class="row">
+    					<div class="col-md-4 col-md-offset-4">
+                        	<button type="button" class="btn btn-primary btn-lg btn-block">บันทึก</button>
+                        </div>
+    				</div>
+    				<!-- /.row -->
+                	<br/>
+            	</div>
+             	<!-- thumbnail -->
             </div>
             <!-- /.container-fluid -->
         </div>
