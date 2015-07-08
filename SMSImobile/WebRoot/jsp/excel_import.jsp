@@ -100,7 +100,7 @@
                             <a href="#"><i class="fa fa-envelope-o fa-fw"></i> SMS<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="jsp/send_sms.jsp">Send SMS</a>
+                                    <a href="sendSMSStart.do">Send SMS</a>
                                 </li>
                                 <li>
                                     <a href="schdule_sms.jsp">Schdule SMS</a>

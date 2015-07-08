@@ -106,7 +106,7 @@
                             <a href="#"><i class="fa fa-user-md fa-fw"></i> Member<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="excel_import.jsp">Excel Import</a>
+                                    <a href="importExcelStart.do">Excel Import</a>
                                 </li>
                                 <li>
                                     <a href="phone_book.jsp">Phone Book</a>
@@ -118,7 +118,7 @@
                             <a href="#"><i class="fa fa-envelope-o fa-fw"></i> SMS<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/SMSImobile/sendSMSStart.do">Send SMS</a>
+                                    <a href="sendSMSStart.do">Send SMS</a>
                                 </li>
                                 <li>
                                     <a href="schdule_sms.jsp">Schdule SMS</a>
@@ -252,9 +252,9 @@
 		        	<div><br/></div>
 			         <div class="row">
 						<div class="col-md-10 col-md-offset-1">
-							<table class="table table-bordered table-hover table-striped">
+							<table class="table table-bordered table-hover table-striped" id="dataTables-example">
 								<thead>
-									<tr >
+									<tr>
 										<th class="text-center">Number</th>
 										<th class="text-center">Phone Number</th>
 										<th class="text-center">Name</th>
@@ -312,6 +312,19 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+	 <script src="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+
+	
+	<script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+                responsive: true
+        });
+    });
+    </script>
 
 </body>
 
