@@ -130,75 +130,89 @@
         <div id="page-wrapper">
             <div class="container">
             	<br/>
-            	<div class="row">
-            		<div class="panel panel-primary">
-  						<div class="panel-heading">
-    						<h3 class="panel-title">Stap 1</h3>
-  						</div>
-  						<div class="panel-body">
-    						<div class="row">
-    							<div class="col-md-6 col-md-offset-3">	
-                                	<label>Phone Number.</label>
-                                    <textarea class="form-control" rows="3"></textarea>
-                                </div>
-    						</div>
-  						</div>
-					</div>
-            	</div>
-            	<!-- /#row -->
-            	<div class="row">
-            		<div class="panel panel-primary">
-  						<div class="panel-heading">
-    						<h3 class="panel-title">Stap 2</h3>
-  						</div>
-  						<div class="panel-body">
-    						<div class="row">
-    							<div class="col-md-6 col-md-offset-3">
-    								<label>Name Sending.</label>
-    								<input class="form-control" placeholder="Name">
-    							</div>
-    						</div>
-    						<div class="row">
-    							<div class="col-md-6 col-md-offset-3">	
-                                	<label>Message.</label>
-                                    <textarea class="form-control" rows="3"></textarea>
-                                </div>
-    						</div>
-  						</div>
-					</div>
-            	</div>
-            	<!-- /#row -->
-            	<div class="row">
-            		<div class="panel panel-primary">
-  						<div class="panel-heading">
-    						<h3 class="panel-title">Stap 3</h3>
-  						</div>
-  						<div class="panel-body">
-    						<div class="row">
-    							<div class="col-md-6 col-md-offset-3">	
-                                	<label>Send Type.</label>
-                                </div>
-                                <div class="col-md-6 col-md-offset-3">	
-                                	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Send New.
-                                </div>
-                                <div class="col-md-6 col-md-offset-3 form-inline">	
-                                	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Set Date Time :
-                                	<input class="form-control" placeholder="Date Time">
-                                </div>
-    						</div>
-    						<div><br/></div>
-    						<div class="row">
-    							<div class="col-md-4 col-md-offset-3">
-                                	<button type="button" class="btn btn-primary btn-lg btn-block">Send SMS</button>
-                                </div>
-    						</div>
-  						</div>
-					</div>
-            	</div>
-            	<!-- /#row -->
             	<div class="thumbnail">
-            		
+            		<div><br/></div>
+            		<div class="row">
+    					<div class="col-md-6 col-md-offset-3">	
+                        	<label>ขั้นตอนที่ 1 - กรุณาระบุเลขหมายมือถือ 10 หลักของผู้รับ</label>
+                        </div>
+    				</div>
+            		<div class="row">
+    					<div class="col-md-6 col-md-offset-3">	
+                        	<label>Phone Number.</label>
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+    				</div>
+    				<div class="row">
+    					<div class="col-md-3">	
+                        </div>
+    					<div class="col-md-3 text-right">
+    						<br/>	
+                        	<button type="button" class="btn btn-primary">ค้นเบอร์จากสมุทรโทรศัพท์</button>
+                        </div>
+                        <div class="col-md-3">	
+                        	<br/>
+                        	<button type="button" class="btn btn-primary">เพิ่มรายชื่อลงสมุทรโทรศัพท์</button>
+                        </div>
+    				</div>
+    				<div class="row">
+    					<div class="col-md-6 col-md-offset-3">
+    						<hr/>
+    					</div>
+    				</div>
+    				<div class="row">
+    					<div class="col-md-6 col-md-offset-3">	
+                        	<label>ขั้นตอนที่ 2 - กรุณาใส่ข้อความ (1 บาท / ข้อความ)</label>
+                        </div>
+    				</div>
+            		<div class="row">
+    					<div class="col-md-6 col-md-offset-3">
+    						<label>Name Sending.</label>
+    						<input class="form-control" placeholder="Name">
+    					</div>
+    				</div>
+    				<div class="row">
+    					<div class="col-md-6 col-md-offset-3">	
+                        	<label>Message.</label>
+                        	<textarea class="form-control" rows="3"></textarea>
+                    	</div>
+                    	<div class="col-md-1">
+                    		<br/>
+                    		<input class="form-control" id="disabledInput" type="text" placeholder="Word" disabled>
+                    		<input class="form-control" id="disabledInput" type="text" placeholder="Message" disabled>
+                    	</div>
+    				</div>
+    				<div class="row">
+    					<div class="col-md-6 col-md-offset-3">	
+    						<hr/>
+    					</div>
+    				</div>
+    				<div class="row">
+    					<div class="col-md-6 col-md-offset-3">	
+                        	<label>ขั้นตอนที่ 3 - เลือกประเภทการส่ง</label>
+                        </div>
+    				</div>
+    				<div class="row">
+    					<div class="col-md-6 col-md-offset-3">	
+                        	<label>Send Type.</label>
+                        </div>
+                        <div class="col-md-6 col-md-offset-3">	
+                        	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Send New.
+                        </div>
+                        <div class="col-md-6 col-md-offset-3 form-inline">	
+                        	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Set Date Time :
+                            <input class="form-control" placeholder="Date Time">
+                        </div>
+    				</div>
+    				<div><br/></div>
+    				<div class="row">
+    					<div class="col-md-4 col-md-offset-4">
+                        	<button type="button" class="btn btn-primary btn-lg btn-block">Send SMS</button>
+                        </div>
+    				</div>
+    				<div><br/></div>
             	</div>
+            	<!-- #thumbnail -->
             </div>
             <!-- /.container-fluid -->
         </div>
