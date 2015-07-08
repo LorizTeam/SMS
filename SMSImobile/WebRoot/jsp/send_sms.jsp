@@ -5,6 +5,8 @@
 <%@ page import ="javax.servlet.http.HttpServletResponse.*"%>
 <%@ page import ="javax.servlet.http.HttpSession.*"%>
 <%@ page import="com.smsimobile.form.CustomerForm" %>
+<%@ page import="com.smsimobile.form.SMSTemplateForm" %>
+<%@ page import="com.smsimobile.form.SendSMSForm" %>
 <%
 	String name = "";
 	
@@ -24,10 +26,10 @@
     <meta name="author" content="">
 
     <title>SMS</title>
-
+	<script type="text/JavaScript" src="js/CheckSendSMS.js"></script>
     <!-- Bootstrap Core CSS -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
+	
     <!-- MetisMenu CSS -->
     <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
@@ -43,21 +45,58 @@
 	
 	<script language="javascript">
 	function getCustomer(tcustID) {
-			if(document.customerForm.custID.value!=""){
-				var valueCust = document.customerForm.custID.value+","+tcustID;	
-				document.customerForm.custID.value = valueCust;	
-				document.customerForm.hdCustID.value = valueCust;
+			if(document.sendSMSForm.custID.value!=""){
+				var valueCust = document.sendSMSForm.custID.value+","+tcustID;	
+				document.sendSMSForm.custID.value = valueCust;	
+				document.sendSMSForm.hdCustID.value = valueCust;
 			}else{
 				var valueCust = tcustID;	
-				document.customerForm.custID.value = valueCust;
-				document.customerForm.hdCustID.value = valueCust;
+				document.sendSMSForm.custID.value = valueCust;
+				document.sendSMSForm.hdCustID.value = valueCust;
 			}
 	}
+	function getTel() {
+			var valueCust = document.sendSMSForm.hdCustID.value;
+			document.sendSMSForm.custID.value = valueCust;
+	}
+	function getTel1() {
+			var valueCust = document.sendSMSForm.custID.value;
+			document.sendSMSForm.hdCustID.value = valueCust;
+	}
+	
+	function getSMSTemplate(tDescription) {
+				var valueDes = tDescription;	
+				document.sendSMSForm.description.value = valueDes;	
+				document.sendSMSForm.hdDescription.value = valueDes;
+	}
+	function getTemp() {
+			var valueDes = document.sendSMSForm.hdDescription.value;
+			document.sendSMSForm.description.value = valueDes;
+	}
+	function getTemp1() {
+			var valueDes = document.sendSMSForm.description.value;
+			document.sendSMSForm.hdDescription.value = valueDes;
+	}
+	
+/*	function countWord(){
+	var countDes 		= document.getElementById('hdDescription').value;
+	var countSendName 	= document.getElementById('sendName').value;
+	var valueDes 		= countDes.length;
+	var valueSendName 	= countSendName.length;
+	
+	var valueWord = valueDes+valueSendName;
+
+	document.sendSMSForm.word.value = valueWord;
+	}  */
 	</script>
 	<script type="text/javascript">
 	$('#telNo').on('shown.bs.modal', function () {
   	$('#myInput').focus()
 	})
+	
+	$('#smsTemp').on('shown.bs.modal', function () {
+  	$('#myInput').focus()
+	})   
 	</script>
 </head>
 
@@ -158,20 +197,16 @@
             			
     					<div class="col-md-6 col-md-offset-3">	
                         	<label>Phone Number.</label>
-                        	<textarea class="form-control" rows="3" id="custID" name="custID" ></textarea>
+                        	<textarea class="form-control" rows="3" id="custID" name="custID" onkeyup="getTel1();"></textarea>
                         </div>
                        
     				</div>
     				<div class="row">
     					<div class="col-md-3">	
                         </div>
-    					<div class="col-md-3 text-right">
+    					<div class="col-md-6 text-left">
     						<br/>	
                         	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#telNo">ค้นเบอร์จากสมุดโทรศัพท์</button>
-                        </div>
-                        <div class="col-md-3">	
-                        	<br/>
-                        	<button type="button" class="btn btn-primary">เพิ่มรายชื่อลงสมุดโทรศัพท์</button>
                         </div>
     				</div>
     				<div class="row">
@@ -187,19 +222,34 @@
             		<div class="row">
     					<div class="col-md-6 col-md-offset-3">
     						<label>Name Sending.</label>
-    						<input class="form-control" placeholder="Name">
+    						<input class="form-control" placeholder="Name" id=sendName name="sendName" 
+    						onkeyup="
+							msgCheckerOnchange(document.sendSMSForm.sendName,document.sendSMSForm.description,
+							document.sendSMSForm.word,document.sendSMSForm.baht);">
     					</div>
     				</div>
     				<div class="row">
     					<div class="col-md-6 col-md-offset-3">	
                         	<label>Message.</label>
-                        	<textarea class="form-control" rows="3"></textarea>
+                        	<textarea class="form-control" rows="3" id="description" name="description" 
+                        	onkeyup="getTemp1();
+							msgCheckerOnchange(document.sendSMSForm.sendName,document.sendSMSForm.description,
+							document.sendSMSForm.word,document.sendSMSForm.baht);" ></textarea>
                     	</div>
                     	<div class="col-md-1">
                     		<br/>
-                    		<input class="form-control" id="disabledInput" type="text" placeholder="Word" disabled>
-                    		<input class="form-control" id="disabledInput" type="text" placeholder="Message" disabled>
+                    		<input class="form-control" id="word" name="word" type="text" placeholder="Word" disabled>
+                    		<input class="form-control" id="baht" name="baht" type="text" placeholder="Baht" disabled>
                     	</div>
+    				</div>
+    				
+    				<div class="row">
+    					<div class="col-md-3">	
+                        </div>
+    					<div class="col-md-3 text-left">
+    						<br/>	
+                        	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#smsTemp">SMS Template</button>
+                        </div>
     				</div>
     				<div class="row">
     					<div class="col-md-6 col-md-offset-3">	
@@ -235,7 +285,7 @@
             </div>
             <!-- /.container-fluid -->
             
-            	<!-- Modal -->
+          <!-- Modal Phone Book -->
 		  <div class="modal fade" id="telNo" role="dialog">
 		    <div class="modal-dialog modal-lg">
 		      <div class="modal-content">
@@ -246,7 +296,7 @@
 		        <div class="modal-body">
 		        	<div class="row">
 		        	<div  class="col-md-10 col-md-offset-1">
-		        		<textarea class="form-control" rows="3" id="hdCustID" name="hdCustID" ></textarea>
+		        		<textarea class="form-control" rows="3" id="hdCustID" name="hdCustID" onkeyup="getTel();"></textarea>
                      </div>
 		        	</div>
 		        	<div><br/></div>
@@ -263,7 +313,6 @@
 								<tbody>
 									<%	if (request.getAttribute("customerList") != null) {
 									List customerList = (List)request.getAttribute("customerList");
-									List sentList = new ArrayList();
 									int x = 0;
 									for (Iterator iter = customerList.iterator(); iter.hasNext();) {
 							  			x++;
@@ -286,12 +335,74 @@
 					</div>
 		        </div>
 		        <div class="modal-footer">
-		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		          <button type="button" class="btn btn-default" data-dismiss="modal"  onkeyup="getTemp();">Close</button>
 		        </div>
 		      </div>
 		    </div>
 		  </div>
-		<!--closs Modal -->
+		<!--closs Modal Phone Book -->
+		
+		<!-- Modal SMS Template -->
+		  <div class="modal fade" id="smsTemp" role="dialog">
+		    <div class="modal-dialog modal-lg">
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">List SMS Template</h4>
+		        </div>
+		        <div class="modal-body">
+		        	<div class="row">
+		        	<div  class="col-md-10 col-md-offset-1">
+		        		<textarea class="form-control" rows="3" id="hdDescription" name="hdDescription" onkeyup="getTemp();
+							msgCheckerOnchange(document.sendSMSForm.sendName,document.sendSMSForm.description,
+							document.sendSMSForm.word,document.sendSMSForm.baht);"></textarea>
+                     </div>
+		        	</div>
+		        	<div><br/></div>
+			         <div class="row">
+						<div class="col-md-10 col-md-offset-1">
+							<table class="table table-bordered table-hover table-striped" id="dataTables-smsTemplate">
+								<thead>
+									<tr>
+										<th class="text-center">Number</th>
+										<th class="text-center">Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<%	if (request.getAttribute("smsTemplateList") != null) {
+									List smsTemplateList = (List)request.getAttribute("smsTemplateList");
+									int x = 0;
+									for (Iterator iter = smsTemplateList.iterator(); iter.hasNext();) {
+							  			x++;
+							  			SMSTemplateForm smstempList = (SMSTemplateForm) iter.next();
+					
+									%>
+									<tr>
+										<td align="center"><%=x%> </td>
+										<td align="center"><a href="javascript:getSMSTemplate('<%=smstempList.getDescription()%>');" 
+										onclick="
+										msgCheckerOnchange(document.sendSMSForm.sendName,document.sendSMSForm.description,
+										document.sendSMSForm.word,document.sendSMSForm.baht);"><%=smstempList.getDescription()%></a></td>
+									</tr>
+									<%		}
+							 			} else {
+									%>
+									<tr><td align="center" colspan="7">No Data Found</td></tr>
+									<%	} %>
+								</tbody>
+							</table>
+						</div>
+					</div>
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default" data-dismiss="modal" onclick="getTel();
+							msgCheckerOnchange(document.sendSMSForm.sendName,document.sendSMSForm.description,
+							document.sendSMSForm.word,document.sendSMSForm.baht);">Close</button>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		<!--closs Modal SMS Template -->
           
         </div>
         <!-- /#page-wrapper -->
@@ -321,6 +432,11 @@
 	<script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
+                responsive: true
+        });
+    });
+    $(document).ready(function() {
+        $('#dataTables-smsTemplate').DataTable({
                 responsive: true
         });
     });
