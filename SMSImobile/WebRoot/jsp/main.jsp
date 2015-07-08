@@ -90,7 +90,7 @@
                             <a href="#"><i class="fa fa-user-md fa-fw"></i> Member<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="jsp/excel_import.jsp">Excel Import</a>
+                                    <a href="/SMSImobile/importExcelStart.do">Excel Import</a>
                                 </li>
                                 <li>
                                     <a href="phone_book.jsp">Phone Book</a>
@@ -102,7 +102,7 @@
                             <a href="#"><i class="fa fa-envelope-o fa-fw"></i> SMS<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="send_sms.jsp">Send SMS</a>
+                                    <a href="/SMSImobile/sendSMSStart.do">Send SMS</a>
                                 </li>
                                 <li>
                                     <a href="schdule_sms.jsp">Schdule SMS</a>

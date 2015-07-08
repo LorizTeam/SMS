@@ -4,9 +4,9 @@
 <struts-config>
   <data-sources />
  <form-beans> 
+ 	<form-bean name="loginForm" type="com.smsimobile.form.LoginForm" />
  	<form-bean name="importForm" type="com.smsimobile.form.ImportForm" />
-  	<form-bean name="loginForm" type="com.smsimobile.form.LoginForm" />
-  	
+  	<form-bean name="customerForm" type="com.smsimobile.form.CustomerForm" />
   </form-beans>
  <global-exceptions />
   <global-forwards />
@@ -29,6 +29,10 @@
   <!--################################     Login     #################################-->
   
   <!--################################     import excel     #################################-->
+  	<action path="/importExcelStart" 	name="importForm"  
+  		type="com.smsimobile.action.ImportStartAction">
+      	<forward name="success"  	path="/jsp/excel_import.jsp" />
+    </action>
   	<action
       attribute="importForm"
       input="/jsp/excel_import.jsp"
@@ -39,6 +43,22 @@
       <forward name="success" path="/jsp/excel_import.jsp" />
     </action>
    <!--################################     import excel     #################################-->
+  
+  <!--################################     send SMS    #################################-->
+  	<action path="/sendSMSStart" 	name="customerForm"  
+  		type="com.smsimobile.action.SendSMSStartAction">
+      	<forward name="success"  	path="/jsp/send_sms.jsp" />
+    </action>
+    <action
+      attribute="customerForm"
+      input="/jsp/send_sms.jsp"
+      name="customerForm"
+      path="/sendSMS"
+      scope="request"
+      type="com.smsimobile.action.SendSMSAction" >
+      <forward name="success" path="/jsp/send_sms.jsp" />
+    </action>
+   <!--################################    send SMS    #################################-->
   
   </action-mappings>
 

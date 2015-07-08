@@ -18,14 +18,14 @@ public class ImportForm extends ActionForm {
 	private FormFile theFile;
 	private String loginUsername;
 	
-	public ActionErrors validate(ActionMapping mapping, HttpServletRequest request ) {
+/*	public ActionErrors validate(ActionMapping mapping, HttpServletRequest request ) {
 		ActionErrors errors = new ActionErrors();
 
 		if( getTheFile() == null) {
 			errors.add("theFile",new ActionMessage("error.name.required"));
 		}
 		return errors; 
-	}
+	} */
 	
 	public String getLoginUsername() {
 		return loginUsername;

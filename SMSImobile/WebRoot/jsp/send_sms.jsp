@@ -4,6 +4,7 @@
 <%@ page import ="javax.servlet.http.HttpServletRequest.*"%>
 <%@ page import ="javax.servlet.http.HttpServletResponse.*"%>
 <%@ page import ="javax.servlet.http.HttpSession.*"%>
+<%@ page import="com.smsimobile.form.CustomerForm" %>
 <%
 	String name = "";
 	
@@ -25,24 +26,39 @@
     <title>SMS</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	
+	<script language="javascript">
+	function getCustomer(tcustID) {
+			if(document.customerForm.custID.value!=""){
+				var valueCust = document.customerForm.custID.value+","+tcustID;	
+				document.customerForm.custID.value = valueCust;	
+				document.customerForm.hdCustID.value = valueCust;
+			}else{
+				var valueCust = tcustID;	
+				document.customerForm.custID.value = valueCust;
+				document.customerForm.hdCustID.value = valueCust;
+			}
+	}
+	</script>
+	<script type="text/javascript">
+	$('#telNo').on('shown.bs.modal', function () {
+  	$('#myInput').focus()
+	})
+	</script>
 </head>
 
 <body>
@@ -102,7 +118,7 @@
                             <a href="#"><i class="fa fa-envelope-o fa-fw"></i> SMS<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="send_sms.jsp">Send SMS</a>
+                                    <a href="/SMSImobile/sendSMSStart.do">Send SMS</a>
                                 </li>
                                 <li>
                                     <a href="schdule_sms.jsp">Schdule SMS</a>
@@ -125,7 +141,8 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-
+		
+	<html:form action="/sendSMS" method="POST">
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container">
@@ -138,21 +155,23 @@
                         </div>
     				</div>
             		<div class="row">
+            			
     					<div class="col-md-6 col-md-offset-3">	
                         	<label>Phone Number.</label>
-                            <textarea class="form-control" rows="3"></textarea>
+                        	<textarea class="form-control" rows="3" id="custID" name="custID" ></textarea>
                         </div>
+                       
     				</div>
     				<div class="row">
     					<div class="col-md-3">	
                         </div>
     					<div class="col-md-3 text-right">
     						<br/>	
-                        	<button type="button" class="btn btn-primary">ค้นเบอร์จากสมุทรโทรศัพท์</button>
+                        	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#telNo">ค้นเบอร์จากสมุดโทรศัพท์</button>
                         </div>
                         <div class="col-md-3">	
                         	<br/>
-                        	<button type="button" class="btn btn-primary">เพิ่มรายชื่อลงสมุทรโทรศัพท์</button>
+                        	<button type="button" class="btn btn-primary">เพิ่มรายชื่อลงสมุดโทรศัพท์</button>
                         </div>
     				</div>
     				<div class="row">
@@ -210,28 +229,89 @@
                         	<button type="button" class="btn btn-primary btn-lg btn-block">Send SMS</button>
                         </div>
     				</div>
-    				<div><br/></div>
+    				
             	</div>
             	<!-- #thumbnail -->
             </div>
             <!-- /.container-fluid -->
+            
+            	<!-- Modal -->
+		  <div class="modal fade" id="telNo" role="dialog">
+		    <div class="modal-dialog modal-lg">
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">List Customer Phone Book</h4>
+		        </div>
+		        <div class="modal-body">
+		        	<div class="row">
+		        	<div  class="col-md-10 col-md-offset-1">
+		        		<textarea class="form-control" rows="3" id="hdCustID" name="hdCustID" ></textarea>
+                     </div>
+		        	</div>
+		        	<div><br/></div>
+			         <div class="row">
+						<div class="col-md-10 col-md-offset-1">
+							<table class="table table-bordered table-hover table-striped">
+								<thead>
+									<tr >
+										<th class="text-center">Number</th>
+										<th class="text-center">Phone Number</th>
+										<th class="text-center">Name</th>
+									</tr>
+								</thead>
+								<tbody>
+									<%	if (request.getAttribute("customerList") != null) {
+									List customerList = (List)request.getAttribute("customerList");
+									List sentList = new ArrayList();
+									int x = 0;
+									for (Iterator iter = customerList.iterator(); iter.hasNext();) {
+							  			x++;
+							  			CustomerForm custList = (CustomerForm) iter.next();
+					
+									%>
+									<tr>
+										<td align="center"><%=x%> </td>
+										<td align="center"><a href="javascript:getCustomer('<%=custList.getCustID()%>');"><%=custList.getCustID()%></a></td>
+										<td align="center"><%=custList.getCustName()%></td>
+									</tr>
+									<%		}
+							 			} else {
+									%>
+									<tr><td align="center" colspan="7">No Data Found</td></tr>
+									<%	} %>
+								</tbody>
+							</table>
+						</div>
+					</div>
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		<!--closs Modal -->
+          
         </div>
         <!-- /#page-wrapper -->
-
+</html:form>
     </div>
     <!-- /#wrapper -->
-
+	
+	
+	
     <!-- jQuery -->
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="dist/js/sb-admin-2.js"></script>
 
 </body>
 
