@@ -1,9 +1,11 @@
-<%@ page language="java" import="java.util.*"  pageEncoding="UTF-8"%>
-<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%> 
-<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
+<%@ page language="java" import="java.util.*,java.sql.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix= "bean" %>
+<%@ taglib uri="/WEB-INF/struts-html.tld" prefix= "html" %>
 <%@ page import ="javax.servlet.http.HttpServletRequest.*"%>
 <%@ page import ="javax.servlet.http.HttpServletResponse.*"%>
 <%@ page import ="javax.servlet.http.HttpSession.*"%>
+<%@ page import="com.smsimobile.data.* " %>
+<%@ page import="com.smsimobile.form.* " %>
 <%
 	String name = "";
 	
@@ -13,7 +15,7 @@
  
  %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 
     <meta charset="utf-8">
@@ -39,17 +41,10 @@
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 
 <body>
-
+	
     <div id="wrapper">
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -93,7 +88,7 @@
                             <a href="#"><i class="fa fa-user-md fa-fw"></i> Member<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="excel_import.jsp">Excel Import</a>
+                                    <a href="jsp/excel_import.jsp">Excel Import</a>
                                 </li>
                                 <li>
                                     <a href="phone_book.jsp">Phone Book</a>
@@ -132,6 +127,7 @@
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
+            <html:form action="/importExcel" method="post" enctype="multipart/form-data" >
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Excel Upload File</h1>
@@ -140,15 +136,16 @@
                 </div>
                 <!-- /.row -->
                 <div class="row">
+                
                 	<div class="col-lg-5">
-                		<form enctype="multipart/form-data">
-                			<input id="file-0a" class="file" type="file" multiple data-min-file-count="1">
+                		
+                			<input id="theFile" name="theFile" class="file" type="file" multiple data-min-file-count="1" >
                 			<br>
-                			<button type="submit" class="btn btn-primary">Submit</button>
-               			 	<button type="reset" class="btn btn-default">Reset</button>
-            			</form>
+                			            			
                 	</div>
+                	
                 </div>
+                </html:form>
                  <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
@@ -157,7 +154,7 @@
 
     </div>
     <!-- /#wrapper -->
-
+	
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 

@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FlowViewLayout Version="1.2">
+  <StrutsActivity path="/importExcel.do" location="50,450" dimension="237,96" />
   <StrutsActivity path="/login.do" location="50,50" dimension="251,96" />
+  <StrutsActivity path="/jsp/excel_import.jsp" location="650,450" dimension="140,51" />
   <StrutsActivity path="/supervisor.jsp" location="650,50" dimension="107,51" />
   <StrutsActivity path="/login.jsp" location="950,50" dimension="80,51" />
-  <StrutsActivity path="/mainAgent.jsp" location="50,250" dimension="112,51" />
+  <StrutsActivity path="/jsp/main.jsp" location="950,250" dimension="100,51" />
   <StrutsActivity path="/mainAccounting.jsp" location="350,250" dimension="142,51" />
+  <StrutsActivity path="/mainAgent.jsp" location="50,250" dimension="112,51" />
   <StrutsActivity path="/main.jsp" location="650,250" dimension="80,51" />
-  <StrutsActivity path="/jsp/main.jsp" />
+  <StrutsActivity path="/jsp/sms/excel_post.jsp" location="350,450" dimension="153,51" />
+  <StrutsActivity path="jsp/excel_import.jsp" location="950,450" dimension="135,51" />
+  <StrutsActivity path="/jsp/sms/SendSMS.jsp" location="350,650" dimension="148,51" />
+  <StrutsActivity path="/jsp/sms/SendSMSConfirm.jsp" location="650,650" dimension="192,51" />
   <StrutsTransition id="/login.do,success_agt,/jsp/main.jsp,1" routingType="0">
     <AutomaticBendpoints>
-      <AbsolutePoint location="175,98" />
-      <AbsolutePoint location="0,0" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
-  <StrutsTransition id="/login.do,success_agt,/mainAgent.jsp,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="106,146" />
-      <AbsolutePoint location="106,250" />
+      <AbsolutePoint location="207,146" />
+      <AbsolutePoint location="207,191" />
+      <AbsolutePoint location="990,191" />
+      <AbsolutePoint location="990,250" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/login.do,success_amd,/supervisor.jsp,1" routingType="0">
@@ -25,20 +27,18 @@
       <AbsolutePoint location="650,75" />
     </AutomaticBendpoints>
   </StrutsTransition>
+  <StrutsTransition id="/jsp/excel_import.jsp,null,/importExcel.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="720,475" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
   <StrutsTransition id="/login.jsp,null,/login.do,2" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="990,50" />
       <AbsolutePoint location="990,-25" />
       <AbsolutePoint location="175,-25" />
       <AbsolutePoint location="175,50" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
-  <StrutsTransition id="/login.do,success_agt,/main.jsp,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="147,146" />
-      <AbsolutePoint location="147,191" />
-      <AbsolutePoint location="690,191" />
-      <AbsolutePoint location="690,250" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/login.do,success_acc,/mainAccounting.jsp,1" routingType="0">
@@ -53,6 +53,12 @@
       <AbsolutePoint location="301,116" />
       <AbsolutePoint location="990,116" />
       <AbsolutePoint location="990,101" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/importExcel.do,success,/jsp/excel_import.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="720,475" />
     </AutomaticBendpoints>
   </StrutsTransition>
 </FlowViewLayout>

@@ -74,7 +74,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="/SMSImobile/"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -90,7 +90,7 @@
                             <a href="#"><i class="fa fa-user-md fa-fw"></i> Member<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="excel_import.jsp">Excel Import</a>
+                                    <a href="jsp/excel_import.jsp">Excel Import</a>
                                 </li>
                                 <li>
                                     <a href="phone_book.jsp">Phone Book</a>
