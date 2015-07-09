@@ -128,12 +128,12 @@
 
         <!-- Page Content -->
         <div id="page-wrapper">
-            <div class="container">
+            <div class="container-fluid">
             	<br/>
-            	<div class="thumbnail">
+            	<div class="thumbnail col-md-12 col-lg-12">
             		<br/>
             		<div class="row">
-	    				<div class="col-md-6 col-md-offset-3">	
+	    				<div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">	
 	                    	<label>เพิ่มรายชื่อลงสมุดโทรศัพท์</label>
 	                	</div>
                 	</div>
