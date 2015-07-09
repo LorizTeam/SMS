@@ -4,13 +4,26 @@
 <%@ page import ="javax.servlet.http.HttpServletRequest.*"%>
 <%@ page import ="javax.servlet.http.HttpServletResponse.*"%>
 <%@ page import ="javax.servlet.http.HttpSession.*"%>
+<%@ page import="com.smsimobile.form.SendSMSForm" %>
 <%
-	String name = "";
+	String errorMsg = null;
+	String message = null;
+	String sender = null;
+	List recipientList = new ArrayList();
 	
+	String name = "";
 	if(session.getAttribute("name") != null) {
 		name = (String) session.getAttribute("name");
 	}
- 
+	if(session.getAttribute("recipientList") != null) {
+		recipientList = (List) session.getAttribute("recipientList");
+	}
+ 	if(session.getAttribute("sender") != null) {
+		sender = (String) session.getAttribute("sender");
+	}
+	if(session.getAttribute("message") != null) {
+		message = (String) session.getAttribute("message");
+	}
  %>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,16 +38,16 @@
     <title>SMS</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -143,8 +156,13 @@
 	                	</div>
                 	</div>
                 	<div class="row">
+                		<div class="col-md-6 col-md-offset-3 text-center ">	
+	                    			ข้อความ
+	                	</div>      
+                	</div>
+                	<div class="row">
                 		<div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">	
-	                    	<textarea class="form-control" rows="3" id="description" name="description" disabled></textarea>
+	                    		<%=message + " : " + sender %>
 	                	</div>
                 	</div>
                 	<div><br/></div>
@@ -157,20 +175,21 @@
                 					<th><center>จำนวน (ข้อความ)</center></th>
                 					<th><center>ราคา (บาท)</center></th>
                 				</thead>
+                					<% for(int i=0; i<recipientList.size(); i++) { 
+                                               SendSMSForm smsForm = (SendSMSForm) recipientList.get(i);
+                                               String recipient = smsForm.getCustID();
+                                               int unit = smsForm.getUnit();
+                                               double cost = smsForm.getCost();
+                                     %>
                 				<tbody>
                 					<tr>
-                						<td align="center">1</td>
-                						<td align="center">082446278</td>
-                						<td align="center">2</td>
-                						<td align="right">6</td>
-                					</tr>
-                					<tr>
-                						<td align="center">2</td>
-                						<td align="center">082446278</td>
-                						<td align="center">2</td>
-                						<td align="right">6</td>
+                						<td align="center"><%=(i+1) %></td>
+                						<td align="center"><%=recipient %></td>
+                						<td align="center"><%=unit %></td>
+                						<td align="right"><%=cost %></td>
                 					</tr>
                 				</tbody>
+                					<% } %>
                 			</table>
                 		</div>
                 	</div>
@@ -193,16 +212,16 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="dist/js/sb-admin-2.js"></script>
 
 </body>
 
