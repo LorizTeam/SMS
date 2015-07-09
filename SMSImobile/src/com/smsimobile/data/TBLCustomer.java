@@ -21,7 +21,7 @@ public class TBLCustomer {
 	public List GetCustomerList(String custID, String custName) 
 	throws Exception { //30-05-2014
 		List customerList = new ArrayList();
-	
+		String custType = "";
 		try {
 		
 			conn = agent.getConnectMYSql();
@@ -39,8 +39,8 @@ public class TBLCustomer {
 			while (rs.next()) {
 				if (rs.getString("name") != null) custName = rs.getString("name"); else custName = "";
 				if (rs.getString("phone_a") != null) custID = rs.getString("phone_a"); else custID = "";
-				
-				customerList.add(new CustomerForm(custID, custName));
+				if (rs.getString("custtype") != null) custType = rs.getString("custtype"); else custID = "";
+				customerList.add(new CustomerForm(custID, custName, custType));
 			}
 			rs.close();
 			pStmt.close();

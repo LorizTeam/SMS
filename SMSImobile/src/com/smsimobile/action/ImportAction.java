@@ -6,6 +6,8 @@ package com.smsimobile.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -38,6 +40,9 @@ public class ImportAction extends Action {
 			HttpServletRequest request, HttpServletResponse response) throws IOException, Exception {
 		ImportForm importForm = (ImportForm) form;// TODO Auto-generated method stub
 		String forwardText = null; 
+		HttpSession session = request.getSession();
+		String userName = session.getAttribute("userName").toString();
+		
         FormFile myFile = importForm.getTheFile();
     //    String loginUsername = importForm.getLoginUsername();
         String contentType = myFile.getContentType();
@@ -82,6 +87,7 @@ public class ImportAction extends Action {
 	     String id = null;
 	     String name = null;
 	     String phone = null;
+	     String custType = null;
 	   //  String loginUsername = null;
 	   //  String dateEnd = null;
 	     TBLPhoneBook TBLPhoneBook = new TBLPhoneBook();
@@ -99,10 +105,11 @@ public class ImportAction extends Action {
 	    	 }else{
 	    		 phone = field[1];
 	    	 }
+	    	 custType = field[2];
 	    	 
 	    	 System.out.println("field[0]: " + field[0]);
 	    	 System.out.println("field[1]: " + field[1]);
-	  
+	    	 System.out.println("field[2]: " + field[2]);
 	    	 
 	    	 try {
 	    		 boolean chk = false;
@@ -113,7 +120,7 @@ public class ImportAction extends Action {
 	    			 alertMas =  alertMas1+phone+" : Row"+r+", ";
 	    			 
 	    		 }else{
-	    			 TBLPhoneBook.entry_phonebook(name, phone, "");
+	    			 TBLPhoneBook.entry_phonebook(name, phone, userName, custType);
 	    		 }
 	    		/* switch(typeInt) {
 	    		 case 1 : learningDB.importTrainingData(id, name, code, dateStart, dateEnd);

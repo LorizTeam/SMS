@@ -10,12 +10,14 @@ public class CustomerForm extends ActionForm {
 	private String custID;
 	private String custName;
 	private String hdCustID;
+	private String custType;
 	
 	public CustomerForm(){};
-	public CustomerForm (String custID, String custName){
+	public CustomerForm (String custID, String custName, String custType){
 		super();
 		this.custID 	= custID;
 		this.custName	= custName;
+		this.custType	= custType;
 }
 	
 	public String getCustID() {
@@ -35,6 +37,12 @@ public class CustomerForm extends ActionForm {
 	}
 	public void setHdCustID(String hdCustID) {
 		this.hdCustID = hdCustID;
+	}
+	public String getCustType() {
+		return custType;
+	}
+	public void setCustType(String custType) {
+		this.custType = custType;
 	}
 
 } 

@@ -44,7 +44,7 @@
                                     <a href="importExcelStart.do">Excel Import</a>
                                 </li>
                                 <li>
-                                    <a href="phone_book.jsp">Phone Book</a>
+                                    <a href="phoneBookStart.do">Phone Book</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second member-level -->

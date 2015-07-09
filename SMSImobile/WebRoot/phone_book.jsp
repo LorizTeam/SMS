@@ -4,11 +4,11 @@
 <%@ page import ="javax.servlet.http.HttpServletRequest.*"%>
 <%@ page import ="javax.servlet.http.HttpServletResponse.*"%>
 <%@ page import ="javax.servlet.http.HttpSession.*"%>
+<%@ page import="com.smsimobile.form.CustomerForm" %>
 <%
-	String name = "";
-	
-	if(session.getAttribute("name") != null) {
-		name = (String) session.getAttribute("name");
+	String userName = "";
+	if(session.getAttribute("userName") != null) {
+		userName = (String) session.getAttribute("userName");
 	}
  
  %>
@@ -35,13 +35,20 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+	
+	<script language="javascript">
+	function getCustomer(tcustID, tcustName, tcustType) {
+				document.customerForm.custID.value = tcustID;	
+				document.customerForm.custName.value = tcustName;	
+				document.customerForm.custType.value = tcustType;
+	}
+	</script>
+	
 </head>
-
 <body>
 
     <div id="wrapper">
-        <!-- Navigation -->
+        <br><!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             		<!-- /.menu top -->	
                       <%@ include file="/menu_top.jsp" %>  
@@ -51,7 +58,7 @@
                       <%@ include file="/menu_left.jsp" %> 
                     <!-- /.menu left --> 
         </nav>
-
+<html:form action="/phoneBook" method="POST">
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
@@ -67,55 +74,67 @@
                 	<div class="row">
 	    				<div class="col-md-6 col-md-offset-3">	
 	                    	<label>Name</label>
-    						<input class="form-control" placeholder="Name">
+    						<input id="custName" name="custName" class="form-control" placeholder="Name">
 	                	</div>
                 	</div>
                 	<!-- /.row -->
                 	<div class="row">
 	    				<div class="col-md-6 col-md-offset-3">	
 	                    	<label>Phone Number</label>
-    						<input class="form-control" placeholder="Phone Number">
+    						<input id="custID" name="custID" class="form-control" placeholder="Phone Number">
 	                	</div>
                 	</div>
                 	<!-- /.row -->
                 	<div class="row">
-	    				<div class="col-md-2 col-md-offset-3">	
+	    				<div class="col-md-3 col-md-offset-3">	
     						<label for="sel1">Select Type Customer</label>
-						    <select class="form-control" id="sel1">
-						    	<option>1</option>
-						        <option>2</option>
-						        <option>3</option>
-						        <option>4</option>
+						    <select class="form-control" id="custType" name="custType" >
+						    	<option value="A">สถานะ : ปกติ</option>
+						        <option value="B">สถานะ : ตั้งเวลา</option>
+						        <option value="C">สถานะ : ทุกวัน</option>
 						    </select>
 	                	</div>
                 	</div>
                 	<!-- /.row -->
                 	<br/>
                 	<div class="row">
-    					<div class="col-md-4 col-md-offset-4">
-                        	<button type="button" class="btn btn-primary btn-lg btn-block">บันทึก</button>
+    					<div class="col-md-6 col-md-offset-3">
+    						<input type="submit" class="btn btn-primary" value="บันทึก">
+                        	<button type="button" class="btn btn-primary">แก้ไข</button>
                         </div>
     				</div>
     				<!-- /.row -->
     				<br/>
     				<div class="row">
                 		<div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 table-responsive">
-                			<table class="table table-bordered table-striped table-hover">
+                			<table class="table table-bordered table-striped table-hover" id="dataTables-customer">
                 				<thead>
                 					<th><center>ลำดับ</center></th>
                 					<th><center>เบอร์โทรศัพท์</center></th>
                 					<th><center>ชื่อ</center></th>
                 					<th><center>ประเภท</center></th>
-                					<th><center>แก้ไข</center></th>
                 				</thead>
                 				<tbody>
-                					<tr>
-                						<td align="center">1</td>
-                						<td align="center">082446278</td>
-                						<td align="center">nung</td>
-                						<td align="center">1</td>
-                						<td align="center">Edit</td>
-                					</tr>
+                					<%	if (request.getAttribute("customerList") != null) {
+									List customerList = (List)request.getAttribute("customerList");
+									int x = 0;
+									for (Iterator iter = customerList.iterator(); iter.hasNext();) {
+							  			x++;
+							  			CustomerForm custList = (CustomerForm) iter.next();
+					
+									%>
+									<tr>
+										<td align="center"><%=x%> </td>
+										<td align="center"><a href="javascript:getCustomer('<%=custList.getCustID()%>','<%=custList.getCustName()%>',
+										'<%=custList.getCustType()%>');"><%=custList.getCustID()%></a></td>
+										<td align="center"><%=custList.getCustName()%></td>
+										<td align="center"><%=custList.getCustType()%></td>
+									</tr>
+									<%		}
+							 			} else {
+									%>
+									<tr><td align="center" colspan="7">No Data Found</td></tr>
+									<%	} %>
                 				</tbody>
                 			</table>
                 		</div>
@@ -128,7 +147,7 @@
             <!-- /.container-fluid -->
         </div>
         <!-- /#page-wrapper -->
-
+</html:form>
     </div>
     <!-- /#wrapper -->
 
@@ -143,7 +162,15 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-
+    
+	<script>
+    $(document).ready(function() {
+        $('#dataTables-customer').DataTable({
+                responsive: true
+        });
+    });
+    
+    </script>
 </body>
 
 </html>

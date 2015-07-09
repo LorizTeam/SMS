@@ -16,7 +16,7 @@ import com.smsimobile.form.PhonBookForm;
 
 
 public class TBLPhoneBook {
-	public void entry_phonebook(String name,String phone,String userPhone) throws IOException, Exception{
+	public void entry_phonebook(String name,String phone,String userPhone, String custType) throws IOException, Exception{
 		
 		String sql = null;
 		PreparedStatement pstmt  = null;
@@ -28,15 +28,16 @@ public class TBLPhoneBook {
 		 	DBConnect agent = new DBConnect();
 		 	connDB = agent.getConnectMYSql();	
 		 
-			 sql = "insert into sms_phonbook (name,phone_a,phone_b) " +
-		 	 		"VALUES (?,?,?) ";
+			 sql = "insert into sms_phonbook (name,phone_a,phone_b,custtype) " +
+		 	 		"VALUES (?,?,?,?) ";
 
 		
 		 pstmt = connDB.prepareStatement(sql);
 		 pstmt.setString(1, name);
 	     pstmt.setString(2, phone);
 	     pstmt.setString(3, userPhone);
-	    
+	     pstmt.setString(4, custType);
+	     
 	     pstmt.executeUpdate();
 		}
 
