@@ -114,9 +114,9 @@
 	<html:form action="/sendSMS" method="POST">
         <!-- Page Content -->
         <div id="page-wrapper">
-            <div class="container">
+            <div class="container-fluid">
             	<br/>
-            	<div class="thumbnail">
+            	<div class="thumbnail col-md-12 col-lg-12">
             		<div><br/></div>
             		<div class="row">
     					<div class="col-md-6 col-md-offset-3">	
