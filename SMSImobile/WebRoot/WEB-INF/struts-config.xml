@@ -25,7 +25,7 @@
       
       <forward name="error" path="/login.jsp" />
       <forward name="success_amd" path="/supervisor.jsp" />
-      <forward name="success_agt" path="/jsp/main.jsp" />
+      <forward name="success_agt" path="/main.jsp" />
       <forward name="success_acc" path="/mainAccounting.jsp" />
     </action>
   <!--################################     Login     #################################-->
@@ -33,33 +33,33 @@
   <!--################################     import excel     #################################-->
   	<action path="/importExcelStart" 	name="importForm"  
   		type="com.smsimobile.action.ImportStartAction">
-      	<forward name="success"  	path="/jsp/excel_import.jsp" />
+      	<forward name="success"  	path="/excel_import.jsp" />
     </action>
   	<action
       attribute="importForm"
-      input="/jsp/excel_import.jsp"
+      input="/excel_import.jsp"
       name="importForm"
       path="/importExcel"
       scope="request"
       type="com.smsimobile.action.ImportAction" >
-      <forward name="success" path="/jsp/excel_import.jsp" />
+      <forward name="success" path="/excel_import.jsp" />
     </action>
    <!--################################     import excel     #################################-->
   
   <!--################################     send SMS    #################################-->
   	<action path="/sendSMSStart" 	name="sendSMSForm"  
   		type="com.smsimobile.action.SendSMSStartAction">
-      	<forward name="success"  	path="/jsp/send_sms.jsp" />
+      	<forward name="success"  	path="/send_sms.jsp" />
     </action>
     <action
       attribute="sendSMSForm"
-      input="/jsp/send_sms.jsp"
+      input="/send_sms.jsp"
       name="sendSMSForm"
       path="/sendSMS"
       scope="request"
       type="com.smsimobile.action.SendSMSAction" >
-      <forward name="error" path="/jsp/send_sms.jsp" />
-      <forward name="success" path="/jsp/confirm_send_sms.jsp" />
+      <forward name="error" path="/send_sms.jsp" />
+      <forward name="success" path="/confirm_send_sms.jsp" />
     </action>
    <!--################################    send SMS    #################################-->
   
