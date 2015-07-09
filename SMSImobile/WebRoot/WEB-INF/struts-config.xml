@@ -58,7 +58,8 @@
       path="/sendSMS"
       scope="request"
       type="com.smsimobile.action.SendSMSAction" >
-      <forward name="success" path="/jsp/send_sms.jsp" />
+      <forward name="error" path="/jsp/send_sms.jsp" />
+      <forward name="success" path="/jsp/confirm_send_sms.jsp" />
     </action>
    <!--################################    send SMS    #################################-->
   
