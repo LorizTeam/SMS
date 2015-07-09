@@ -109,10 +109,10 @@
                 		<div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 table-responsive">
                 			<table class="table table-bordered table-striped table-hover" id="dataTables-customer">
                 				<thead>
-                					<th><center>ลำดับ</center></th>
-                					<th><center>เบอร์โทรศัพท์</center></th>
-                					<th><center>ชื่อ</center></th>
-                					<th><center>ประเภท</center></th>
+                					<th>ลำดับ</th>
+                					<th>เบอร์โทรศัพท์</th>
+                					<th>ชื่อ</th>
+                					<th>ประเภท</th>
                 				</thead>
                 				<tbody>
                 					<%	if (request.getAttribute("customerList") != null) {
