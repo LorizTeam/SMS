@@ -276,7 +276,7 @@
     				<div><br/></div>
     				<div class="row">
     					<div class="col-md-4 col-md-offset-4">
-                        	<button type="button" class="btn btn-primary btn-lg btn-block">Send SMS</button>
+                        	<input type="submit" class="btn btn-primary btn-lg btn-block" value="Send SMS">
                         </div>
     				</div>
     				

@@ -10,11 +10,17 @@ public class SendSMSForm extends ActionForm {
 	
 	private String custID;
 	private String hdCustID;
-	private String descriotion;
-	private String hdDescriotion;
+	private String description;
+	private String hdDescription;
 	private String sendName;
-	private String work;
+	private String word;
 	private String baht;
+	
+	private String sendType;
+	private String sendDateTime;
+	
+	private int unit;
+	private double cost;
 	
 	public String getCustID() {
 		return custID;
@@ -28,23 +34,23 @@ public class SendSMSForm extends ActionForm {
 	public void setHdCustID(String hdCustID) {
 		this.hdCustID = hdCustID;
 	}
-	public String getDescriotion() {
-		return descriotion;
+	public String getDescription() {
+		return description;
 	}
-	public void setDescriotion(String descriotion) {
-		this.descriotion = descriotion;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public String getHdDescriotion() {
-		return hdDescriotion;
+	public String getHdDescription() {
+		return hdDescription;
 	}
-	public void setHdDescriotion(String hdDescriotion) {
-		this.hdDescriotion = hdDescriotion;
+	public void setHdDescription(String hdDescription) {
+		this.hdDescription = hdDescription;
 	}
-	public String getWork() {
-		return work;
+	public String getWord() {
+		return word;
 	}
-	public void setWork(String work) {
-		this.work = work;
+	public void setWord(String word) {
+		this.word = word;
 	}
 	public String getSendName() {
 		return sendName;
@@ -57,6 +63,30 @@ public class SendSMSForm extends ActionForm {
 	}
 	public void setBaht(String baht) {
 		this.baht = baht;
+	}
+	public String getSendType() {
+		return sendType;
+	}
+	public void setSendType(String sendType) {
+		this.sendType = sendType;
+	}
+	public String getSendDateTime() {
+		return sendDateTime;
+	}
+	public void setSendDateTime(String sendDateTime) {
+		this.sendDateTime = sendDateTime;
+	}
+	public int getUnit() {
+		return unit;
+	}
+	public void setUnit(int unit) {
+		this.unit = unit;
+	}
+	public double getCost() {
+		return cost;
+	}
+	public void setCost(double cost) {
+		this.cost = cost;
 	}
 
 } 
