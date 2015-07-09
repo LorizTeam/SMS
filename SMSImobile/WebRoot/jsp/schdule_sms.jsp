@@ -25,16 +25,16 @@
     <title>SMS</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -133,10 +133,46 @@
             	<div class="thumbnail col-md-12 col-lg-12">
             		<br/>
             		<div class="row">
-	    				<div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">	
-	                    	<label>ยืนยันการส่ง SMS</label>
+	    				<div class="col-md-6 col-md-offset-2 col-lg-6 col-lg-offset-2">	
+	                    	<label>รายการตั้งเวลาส่ง SMS ล่วงหน้า</label>
 	                	</div>
                 	</div>
+                	<div class="row">
+                		<div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 table-responsive">
+                			<table class="table table-bordered table-striped table-hover">
+                				<thead>
+                					<th><center>ลำดับ</center></th>
+                					<th><center>วันที่ทำรายการ</center></th>
+                					<th><center>วันที่ส่ง SMS</center></th>
+                					<th><center>ข้อความ</center></th>
+                					<th><center>เบอร์ผู้รับ</center></th>
+                					<th><center>จำนวน (ข้อความ)</center></th>
+                					<th><center>ลบ SMS</center></th>
+                				</thead>
+                				<tbody>
+                					<tr>
+                						<td align="center">1</td>
+                						<td align="center">082446278</td>
+                						<td align="center">2</td>
+                						<td align="right">6</td>
+                						<td align="center">082446278</td>
+                						<td align="center">2</td>
+                						<td align="center">ลบ</td>
+                					</tr>
+                					<tr>
+                						<td align="center">2</td>
+                						<td align="center">082446278</td>
+                						<td align="center">2</td>
+                						<td align="right">6</td>
+                						<td align="center">082446278</td>
+                						<td align="center">2</td>
+                						<td align="center">ลบ</td>
+                					</tr>
+                				</tbody>
+                			</table>
+                		</div>
+                	</div>
+                	<!-- row table -->
             	</div>
             	<!-- thumbnail -->
             </div>
@@ -148,16 +184,16 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="dist/js/sb-admin-2.js"></script>
+    <script src="../dist/js/sb-admin-2.js"></script>
 
 </body>
 
