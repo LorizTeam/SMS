@@ -26,7 +26,7 @@ public class TBLCustomer {
 		
 			conn = agent.getConnectMYSql();
 			
-			String sqlStmt = "SELECT name, phone_a, phone_b " +
+			String sqlStmt = "SELECT name, phone_a, custtype, phone_b " +
 			"FROM sms_phonbook " +
 			"WHERE "; 
 			if(!custID.equals("")) sqlStmt = sqlStmt+ "phone_a like '"+custID+"%' AND ";
@@ -50,6 +50,28 @@ public class TBLCustomer {
 		}
 		return customerList;
 	 }
+	public void AddCustomer(String custID, String custName, String custType, String userName)  throws Exception{
+		conn = agent.getConnectMYSql();
+		
+		String sqlStmt = "INSERT IGNORE INTO sms_phonbook(phone_a, name, custtype, phone_b) " +
+		"VALUES ('"+custID+"', '"+custName+"', '"+custType+"', '"+userName+"')";
+		//System.out.println(sqlStmt);
+		pStmt = conn.createStatement();
+		pStmt.executeUpdate(sqlStmt);
+		pStmt.close();
+		conn.close();
+	}
+	public void UpdateCustomer(String custID, String custName, String custType, String userName)  throws Exception{
+		conn = agent.getConnectMYSql();
+		
+		String sqlStmt = "UPDATE customer set name = '"+custName+"', custtype = '"+custType+"', " +
+		"WHERE username = '"+userName+"' and custid = '"+custID+"'";
+		//System.out.println(sqlStmt);
+		pStmt = conn.createStatement();
+		pStmt.executeUpdate(sqlStmt);
+		pStmt.close();
+		conn.close();
+	}
 }
 
 

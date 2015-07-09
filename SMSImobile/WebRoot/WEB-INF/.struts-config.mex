@@ -11,6 +11,7 @@
   <StrutsActivity path="/mainAccounting.jsp" location="350,250" dimension="142,51" />
   <StrutsActivity path="/excel_import.jsp" location="350,850" dimension="120,51" />
   <StrutsActivity path="/send_sms.jsp" location="50,1150" dimension="104,51" />
+  <StrutsActivity path="/confirm_send_sms.jsp" location="650,1050" dimension="151,51" />
   <StrutsActivity path="/jsp/confirm_send_sms.jsp" location="950,1050" dimension="171,51" />
   <StrutsActivity path="/jsp/main.jsp" location="950,250" dimension="100,51" />
   <StrutsActivity path="/jsp/excel_import.jsp" location="650,450" dimension="140,51" />
@@ -21,11 +22,17 @@
   <StrutsActivity path="/jsp/sms/SendSMS.jsp" location="350,650" dimension="148,51" />
   <StrutsActivity path="/jsp/sms/SendSMSConfirm.jsp" location="650,650" dimension="192,51" />
   <StrutsActivity path="/jsp/admin/login.jsp" location="50,750" dimension="139,51" />
-  <StrutsActivity path="/confirm_send_sms.jsp" location="650,1050" dimension="151,51" />
-  <StrutsTransition id="/sendSMSStart.do,success,/send_sms.jsp,1" routingType="0">
+  <StrutsActivity path="/sendSMSConfim.do" location="350,1250" dimension="290,96" />
+  <StrutsActivity path="/customer.jsp" location="1250,450" dimension="103,51" />
+  <StrutsActivity path="/phone_book.jsp" location="1250,850" dimension="119,51" />
+  <StrutsActivity path="/phoneBookStart.do" location="1250,1050" dimension="286,96" />
+  <StrutsActivity path="/phoneBook.do" location="950,1250" dimension="262,96" />
+  <StrutsTransition id="/phoneBook.do,success,/phone_book.jsp,1" routingType="0">
     <AutomaticBendpoints>
-      <AbsolutePoint location="787,898" />
-      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="1212,1298" />
+      <AbsolutePoint location="1611,1298" />
+      <AbsolutePoint location="1611,875" />
+      <AbsolutePoint location="1369,875" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/importExcel.do,success,/excel_import.jsp,1" routingType="0">
@@ -35,10 +42,11 @@
       <AbsolutePoint location="350,875" />
     </AutomaticBendpoints>
   </StrutsTransition>
-  <StrutsTransition id="/sendSMS.do,success,/jsp/confirm_send_sms.jsp,1" routingType="0">
+  <StrutsTransition id="/sendSMSConfim.do,error,/confirm_send_sms.jsp,1" routingType="0">
     <AutomaticBendpoints>
-      <AbsolutePoint location="475,1098" />
-      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="640,1298" />
+      <AbsolutePoint location="725,1298" />
+      <AbsolutePoint location="725,1101" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/excel_import.jsp,null,/importExcel.do,2" routingType="0">
@@ -51,14 +59,6 @@
     <AutomaticBendpoints>
       <AbsolutePoint location="301,75" />
       <AbsolutePoint location="650,75" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
-  <StrutsTransition id="/login.do,success_agt,/main.jsp,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="147,146" />
-      <AbsolutePoint location="147,191" />
-      <AbsolutePoint location="690,191" />
-      <AbsolutePoint location="690,250" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/login.do,error,/login.jsp,1" routingType="0">
@@ -74,10 +74,103 @@
       <AbsolutePoint location="0,0" />
     </AutomaticBendpoints>
   </StrutsTransition>
+  <StrutsTransition id="/sendSMS.do,error,/phone_book.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="600,1116" />
+      <AbsolutePoint location="1309,1116" />
+      <AbsolutePoint location="1309,901" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/phone_book.jsp,null,/phoneBook.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1309,901" />
+      <AbsolutePoint location="1309,1016" />
+      <AbsolutePoint location="1166,1016" />
+      <AbsolutePoint location="1166,1250" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
   <StrutsTransition id="/sendSMS.do,success,/confirm_send_sms.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="475,1098" />
       <AbsolutePoint location="725,1075" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/confirm_send_sms.jsp,null,/sendSMSConfim.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="755,1101" />
+      <AbsolutePoint location="755,1328" />
+      <AbsolutePoint location="640,1328" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/login.do,success_acc,/mainAccounting.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="177,146" />
+      <AbsolutePoint location="177,275" />
+      <AbsolutePoint location="350,275" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/importExcelStart.do,success,/excel_import.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="950,716" />
+      <AbsolutePoint location="410,716" />
+      <AbsolutePoint location="410,850" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/sendSMSStart.do,success,/send_sms.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="787,898" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/phoneBookStart.do,success,/phone_book.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1339,1050" />
+      <AbsolutePoint location="1339,901" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/phone_book.jsp,null,/sendSMS.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1309,850" />
+      <AbsolutePoint location="1309,591" />
+      <AbsolutePoint location="518,591" />
+      <AbsolutePoint location="518,1050" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/phoneBook.do,error,/phone_book.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1136,1250" />
+      <AbsolutePoint location="1136,875" />
+      <AbsolutePoint location="1250,875" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/login.do,success_agt,/main.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="147,146" />
+      <AbsolutePoint location="147,191" />
+      <AbsolutePoint location="690,191" />
+      <AbsolutePoint location="690,250" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/customerStart.do,success,/send_sms.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1088,1346" />
+      <AbsolutePoint location="1088,1421" />
+      <AbsolutePoint location="102,1421" />
+      <AbsolutePoint location="102,1201" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/customerStart.do,success,/phone_book.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1227,1298" />
+      <AbsolutePoint location="1339,1298" />
+      <AbsolutePoint location="1339,901" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/customerStart.do,success,/customer.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1227,1298" />
+      <AbsolutePoint location="1301,1298" />
+      <AbsolutePoint location="1301,501" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/login.jsp,null,/login.do,2" routingType="0">
@@ -88,11 +181,12 @@
       <AbsolutePoint location="175,50" />
     </AutomaticBendpoints>
   </StrutsTransition>
-  <StrutsTransition id="/login.do,success_acc,/mainAccounting.jsp,1" routingType="0">
+  <StrutsTransition id="/sendSMS.do,success,/phone_book.jsp,1" routingType="0">
     <AutomaticBendpoints>
-      <AbsolutePoint location="177,146" />
-      <AbsolutePoint location="177,275" />
-      <AbsolutePoint location="350,275" />
+      <AbsolutePoint location="485,1050" />
+      <AbsolutePoint location="485,965" />
+      <AbsolutePoint location="1279,965" />
+      <AbsolutePoint location="1279,901" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/send_sms.jsp,null,/sendSMS.do,2" routingType="0">
@@ -101,11 +195,11 @@
       <AbsolutePoint location="475,1098" />
     </AutomaticBendpoints>
   </StrutsTransition>
-  <StrutsTransition id="/importExcelStart.do,success,/excel_import.jsp,1" routingType="0">
+  <StrutsTransition id="/sendSMSConfim.do,success,/send_sms.jsp,1" routingType="0">
     <AutomaticBendpoints>
-      <AbsolutePoint location="950,716" />
-      <AbsolutePoint location="410,716" />
-      <AbsolutePoint location="410,850" />
+      <AbsolutePoint location="495,1250" />
+      <AbsolutePoint location="495,1175" />
+      <AbsolutePoint location="154,1175" />
     </AutomaticBendpoints>
   </StrutsTransition>
 </FlowViewLayout>

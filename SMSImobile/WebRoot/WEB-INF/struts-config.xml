@@ -44,9 +44,9 @@
       type="com.smsimobile.action.ImportAction" >
       <forward name="success" path="/excel_import.jsp" />
     </action>
-   <!--################################     import excel     #################################-->
+    <!--################################     import excel     #################################-->
   
-  <!--################################     send SMS    #################################-->
+   <!--################################     send SMS    #################################-->
   	<action path="/sendSMSStart" 	name="sendSMSForm"  
   		type="com.smsimobile.action.SendSMSStartAction">
       	<forward name="success"  	path="/send_sms.jsp" />
@@ -61,8 +61,36 @@
       <forward name="error" path="/send_sms.jsp" />
       <forward name="success" path="/confirm_send_sms.jsp" />
     </action>
+    <!--################################   confim send SMS    #################################-->
+    <action
+      attribute="sendSMSForm"
+      input="/confirm_send_sms.jsp"
+      name="sendSMSForm"
+      path="/sendSMSConfim"
+      scope="request"
+      type="com.smsimobile.action.SendSMSConfimAction" >
+      <forward name="error" path="/confirm_send_sms.jsp" />
+      <forward name="success" path="/send_sms.jsp" />
+    </action>
    <!--################################    send SMS    #################################-->
-  
+  	
+  	 <!--################################     phoneBook    #################################-->
+  	<action path="/phoneBookStart" 	name="customerForm"  
+  		type="com.smsimobile.action.PhoneBookStartAction">
+      	<forward name="success"  	path="/phone_book.jsp" />
+    </action>
+    <action
+      attribute="customerForm"
+      input="/phone_book.jsp"
+      name="customerForm"
+      path="/phoneBook"
+      scope="request"
+      type="com.smsimobile.action.PhoneBookAction" >
+      <forward name="error" path="/phone_book.jsp" />
+      <forward name="success" path="/phone_book.jsp" />
+    </action>
+    <!--################################   phoneBook    #################################-->
+  	
   </action-mappings>
 
   <message-resources parameter="com.yourcompany.struts.ApplicationResources" />

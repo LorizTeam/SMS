@@ -71,7 +71,7 @@
                       <%@ include file="/menu_left.jsp" %> 
                     <!-- /.menu left --> 
         </nav>
-
+	<html:form action="/sendSMSConfim" method="POST">
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
@@ -133,7 +133,7 @@
                 	<div class="row">
                 		<div class="col-md-6 col-md-offset-5 col-lg-6 col-lg-offset-5">
                 			<button type="button" class="btn btn-primary">Edit SMS</button>
-                			<button type="button" class="btn btn-primary">Send SMS</button>
+                			<input type="submit" class="btn btn-primary" value="Send SMS">
                 		</div>
                 	</div>
                 	<br/>
@@ -143,7 +143,7 @@
             <!-- /.container-fluid -->
         </div>
         <!-- /#page-wrapper -->
-
+	</html:form>
     </div>
     <!-- /#wrapper -->
 
