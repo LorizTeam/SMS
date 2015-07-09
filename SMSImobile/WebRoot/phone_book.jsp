@@ -78,6 +78,18 @@
 	                	</div>
                 	</div>
                 	<!-- /.row -->
+                	<div class="row">
+	    				<div class="col-md-2 col-md-offset-3">	
+    						<label for="sel1">Select Type Customer</label>
+						    <select class="form-control" id="sel1">
+						    	<option>1</option>
+						        <option>2</option>
+						        <option>3</option>
+						        <option>4</option>
+						    </select>
+	                	</div>
+                	</div>
+                	<!-- /.row -->
                 	<br/>
                 	<div class="row">
     					<div class="col-md-4 col-md-offset-4">
@@ -85,6 +97,30 @@
                         </div>
     				</div>
     				<!-- /.row -->
+    				<br/>
+    				<div class="row">
+                		<div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 table-responsive">
+                			<table class="table table-bordered table-striped table-hover">
+                				<thead>
+                					<th><center>ลำดับ</center></th>
+                					<th><center>เบอร์โทรศัพท์</center></th>
+                					<th><center>ชื่อ</center></th>
+                					<th><center>ประเภท</center></th>
+                					<th><center>แก้ไข</center></th>
+                				</thead>
+                				<tbody>
+                					<tr>
+                						<td align="center">1</td>
+                						<td align="center">082446278</td>
+                						<td align="center">nung</td>
+                						<td align="center">1</td>
+                						<td align="center">Edit</td>
+                					</tr>
+                				</tbody>
+                			</table>
+                		</div>
+                	</div>
+                	<!-- row table -->
                 	<br/>
             	</div>
              	<!-- thumbnail -->
