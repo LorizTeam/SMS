@@ -156,40 +156,43 @@
 	                	</div>
                 	</div>
                 	<div class="row">
-                		<div class="col-md-6 col-md-offset-3 text-center ">	
-	                    			ข้อความ
-	                	</div>      
-                	</div>
-                	<div class="row">
-                		<div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">	
-	                    		<%=message + " : " + sender %>
+                		<div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+                			<label>Message</label>
+	                    	<textarea rows="3" cols="" class="form-control" id="custID" name="custID" disabled><%=message %></textarea>
 	                	</div>
                 	</div>
                 	<div><br/></div>
                 	<div class="row">
-                		<div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 table-responsive table-hover">
-                			<table class="table table-bordered table-striped">
+                		<div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">	
+                			<label>ชื่อผู้ส่ง</label>	
+	                    	<input class="form-control" id="word" name="word" type="text" value="<%=sender %>" disabled>
+	                	</div>
+                	</div>
+                	<div><br/></div>
+                	<div class="row">
+                		<div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 table-responsive">
+                			<table class="table table-bordered table-striped table-hover" id="dataTables-example">
                 				<thead>
-                					<th><center>ลำดับ</center></th>
-                					<th><center>เบอร์โทรปลายทาง</center></th>
-                					<th><center>จำนวน (ข้อความ)</center></th>
-                					<th><center>ราคา (บาท)</center></th>
+                					<th>ลำดับ</th>
+                					<th>เบอร์โทรปลายทาง</th>
+                					<th>จำนวน (ข้อความ)</th>
+                					<th>ราคา (บาท)</th>
                 				</thead>
+                				<tbody>
                 					<% for(int i=0; i<recipientList.size(); i++) { 
                                                SendSMSForm smsForm = (SendSMSForm) recipientList.get(i);
                                                String recipient = smsForm.getCustID();
                                                int unit = smsForm.getUnit();
                                                double cost = smsForm.getCost();
                                      %>
-                				<tbody>
                 					<tr>
                 						<td align="center"><%=(i+1) %></td>
                 						<td align="center"><%=recipient %></td>
                 						<td align="center"><%=unit %></td>
-                						<td align="right"><%=cost %></td>
+                						<td align="center"><%=cost %></td>
                 					</tr>
-                				</tbody>
                 					<% } %>
+                				</tbody>
                 			</table>
                 		</div>
                 	</div>
@@ -221,8 +224,18 @@
     <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="dist/js/sb-admin-2.js"></script>
+    <script src="dist/js/sb-admin-2.js"><!-- DataTables JavaScript --></script>
+    <script src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+	 <script src="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    
 
+	<script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+                responsive: true
+        });
+    });
+    </script>
 </body>
 
 </html>
