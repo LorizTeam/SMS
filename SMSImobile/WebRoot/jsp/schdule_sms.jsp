@@ -129,13 +129,16 @@
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">Edit Conent Here</h1>
-                    </div>
-                    <!-- /.col-lg-12 -->
-                </div>
-                <!-- /.row -->
+                <br/>
+            	<div class="thumbnail col-md-12 col-lg-12">
+            		<br/>
+            		<div class="row">
+	    				<div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">	
+	                    	<label>ยืนยันการส่ง SMS</label>
+	                	</div>
+                	</div>
+            	</div>
+            	<!-- thumbnail -->
             </div>
             <!-- /.container-fluid -->
         </div>
