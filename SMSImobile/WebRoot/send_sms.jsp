@@ -237,10 +237,10 @@
                         	<label>Send Type.</label>
                         </div>
                         <div class="col-md-6 col-md-offset-3">	
-                        	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Send New.
+                        	<input type="radio" name="sendType" id="sendType" value="A" checked> Send Now.
                         </div>
                         <div class="col-md-9 col-md-offset-3 col-lg-9 col-lg-offset-3 form-inline" >	
-                        	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Set Date Time :
+                        	<input type="radio" name="sendType" id="sendType" value="B" > Set Date Time :
                         	<div class="form-group">	
                         		<div class='input-group date'  >
                             <input class="form-control" placeholder="Date" id="date" name="date" >
@@ -257,6 +257,9 @@
 									</div>
 								</div>
 							</div>
+                        </div>
+                        <div class="col-md-6 col-md-offset-3">	
+                        	<input type="radio" name="sendType" id="sendType" value="C" > Send Every Day
                         </div>
     				</div>
     				<div><br/></div>

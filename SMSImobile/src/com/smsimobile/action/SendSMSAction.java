@@ -16,27 +16,30 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import com.smsimobile.data.SendSMSDB;
 import com.smsimobile.form.SendSMSForm;
+import com.smsimobile.util.DateUtil;
 import com.smsimobile.util.SeparatedString;
 import com.smsimobile.util.VerifySMS;
  
 public class SendSMSAction extends Action {
 
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		SendSMSForm sendSMSForm = (SendSMSForm) form;
 		HttpSession session = request.getSession();
+		String forwardText = null;
+		String sendType = sendSMSForm.getSendType();
+		
+	if(sendType.equals("A")){
 		
 		VerifySMS verifySMS = new VerifySMS();
 		SeparatedString separatedString = new SeparatedString();
-		String forwardText = null;
+		
 		int errorCode = 0;
 		String errorMsg = null;
 		String sender = null;
 		String message = null;
-		//String sendBy = sendSMSForm.getSendBy();
-		//String sendType = sendSMSForm.getSendType();
-		//String sendDate = sendSMSForm.getSendDateTime();
 		
 		try {
 			sender = new String(sendSMSForm.getSendName().getBytes("ISO8859-1"), "UTF-8");
@@ -151,6 +154,53 @@ public class SendSMSAction extends Action {
 			//Successful
 			forwardText = "success";		
 		}
+	}else if(sendType.equals("B")){
+		String userName = session.getAttribute("userName").toString();
+		String custID = sendSMSForm.getCustID();
+		String sender = new String(sendSMSForm.getSendName().getBytes("ISO8859-1"), "UTF-8");
+		String message = new String(sendSMSForm.getDescription().getBytes("ISO8859-1"), "UTF-8");
+		String date = sendSMSForm.getDate();
+		String time = sendSMSForm.getTime();
+		DateUtil dateUtil = new DateUtil();
+		if(!date.equals("")) date	= dateUtil.CnvToYYYYMMDD(date, '-');
+		String dateTime = date+" "+time+":00";
+		
+		SendSMSDB sendSMSDB = new SendSMSDB();
+		VerifySMS verifySMS = new VerifySMS();
+		SeparatedString separatedString = new SeparatedString();
+		//Check message language
+    
+    	String recipientArray[] = separatedString.separatedToStringArray(custID);
+    	List correctRecipient = new ArrayList();
+		String chkPhoneNo = "", telNo = ""; boolean chkPhone = false;
+		
+		int unit = verifySMS.findUnitByMessage(message + " : " + sender);
+		double price = 1.0; double cost = 0;
+		cost = unit * price;
+    	//Check Mobile Number
+		for(int i=0; i<recipientArray.length; i++) {
+			System.out.println("All Recipient [" + recipientArray[i] + "]");
+	    	if(verifySMS.isMobileNo(recipientArray[i])) {
+	    		System.out.println("Correct Recipient [" + recipientArray[i] + "]\n");
+	    		chkPhoneNo = recipientArray[i];
+	    		for(int j=0; j<correctRecipient.size(); j++){
+	    			String tmpRecipient = (String) correctRecipient.get(j);
+	    			if(chkPhoneNo.equals(tmpRecipient)) chkPhone = true;
+	    		}
+	    		if(chkPhone==false){
+	    			telNo = recipientArray[i];
+	    		}	
+	    	}  
+	    	
+	    	sendSMSDB.AddSMSSchedule(telNo, message, sender, dateTime, unit, cost, userName);
+	    	
+		}
+		
+		forwardText = "error";
+		
+	}else if(sendType.equals("C")){
+		
+	}
 		
 		return mapping.findForward(forwardText);
 	}
