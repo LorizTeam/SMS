@@ -38,6 +38,45 @@
 
     <!-- Custom Fonts -->
     <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    
+    <!-- datetime picker -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="dist/bootstrap-clockpicker.min.css">
+<link rel="stylesheet" type="text/css" href="assets/css/github.min.css">
+<style type="text/css">
+.navbar h3 {
+	color: #f5f5f5;
+	margin-top: 14px;
+}
+.hljs-pre {
+	background: #f8f8f8;
+	padding: 3px;
+}
+.footer {
+	border-top: 1px solid #eee;
+	margin-top: 40px;
+	padding: 40px 0;
+}
+.input-group {
+	width: 110px;
+	margin-bottom: 10px;
+}
+.pull-center {
+	margin-left: auto;
+	margin-right: auto;
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+@media (max-width: 767px) {
+  .pull-center {
+    float: right;
+  }
+}
+</style>
+    <!-- #datetime picker end -->
 	
 	<script language="javascript">
 	function getCustomer(tcustID) {
@@ -197,16 +236,26 @@
                         <div class="col-md-6 col-md-offset-3">	
                         	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Send New.
                         </div>
-                        <div class="col-md-6 col-md-offset-3 form-inline" >	
+                        <div class="col-md-9 col-md-offset-3 col-lg-9 col-lg-offset-3 form-inline" >	
                         	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Set Date Time :
                         	<div class="form-group">	
                         		<div class='input-group date' id='datetime'>
-                            <input class="form-control" placeholder="Date Time" id="dateTime" name="dateTime" >
+                            <input class="form-control" placeholder="Date" id="dateTime" name="dateTime" >
                             	<span class="input-group-addon">
                        		 	<span class="glyphicon glyphicon-calendar"></span>
                     			</span>
                     			</div>
                         	</div>
+                        	 <div class="form-group">
+								<div class="clearfix">
+									<div class="input-group clockpicker pull-center" data-placement="right" data-align="top" data-autoclose="true">
+										<input type="text" class="form-control" value="13:14">
+										<span class="input-group-addon">
+											<span class="glyphicon glyphicon-time"></span>
+										</span>
+									</div>
+								</div>
+							</div>
                         </div>
     				</div>
     				<div><br/></div>
@@ -363,6 +412,74 @@
     <!-- DataTables JavaScript -->
     <script src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
 	 <script src="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+	 
+	 <!-- datetime -->
+	 <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="dist/bootstrap-clockpicker.min.js"></script>
+<script type="text/javascript">
+$('.clockpicker').clockpicker()
+	.find('input').change(function(){
+		console.log(this.value);
+	});
+var input = $('#single-input').clockpicker({
+	placement: 'bottom',
+	align: 'left',
+	autoclose: true,
+	'default': 'now'
+});
+
+$('.clockpicker-with-callbacks').clockpicker({
+		donetext: 'Done',
+		init: function() { 
+			console.log("colorpicker initiated");
+		},
+		beforeShow: function() {
+			console.log("before show");
+		},
+		afterShow: function() {
+			console.log("after show");
+		},
+		beforeHide: function() {
+			console.log("before hide");
+		},
+		afterHide: function() {
+			console.log("after hide");
+		},
+		beforeHourSelect: function() {
+			console.log("before hour selected");
+		},
+		afterHourSelect: function() {
+			console.log("after hour selected");
+		},
+		beforeDone: function() {
+			console.log("before done");
+		},
+		afterDone: function() {
+			console.log("after done");
+		}
+	})
+	.find('input').change(function(){
+		console.log(this.value);
+	});
+
+// Manually toggle to the minutes view
+$('#check-minutes').click(function(e){
+	// Have to stop propagation here
+	e.stopPropagation();
+	input.clockpicker('show')
+			.clockpicker('toggleView', 'minutes');
+});
+if (/mobile/i.test(navigator.userAgent)) {
+	$('input').prop('readOnly', true);
+}
+</script>
+<script type="text/javascript" src="assets/js/highlight.min.js"></script>
+<script type="text/javascript">
+hljs.configure({tabReplace: '    '});
+hljs.initHighlightingOnLoad();
+</script>
+	 <!-- datetime end -->
 
 	<script>
     $(document).ready(function() {
