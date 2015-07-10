@@ -19,6 +19,8 @@ public class SendSMSForm extends ActionForm {
 	private String sendType;
 	private String sendDateTime;
 	
+	private String dateTime;
+	
 	private int unit;
 	private double cost;
 	
@@ -87,6 +89,12 @@ public class SendSMSForm extends ActionForm {
 	}
 	public void setCost(double cost) {
 		this.cost = cost;
+	}
+	public String getDateTime() {
+		return dateTime;
+	}
+	public void setDateTime(String dateTime) {
+		this.dateTime = dateTime;
 	}
 
 } 
