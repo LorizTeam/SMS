@@ -56,7 +56,7 @@
                                     <a href="sendSMSStart.do">Send SMS</a>
                                 </li>
                                 <li>
-                                    <a href="schdule_sms.jsp">Schdule SMS</a>
+                                    <a href="schDuleStart.do">Schdule SMS</a>
                                 </li>
                                 <li>
                                     <a href="smsTemplatStart.do">SMS Tempate</a>

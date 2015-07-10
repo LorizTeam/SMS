@@ -4,6 +4,7 @@
 <%@ page import ="javax.servlet.http.HttpServletRequest.*"%>
 <%@ page import ="javax.servlet.http.HttpServletResponse.*"%>
 <%@ page import ="javax.servlet.http.HttpSession.*"%>
+<%@ page import="com.smsimobile.form.SchduleForm" %>
 <%
 	String name = "";
 	
@@ -35,7 +36,18 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+	
+	<script language="javascript">
+	function getSchedule(tcustid, tmessage, tsending, tdatetime, tunit, tcost, tusername) {
+				document.schduleForm.custid.value = tcustid;		
+				document.schduleForm.message.value = tmessage;
+				document.schduleForm.sending.value = tsending;
+				document.schduleForm.datetime.value = tdatetime;
+				document.schduleForm.unit.value = tunit;
+				document.schduleForm.cost.value = tcost;
+				document.schduleForm.username.value = tusername;
+	}
+	</script>
 </head>
 
 <body>
@@ -63,6 +75,12 @@
 	                    	<label>รายการตั้งเวลาส่ง SMS ล่วงหน้า</label>
 	                	</div>
                 	</div>
+                	<html:form action="/schdule">
+                	<div class="row">
+	    				<div class="col-md-2 col-md-offset-10 col-lg-2 col-lg-offset-9">	
+	                    	<input type="submit" class="btn btn-primary" value="ลบ">
+	                	</div>
+                	</div>
                 	<div class="row">
                 		<div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 table-responsive">
                 			<table class="table table-bordered table-striped table-hover">
@@ -78,19 +96,41 @@
                 					<th><center>ลบ SMS</center></th>
                 				</thead>
                 				<tbody>
+                					<%	if (request.getAttribute("scheDuleList") != null) {
+									List scheDuleList = (List)request.getAttribute("scheDuleList");
+									int x = 0;
+									for (Iterator iter = scheDuleList.iterator(); iter.hasNext();) {
+							  			x++;
+							  			SchduleForm scheduleList = (SchduleForm) iter.next();
+					
+									%>
                 					<tr>
-                						<td align="center">1</td>
-                						<td align="center">082446278</td>
-                						<td align="center">2</td>
-                						<td align="right">6</td>
-                						<td align="center">082446278</td>
-                						<td align="center">2</td>
-                						<td align="center">ลบ</td>
+                						<td align="center"><%=x %></td>
+                						<td align="center"><a href="javascript:getSchedule('<%=scheduleList.getCustid()%>','<%=scheduleList.getMessage()%>'),
+                						'<%=scheduleList.getSending()%>'),'<%=scheduleList.getDatetime()%>'),'<%=scheduleList.getUnit()%>'),
+                						'<%=scheduleList.getCost()%>'),'<%=scheduleList.getUsername()%>');"><%=scheduleList.getCustid()%></a>
+                						</td>
+                						<td align="center"><%=scheduleList.getMessage()%></td>
+                						<td align="center"><%=scheduleList.getSending()%></td>
+                						<td align="center"><%=scheduleList.getDatetime()%></td>
+                						<td align="center"><%=scheduleList.getUnit()%></td>
+                						<td align="center"><%=scheduleList.getCost()%></td>
+                						<td align="center"><%=scheduleList.getUsername()%></td>
+                						<td align="center">
+                						
+                							<input type="checkbox" id="chk1" name="chk1" value="<%=scheduleList.getCustid()%>">
+                				
+                						</td>
                 					</tr>
+                					<% 	}
+                						} else {
+                					 %>
+                					<tr><td align="center" colspan="7">No Data Found</td></tr>
+									<%	} %>
                 				</tbody>
                 			</table>
                 		</div>
-                	</div>
+                	</div></html:form>
                 	<!-- row table -->
             	</div>
             	<!-- thumbnail -->
