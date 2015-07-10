@@ -21,12 +21,12 @@ public class SMSTemplateDB {
 	public List GetSMSTemplateList(String description) 
 	throws Exception { //30-05-2014
 		List smsTemplateList = new ArrayList();
-	
+		String type = "";
 		try {
 		
 			conn = agent.getConnectMYSql();
 			
-			String sqlStmt = "SELECT description " +
+			String sqlStmt = "SELECT description, type " +
 			"FROM sms_template " +
 			"WHERE "; 
 			if(!description.equals("")) sqlStmt = sqlStmt+ "description like '"+description+"%' AND ";
@@ -38,8 +38,9 @@ public class SMSTemplateDB {
 			rs = pStmt.executeQuery(sqlStmt);	
 			while (rs.next()) {
 				if (rs.getString("description") != null) description = rs.getString("description"); else description = "";
+				type = rs.getString("type"); 
 				
-				smsTemplateList.add(new SMSTemplateForm(description));
+				smsTemplateList.add(new SMSTemplateForm(description,type));
 			}
 			rs.close();
 			pStmt.close();
