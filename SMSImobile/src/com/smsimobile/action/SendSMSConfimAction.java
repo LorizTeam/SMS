@@ -31,9 +31,11 @@ import org.jsmpp.bean.SMSCDeliveryReceipt;
 import org.jsmpp.bean.TypeOfNumber;
 import org.jsmpp.extra.NegativeResponseException;
 import org.jsmpp.extra.ResponseTimeoutException;
-import org.jsmpp.session.AbstractSession;
+ 
 import org.jsmpp.session.BindParameter;
 import org.jsmpp.session.SMPPSession;
+import org.jsmpp.session.ServerMessageReceiverListener;
+import org.jsmpp.util.MessageId;
 
 import com.smsimobile.data.SMSTemplateDB;
 import com.smsimobile.data.TBLCustomer;
@@ -125,6 +127,12 @@ public class SendSMSConfimAction extends Action {
             					(byte) 0, data);
                     	
                         System.out.println("Message submitted, message_id is " + messageId);
+                        
+                        
+           //  Request Status ///
+                        
+                   
+           // /////            
                         
                     } catch (PDUException e) {
                         // Invalid PDU parameter

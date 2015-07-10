@@ -104,7 +104,9 @@ public class SMSSchedule implements javax.servlet.ServletContextListener {
             					period, null,
             					registeredDelivery, (byte) 0, dataCoding,
             					(byte) 0, data);
-    	    			
+    					// Request response
+    			
+    	    			//
     					System.out.println("Message submitted, message_id is " + messageId);
     					
     				} catch (PDUException e) {
