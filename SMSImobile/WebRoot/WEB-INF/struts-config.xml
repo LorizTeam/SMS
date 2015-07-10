@@ -90,6 +90,23 @@
       <forward name="success" path="/phone_book.jsp" />
     </action>
     <!--################################   phoneBook    #################################-->
+    
+     <!--################################     SMSTemplateBook   #################################-->
+  	<action path="/smsTemplatStart" 	name="smstemplateForm"  
+  		type="com.smsimobile.action.SMSTemplateStartAction">
+      	<forward name="success"  	path="/sms_template.jsp" />
+    </action>
+    <action
+      attribute="customerForm"
+      input="/sms_template.jsp"
+      name="customerForm"
+      path="/SMStemplate"
+      scope="request"
+      type="com.smsimobile.action.SMSTemplateAction" >
+      <forward name="error" path="/sms_template.jsp" />
+      <forward name="success" path="/sms_template.jsp" />
+    </action>
+    <!--################################   SMSTemplateBook    #################################-->
   	
   </action-mappings>
 
