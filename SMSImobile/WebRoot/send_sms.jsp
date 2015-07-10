@@ -39,6 +39,9 @@
     <!-- Custom Fonts -->
     <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     
+    <!-- date picker -->
+    <link rel="stylesheet" href="css/jquery-ui.css"/>
+    
     <!-- datetime picker -->
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="dist/bootstrap-clockpicker.min.css">
@@ -239,17 +242,15 @@
                         <div class="col-md-9 col-md-offset-3 col-lg-9 col-lg-offset-3 form-inline" >	
                         	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Set Date Time :
                         	<div class="form-group">	
-                        		<div class='input-group date' id='datetime'>
-                            <input class="form-control" placeholder="Date" id="dateTime" name="dateTime" >
-                            	<span class="input-group-addon">
-                       		 	<span class="glyphicon glyphicon-calendar"></span>
-                    			</span>
+                        		<div class='input-group date'  >
+                            <input class="form-control" placeholder="Date" id="date" name="date" >
+                            	 
                     			</div>
                         	</div>
                         	 <div class="form-group">
 								<div class="clearfix">
-									<div class="input-group clockpicker pull-center" data-placement="right" data-align="top" data-autoclose="true">
-										<input type="text" class="form-control" value="13:14">
+									<div class="input-group clockpicker pull-center" data-placement="top" data-align="top" data-autoclose="true">
+										<input type="text" class="form-control" value="hh:mm" id="time" name="time" >
 										<span class="input-group-addon">
 											<span class="glyphicon glyphicon-time"></span>
 										</span>
@@ -394,27 +395,9 @@
 </html:form>
     </div>
     <!-- /#wrapper -->
-	
-	
-	
-    <!-- jQuery -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="dist/js/sb-admin-2.js"></script>
-
-    <!-- DataTables JavaScript -->
-    <script src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-	 <script src="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 	 
 	 <!-- datetime -->
-	 <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="dist/bootstrap-clockpicker.min.js"></script>
 <script type="text/javascript">
@@ -481,6 +464,25 @@ hljs.initHighlightingOnLoad();
 </script>
 	 <!-- datetime end -->
 
+<!-- jQuery -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="dist/js/sb-admin-2.js"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+	 <script src="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+	 
+	 <!-- datet -->
+	 <script src="js/jquery-ui.js"></script>
+
 	<script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
@@ -492,6 +494,9 @@ hljs.initHighlightingOnLoad();
                 responsive: true
         });
     });
+    $(function() {
+		    $( "#date" ).datepicker({dateFormat: 'dd/mm/yy' });
+		  });
     </script>
 
 
