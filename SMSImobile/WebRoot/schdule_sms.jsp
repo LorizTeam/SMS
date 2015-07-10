@@ -75,6 +75,12 @@
 	                    	<label>รายการตั้งเวลาส่ง SMS ล่วงหน้า</label>
 	                	</div>
                 	</div>
+                	<html:form action="/schdule">
+                	<div class="row">
+	    				<div class="col-md-2 col-md-offset-10 col-lg-2 col-lg-offset-9">	
+	                    	<input type="submit" class="btn btn-primary" value="ลบ">
+	                	</div>
+                	</div>
                 	<div class="row">
                 		<div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 table-responsive">
                 			<table class="table table-bordered table-striped table-hover">
@@ -111,7 +117,9 @@
                 						<td align="center"><%=scheduleList.getCost()%></td>
                 						<td align="center"><%=scheduleList.getUsername()%></td>
                 						<td align="center">
-                							
+                						
+                							<input type="checkbox" id="chk1" name="chk1" value="<%=scheduleList.getCustid()%>">
+                				
                 						</td>
                 					</tr>
                 					<% 	}
@@ -122,7 +130,7 @@
                 				</tbody>
                 			</table>
                 		</div>
-                	</div>
+                	</div></html:form>
                 	<!-- row table -->
             	</div>
             	<!-- thumbnail -->

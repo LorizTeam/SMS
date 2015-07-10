@@ -10,6 +10,7 @@
   <StrutsActivity path="/phoneBook.do" location="950,1250" dimension="262,96" />
   <StrutsActivity path="/smsTemplatStart.do" location="1250,150" dimension="298,96" />
   <StrutsActivity path="/SMStemplate.do" location="950,1450" dimension="262,96" />
+  <StrutsActivity path="/schDuleStart.do" location="50,1450" dimension="298,96" />
   <StrutsActivity path="/supervisor.jsp" location="650,50" dimension="107,51" />
   <StrutsActivity path="/login.jsp" location="950,50" dimension="80,51" />
   <StrutsActivity path="/main.jsp" location="650,250" dimension="80,51" />
@@ -19,6 +20,7 @@
   <StrutsActivity path="/confirm_send_sms.jsp" location="650,1050" dimension="151,51" />
   <StrutsActivity path="/phone_book.jsp" location="1250,850" dimension="119,51" />
   <StrutsActivity path="/sms_template.jsp" location="650,1450" dimension="126,51" />
+  <StrutsActivity path="/schdule_sms.jsp" location="50,1650" dimension="120,51" />
   <StrutsActivity path="/jsp/confirm_send_sms.jsp" location="950,1050" dimension="171,51" />
   <StrutsActivity path="/jsp/main.jsp" location="950,250" dimension="100,51" />
   <StrutsActivity path="/jsp/excel_import.jsp" location="650,450" dimension="140,51" />
@@ -30,8 +32,7 @@
   <StrutsActivity path="/jsp/sms/SendSMSConfirm.jsp" location="650,650" dimension="192,51" />
   <StrutsActivity path="/jsp/admin/login.jsp" location="50,750" dimension="139,51" />
   <StrutsActivity path="/customer.jsp" location="1250,450" dimension="103,51" />
-  <StrutsActivity path="/schDuleStart.do" location="50,1450" dimension="298,96" />
-  <StrutsActivity path="/schdule_sms.jsp" location="50,1650" dimension="120,51" />
+  <StrutsActivity path="/schdule.do" location="350,1650" dimension="243,96" />
   <StrutsTransition id="/phoneBook.do,success,/phone_book.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="1212,1298" />
@@ -60,6 +61,14 @@
       <AbsolutePoint location="168,498" />
     </AutomaticBendpoints>
   </StrutsTransition>
+  <StrutsTransition id="/schdule_sms.jsp,null,/schdule.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="110,1650" />
+      <AbsolutePoint location="110,1591" />
+      <AbsolutePoint location="471,1591" />
+      <AbsolutePoint location="471,1650" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
   <StrutsTransition id="/login.do,success_amd,/supervisor.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="301,75" />
@@ -71,6 +80,14 @@
       <AbsolutePoint location="1081,1546" />
       <AbsolutePoint location="1081,1675" />
       <AbsolutePoint location="170,1675" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/schdule_sms.jsp,null,/Schdule.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="110,1650" />
+      <AbsolutePoint location="110,1591" />
+      <AbsolutePoint location="474,1591" />
+      <AbsolutePoint location="474,1650" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/login.do,error,/login.jsp,1" routingType="0">
@@ -151,6 +168,19 @@
       <AbsolutePoint location="1339,901" />
     </AutomaticBendpoints>
   </StrutsTransition>
+  <StrutsTransition id="/schdule.do,success,/schdule_sms.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="350,1716" />
+      <AbsolutePoint location="110,1716" />
+      <AbsolutePoint location="110,1701" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/Schdule.do,error,/schdule_sms.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="350,1675" />
+      <AbsolutePoint location="170,1675" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
   <StrutsTransition id="/SMStemplate.do,success,/schdule_sms.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="1111,1546" />
@@ -188,16 +218,23 @@
       <AbsolutePoint location="950,1486" />
     </AutomaticBendpoints>
   </StrutsTransition>
-  <StrutsTransition id="/schDuleStart.do,success,/sms_template.jsp,1" routingType="0">
+  <StrutsTransition id="/schdule.do,error,/schdule_sms.jsp,1" routingType="0">
     <AutomaticBendpoints>
-      <AbsolutePoint location="348,1475" />
-      <AbsolutePoint location="650,1475" />
+      <AbsolutePoint location="350,1675" />
+      <AbsolutePoint location="170,1675" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/schDuleStart.do,success,/schdule_sms.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="80,1546" />
       <AbsolutePoint location="80,1650" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/Schdule.do,success,/schdule_sms.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="350,1716" />
+      <AbsolutePoint location="110,1716" />
+      <AbsolutePoint location="110,1701" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/login.jsp,null,/login.do,2" routingType="0">

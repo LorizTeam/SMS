@@ -61,6 +61,17 @@ public class SchduleDB {
 		}
 		return scheDuleList;
 	 }
+	public void DeleteSchedule(String custID)  throws Exception{
+		conn = agent.getConnectMYSql();
+		
+		String sqlStmt = "delete from sms_schedule where custid in "+custID+" ";
+
+		//System.out.println(sqlStmt);
+		pStmt = conn.createStatement();
+		pStmt.executeUpdate(sqlStmt);
+		pStmt.close();
+		conn.close();
+	}
 }
 
 

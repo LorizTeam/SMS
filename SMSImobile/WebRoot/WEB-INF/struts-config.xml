@@ -9,6 +9,7 @@
   	<form-bean name="customerForm" type="com.smsimobile.form.CustomerForm" />
   	<form-bean name="sendSMSForm" type="com.smsimobile.form.SendSMSForm" />
   	<form-bean name="smstemplateForm" type="com.smsimobile.form.SMSTemplateForm" />
+  	<form-bean name="schduleForm" type="com.smsimobile.form.SchduleForm" />
   </form-beans>
  <global-exceptions />
   <global-forwards />
@@ -114,12 +115,12 @@
       	<forward name="success"  	path="/schdule_sms.jsp" />
     </action>
     <action
-      attribute="customerForm"
+      attribute="schduleForm"
       input="/schdule_sms.jsp"
-      name="customerForm"
-      path="/SMStemplate"
+      name="schduleForm"
+      path="/schdule"
       scope="request"
-      type="com.smsimobile.action.SMSTemplateAction" >
+      type="com.smsimobile.action.SchduleAction" >
       <forward name="error" path="/schdule_sms.jsp" />
       <forward name="success" path="/schdule_sms.jsp" />
     </action>
