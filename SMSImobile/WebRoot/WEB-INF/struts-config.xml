@@ -91,7 +91,7 @@
     </action>
     <!--################################   phoneBook    #################################-->
     
-     <!--################################     SMSTemplateBook   #################################-->
+     <!--################################     SMSTemplate   #################################-->
   	<action path="/smsTemplatStart" 	name="smstemplateForm"  
   		type="com.smsimobile.action.SMSTemplateStartAction">
       	<forward name="success"  	path="/sms_template.jsp" />
@@ -106,7 +106,24 @@
       <forward name="error" path="/sms_template.jsp" />
       <forward name="success" path="/sms_template.jsp" />
     </action>
-    <!--################################   SMSTemplateBook    #################################-->
+    <!--################################   SMSTemplate    #################################-->
+    
+    <!--################################     Schdule sms  #################################-->
+  	<action path="/schDuleStart" 	name="schduleForm"  
+  		type="com.smsimobile.action.SchduleStartAction">
+      	<forward name="success"  	path="/schdule_sms.jsp" />
+    </action>
+    <action
+      attribute="customerForm"
+      input="/schdule_sms.jsp"
+      name="customerForm"
+      path="/SMStemplate"
+      scope="request"
+      type="com.smsimobile.action.SMSTemplateAction" >
+      <forward name="error" path="/schdule_sms.jsp" />
+      <forward name="success" path="/schdule_sms.jsp" />
+    </action>
+    <!--################################   Schdule sms    #################################-->
   	
   </action-mappings>
 
