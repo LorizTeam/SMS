@@ -39,7 +39,7 @@ public class SendSMSDB {
 			while (rs.next()) {
 				if (rs.getString("description") != null) description = rs.getString("description"); else description = "";
 				
-				smsTemplateList.add(new SMSTemplateForm(description));
+		//		smsTemplateList.add(new SMSTemplateForm(description));
 			}
 			rs.close();
 			pStmt.close();
