@@ -68,25 +68,18 @@
                 			<table class="table table-bordered table-striped table-hover">
                 				<thead>
                 					<th><center>ลำดับ</center></th>
-                					<th><center>วันที่ทำรายการ</center></th>
-                					<th><center>วันที่ส่ง SMS</center></th>
-                					<th><center>ข้อความ</center></th>
                 					<th><center>เบอร์ผู้รับ</center></th>
+                					<th><center>ข้อความ</center></th>
+                					<th><center>วันที่ส่ง SMS</center></th>
+                					<th><center>เวลาทำรายการ</center></th>
+                					<th><center>ผู้ส่ง</center></th>
                 					<th><center>จำนวน (ข้อความ)</center></th>
+                					<th><center>ราคา </center></th>
                 					<th><center>ลบ SMS</center></th>
                 				</thead>
                 				<tbody>
                 					<tr>
                 						<td align="center">1</td>
-                						<td align="center">082446278</td>
-                						<td align="center">2</td>
-                						<td align="right">6</td>
-                						<td align="center">082446278</td>
-                						<td align="center">2</td>
-                						<td align="center">ลบ</td>
-                					</tr>
-                					<tr>
-                						<td align="center">2</td>
                 						<td align="center">082446278</td>
                 						<td align="center">2</td>
                 						<td align="right">6</td>
