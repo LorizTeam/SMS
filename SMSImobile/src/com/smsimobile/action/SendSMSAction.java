@@ -16,7 +16,9 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import com.smsimobile.data.SMSTemplateDB;
 import com.smsimobile.data.SendSMSDB;
+import com.smsimobile.data.TBLCustomer;
 import com.smsimobile.form.SendSMSForm;
 import com.smsimobile.util.DateUtil;
 import com.smsimobile.util.SeparatedString;
@@ -195,6 +197,14 @@ public class SendSMSAction extends Action {
 	    	sendSMSDB.AddSMSSchedule(telNo, message, sender, dateTime, unit, cost, userName);
 	    	
 		}
+		
+		TBLCustomer tblcustomer = new TBLCustomer();
+		List customerList = tblcustomer.GetCustomerList("", "");
+		request.setAttribute("customerList", customerList);
+		
+		SMSTemplateDB smstemplateDB = new SMSTemplateDB();
+		List smsTemplateList = smstemplateDB.GetSMSTemplateList("");
+		request.setAttribute("smsTemplateList", smsTemplateList);
 		
 		forwardText = "error";
 		

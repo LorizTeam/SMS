@@ -1,4 +1,5 @@
 package com.smsimobile.action;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
@@ -8,9 +9,9 @@ import java.util.TimerTask;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
+import org.jsmpp.InvalidResponseException;
+import org.jsmpp.PDUException;
 import org.jsmpp.bean.Alphabet;
 import org.jsmpp.bean.BindType;
 import org.jsmpp.bean.DataCoding;
@@ -33,14 +34,31 @@ import com.smsimobile.util.DateUtil;
 
 public class SMSSchedule implements javax.servlet.ServletContextListener {
 	
-	public void sendSMS(HttpServletRequest request) throws Exception {
+	public void sendSMS() throws Exception {
 		
-		String systemHost = "127.0.0.1";
+        DateUtil dateUtil = new DateUtil();
+        
+        String date = dateUtil.CnvToYYYYMMDD(dateUtil.curDate(), '-');
+        String time = dateUtil.curTime();
+        String dateTime = date+" "+time;
+        
+        SendSMSDB sendSMSDB = new SendSMSDB();
+        List scheduleList = sendSMSDB.findScheduleSMS(dateTime);
+        
+        if(scheduleList.size() > 0){
+        
+        String custID = null;
+ 		String message = null;
+ 		String sending = null;
+ 		int unit = 0;
+ 		double cost = 0;
+        
+ 		String systemHost = "127.0.0.1";
 		int systemPort = 10002;//your PORT
 		String systemId = "quppee";
 		String systemPass = "quppee";
-		SMPPSession session = new SMPPSession();
-	 
+    	SMPPSession session = new SMPPSession();
+   	 
         try {
             session.connectAndBind(systemHost, systemPort, new BindParameter(BindType.BIND_TX, systemId, systemPass, null, 
             		TypeOfNumber.UNKNOWN, NumberingPlanIndicator.UNKNOWN, null));
@@ -50,43 +68,30 @@ public class SMSSchedule implements javax.servlet.ServletContextListener {
             System.exit(-1);
         }
         
-        System.out.println("connected");
-		
-        DateUtil dateUtil = new DateUtil();
-        HttpSession session1 = request.getSession();
+        RegisteredDelivery registeredDelivery = new RegisteredDelivery();
+ 		registeredDelivery.setSMSCDeliveryReceipt(SMSCDeliveryReceipt.DEFAULT);
         
-        String userName = session1.getAttribute("userName").toString();
-        String dateTime = dateUtil.CnvToYYYYMMDD(dateUtil.curDate(), '-');
-        SendSMSDB sendSMSDB = new SendSMSDB();
-        List scheduleList = sendSMSDB.findScheduleSMS(dateTime, userName);
-        
-        String custID = null;
-		String message = null;
-		String sending = null;
-		int unit = 0;
-		double cost = 0;
-        
-		RegisteredDelivery registeredDelivery = new RegisteredDelivery();
-		registeredDelivery.setSMSCDeliveryReceipt(SMSCDeliveryReceipt.DEFAULT);
-		
         for(int i=0; i<scheduleList.size(); i++) {
+        	
         	SendSMSForm sendSMSForm = (SendSMSForm) scheduleList.get(i);
         	custID 	= sendSMSForm.getCustID();
-        	message = sendSMSForm.getDescription();
-        	sending = sendSMSForm.getSendName();
+        	message = sendSMSForm.getDescription().toString();
+        	sending = sendSMSForm.getSendName().toString();
         	unit 	= sendSMSForm.getUnit();
         	cost	= sendSMSForm.getCost();
+         	
+         	DataCoding dataCoding = null;
+ 			byte[] data = null;
+ 			String period = null;
+ 			try {
+ 				dataCoding = new GeneralDataCoding(false,
+ 						true, MessageClass.CLASS1, Alphabet.ALPHA_UCS2);
+ 					data = message.getBytes("UTF-16BE");
+ 			} catch (UnsupportedEncodingException e) {
+ 				e.printStackTrace();
+ 			}
         	
-        	DataCoding dataCoding = null;
-			byte[] data = null;
-			try {
-				dataCoding = new GeneralDataCoding(false,
-						true, MessageClass.CLASS1, Alphabet.ALPHA_UCS2);
-					data = message.getBytes("UTF-16BE");
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
-        	
+			  try {
     				try {					
     		
     					String messageId = session.submitShortMessage(
@@ -96,20 +101,38 @@ public class SMSSchedule implements javax.servlet.ServletContextListener {
             					TypeOfNumber.INTERNATIONAL,
             					NumberingPlanIndicator.UNKNOWN, custID,
             					new ESMClass(), (byte) 0, (byte) 1,
-            					null, null,
+            					period, null,
             					registeredDelivery, (byte) 0, dataCoding,
             					(byte) 0, data);
     	    			
-    				} catch (IOException e) {
-    					// TODO Auto-generated catch block
-    					e.printStackTrace();
-    				} catch (Exception e) {
-    					// TODO Auto-generated catch block
-    					e.printStackTrace();
-    				}
-                	
-        session.unbindAndClose();
+    					System.out.println("Message submitted, message_id is " + messageId);
+    					
+    				} catch (PDUException e) {
+                        // Invalid PDU parameter
+                        System.err.println("Invalid PDU parameter");
+                        e.printStackTrace();
+                    } catch (ResponseTimeoutException e) {
+                        // Response timeout
+                        System.err.println("Response timeout");
+                        e.printStackTrace();
+                    } catch (InvalidResponseException e) {
+                        // Invalid response
+                        System.err.println("Receive invalid respose");
+                        e.printStackTrace();
+                    } catch (NegativeResponseException e) {
+                        // Receiving negative response (non-zero command_status)
+                        System.err.println("Receive negative response");
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        System.err.println("IO error occur");
+                        e.printStackTrace();
+                    }
+			  } catch (Exception e) {
+					e.printStackTrace();
+				} 	         
 	}
+        session.unbindAndClose();
+   }
 }	 
 	 public void doTask() {
 	        System.out.println("Hello - " + new Date());
@@ -124,14 +147,20 @@ public class SMSSchedule implements javax.servlet.ServletContextListener {
         Date date2pm = new java.util.Date();
       //  date2pm.setHours(15);
       //  date2pm.setMinutes(51);
-        date2pm.setSeconds(00);
+      //  date2pm.setSeconds(00);
         
        timer.schedule(new TimerTask() {
-            @Override
+            
             public void run() {
-               ex.sendSMS();
+              
+				try {
+					ex.sendSMS();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			
             }
-        }, date2pm, 60000);  
+        }, 0, 60000);  
 		;
 		
 	}   
@@ -139,11 +168,5 @@ public class SMSSchedule implements javax.servlet.ServletContextListener {
 		 
 		 
 	}
-	
-	private void sendSMS(){
-		
-		
-	}
- 
 }
 

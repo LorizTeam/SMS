@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import com.smsimobile.util.DBConnect;
 import com.smsimobile.form.SMSTemplateForm;
 import com.smsimobile.form.SendSMSForm;
@@ -17,29 +19,24 @@ public class SendSMSDB {
 	DBConnect agent 	= new DBConnect();
 	Connection conn		= null;
 	Statement pStmt 	= null;
-	Statement pStmt1 	= null;
 	ResultSet rs		= null;
 	
-	public List findScheduleSMS(String sendDate, String userName) throws Exception {
+	public List findScheduleSMS(String sendDate) throws Exception {
 		List scheduleList = new ArrayList();
 		
-		PreparedStatement pStmst = null;
-		ResultSet rs = null;
-		
+		conn = agent.getConnectMYSql();
+		try {
 		//Find the minute
 		String sqlStmt = "SELECT custid, message, sending, datetime, unit, cost, username " +
-				         "FROM schedule_sending " +
-				         "WHERE LEFT(datetime,16) = LEFT(?, 16) " +
-				         "AND username = '"+userName+"' ";
+				         "FROM sms_schedule " +
+				         "WHERE LEFT(datetime,16) = LEFT('"+sendDate+"', 16) ";
 		
-		try {
-			
-			pStmst = conn.prepareStatement(sqlStmt);
-			pStmst.setString(1, sendDate);
-			rs = pStmst.executeQuery();
-			
+			pStmt = conn.createStatement();
+			rs = pStmt.executeQuery(sqlStmt);	
+			 
 			while (rs.next()) {
 				SendSMSForm sendSMSForm = new SendSMSForm();
+				sendSMSForm.setCustID(rs.getString("custid").trim());
 				sendSMSForm.setDescription(rs.getString("message").trim());
 				sendSMSForm.setSendName(rs.getString("sending").trim());
 				sendSMSForm.setSendDateTime(rs.getString("datetime").trim());
@@ -48,12 +45,11 @@ public class SendSMSDB {
 				 
 				scheduleList.add(sendSMSForm);
 			}
-		} catch (Exception e) {
-			throw new Exception(e.getMessage());
-		} finally {
-			if(conn != null) {
-				conn.close();
-			}
+		rs.close();
+		pStmt.close();
+		conn.close();
+		} catch (SQLException e) {
+		    throw new Exception(e.getMessage());
 		}
 		return scheduleList;
 	}
