@@ -1,6 +1,7 @@
 package com.smsimobile.data;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,6 +10,7 @@ import java.util.List;
 
 import com.smsimobile.util.DBConnect;
 import com.smsimobile.form.SMSTemplateForm;
+import com.smsimobile.form.SendSMSForm;
 
 
 public class SendSMSDB {
@@ -18,37 +20,45 @@ public class SendSMSDB {
 	Statement pStmt1 	= null;
 	ResultSet rs		= null;
 	
-	public List GetSMSTemplateList(String description) 
-	throws Exception { //30-05-2014
-		List smsTemplateList = new ArrayList();
-	
-		try {
+	public List findScheduleSMS(String sendDate) throws Exception {
+		List scheduleList = new ArrayList();
 		
-			conn = agent.getConnectMYSql();
+		PreparedStatement pStmst = null;
+		ResultSet rs = null;
+		
+		//Find the minute
+		String sqlStmt = "SELECT id, username, recipient, cost, service_name, send_date,  message " +
+				         "FROM schedule_sending " +
+				         "WHERE LEFT(send_date,16) = LEFT(?, 16) " +
+				         "AND sended = 0 ";
+		
+		try {
 			
-			String sqlStmt = "SELECT description " +
-			"FROM sms_template " +
-			"WHERE "; 
-			if(!description.equals("")) sqlStmt = sqlStmt+ "description like '"+description+"%' AND ";
+			pStmst = conn.prepareStatement(sqlStmt);
+			pStmst.setString(1, sendDate);
+			rs = pStmst.executeQuery();
 			
-			sqlStmt = sqlStmt + "description <> '' order by description ";
-			
-			//System.out.println(sqlStmt);				
-			pStmt = conn.createStatement();
-			rs = pStmt.executeQuery(sqlStmt);	
 			while (rs.next()) {
-				if (rs.getString("description") != null) description = rs.getString("description"); else description = "";
-				
-		//		smsTemplateList.add(new SMSTemplateForm(description));
+				SendSMSForm sendSMSForm = new SendSMSForm();
+				schedulForm.setScheduleId(rs.getInt("id"));
+				schedulForm.setUsername(rs.getString("username").trim());
+				schedulForm.setRecipient(rs.getString("recipient").trim());
+				schedulForm.setCost(rs.getDouble("cost"));
+				schedulForm.setServiceName(rs.getString("service_name").trim());
+				schedulForm.setSendDate(rs.getTimestamp("send_date"));
+				System.out.println("Send date : " + rs.getTimestamp("send_date"));
+				schedulForm.setMessage(rs.getString("message").trim());
+				scheduleList.add(schedulForm);
 			}
-			rs.close();
-			pStmt.close();
-			conn.close();
-		} catch (SQLException e) {
-		    throw new Exception(e.getMessage());
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		} finally {
+			if(conn != null) {
+				conn.close();
+			}
 		}
-		return smsTemplateList;
-	 }
+		return scheduleList;
+	}
 	
 	public void AddSMSSchedule(String custID, String message, String sending, String dateTime, int unit, double cost, String userName)  throws Exception{
 		conn = agent.getConnectMYSql();
