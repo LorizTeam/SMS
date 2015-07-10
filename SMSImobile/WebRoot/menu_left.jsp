@@ -59,7 +59,7 @@
                                     <a href="schdule_sms.jsp">Schdule SMS</a>
                                 </li>
                                 <li>
-                                    <a href="sms_tempate.jsp">SMS Tempate</a>
+                                    <a href="smsTemplatStart.do">SMS Tempate</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
