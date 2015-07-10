@@ -128,7 +128,13 @@
 										<td align="center"><a href="javascript:getCustomer('<%=custList.getCustID()%>','<%=custList.getCustName()%>',
 										'<%=custList.getCustType()%>');"><%=custList.getCustID()%></a></td>
 										<td align="center"><%=custList.getCustName()%></td>
-										<td align="center"><%=custList.getCustType()%></td>
+										<%if(custList.getCustType().equals("A")) { %>
+											<td align="center">ปกติ</td>
+										<%}else if(custList.getCustType().equals("B")){%>
+											<td align="center">ตั้งเวลา</td>
+										<%}else{ %>
+											<td align="center">ส่งทุกวัน</td>
+										<%} %>
 									</tr>
 									<%		}
 							 			} else {

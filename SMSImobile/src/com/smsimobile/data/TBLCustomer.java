@@ -73,6 +73,3 @@ public class TBLCustomer {
 		conn.close();
 	}
 }
-
-
-
