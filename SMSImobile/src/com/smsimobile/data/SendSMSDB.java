@@ -20,17 +20,17 @@ public class SendSMSDB {
 	Statement pStmt1 	= null;
 	ResultSet rs		= null;
 	
-	public List findScheduleSMS(String sendDate) throws Exception {
+	public List findScheduleSMS(String sendDate, String userName) throws Exception {
 		List scheduleList = new ArrayList();
 		
 		PreparedStatement pStmst = null;
 		ResultSet rs = null;
 		
 		//Find the minute
-		String sqlStmt = "SELECT id, username, recipient, cost, service_name, send_date,  message " +
+		String sqlStmt = "SELECT custid, message, sending, datetime, unit, cost, username " +
 				         "FROM schedule_sending " +
-				         "WHERE LEFT(send_date,16) = LEFT(?, 16) " +
-				         "AND sended = 0 ";
+				         "WHERE LEFT(datetime,16) = LEFT(?, 16) " +
+				         "AND username = '"+userName+"' ";
 		
 		try {
 			
@@ -40,15 +40,13 @@ public class SendSMSDB {
 			
 			while (rs.next()) {
 				SendSMSForm sendSMSForm = new SendSMSForm();
-				schedulForm.setScheduleId(rs.getInt("id"));
-				schedulForm.setUsername(rs.getString("username").trim());
-				schedulForm.setRecipient(rs.getString("recipient").trim());
-				schedulForm.setCost(rs.getDouble("cost"));
-				schedulForm.setServiceName(rs.getString("service_name").trim());
-				schedulForm.setSendDate(rs.getTimestamp("send_date"));
-				System.out.println("Send date : " + rs.getTimestamp("send_date"));
-				schedulForm.setMessage(rs.getString("message").trim());
-				scheduleList.add(schedulForm);
+				sendSMSForm.setDescription(rs.getString("message").trim());
+				sendSMSForm.setSendName(rs.getString("sending").trim());
+				sendSMSForm.setSendDateTime(rs.getString("datetime").trim());
+				sendSMSForm.setUnit(rs.getInt("unit"));
+				sendSMSForm.setCost(rs.getDouble("cost"));
+				 
+				scheduleList.add(sendSMSForm);
 			}
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
