@@ -1,10 +1,12 @@
 <%@ page language="java" import="java.util.*"  pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%> 
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
 <%@ page import ="javax.servlet.http.HttpServletRequest.*"%>
 <%@ page import ="javax.servlet.http.HttpServletResponse.*"%>
 <%@ page import ="javax.servlet.http.HttpSession.*"%>
 <%@ page import="com.smsimobile.form.CustomerForm" %>
+<%@ page import="com.smsimobile.form.TypeCustomerForm" %>
 <%
 	String userName = "";
 	if(session.getAttribute("userName") != null) {
@@ -89,9 +91,17 @@
 	    				<div class="col-md-3 col-md-offset-3">	
     						<label for="sel1">Select Type Customer</label>
 						    <select class="form-control" id="custType" name="custType" >
-						    	<option value="A">สถานะ : ปกติ</option>
-						        <option value="B">สถานะ : ตั้งเวลา</option>
-						        <option value="C">สถานะ : ทุกวัน</option>
+						    	<% if (request.getAttribute("TpyeCustomerList") != null) {
+											List TpyeCustomerList = (List)request.getAttribute("TpyeCustomerList");
+					   						for (Iterator iterItem = TpyeCustomerList.iterator(); iterItem.hasNext();) {
+					   							TypeCustomerForm grpInfo = (TypeCustomerForm) iterItem.next();
+					       			%>
+				        			<option value="<%=grpInfo.getGroupID()%>">
+				        				<%=grpInfo.getGroupName()%>
+				        			</option>
+									<% 		} 
+										} 
+									%>
 						    </select>
 	                	</div>
                 	</div>
@@ -99,8 +109,8 @@
                 	<br/>
                 	<div class="row">
     					<div class="col-md-6 col-md-offset-3">
-    						<input type="submit" class="btn btn-primary" value="บันทึก">
-                        	<button type="button" class="btn btn-primary">แก้ไข</button>
+    						<input type="submit" class="btn btn-primary" id="save" name="save" value="บันทึก">
+    						<input type="submit" class="btn btn-primary" id="update" name="update" value="แก้ไข">
                         </div>
     				</div>
     				<!-- /.row -->
@@ -128,13 +138,8 @@
 										<td align="center"><a href="javascript:getCustomer('<%=custList.getCustID()%>','<%=custList.getCustName()%>',
 										'<%=custList.getCustType()%>');"><%=custList.getCustID()%></a></td>
 										<td align="center"><%=custList.getCustName()%></td>
-										<%if(custList.getCustType().equals("A")) { %>
-											<td align="center">ปกติ</td>
-										<%}else if(custList.getCustType().equals("B")){%>
-											<td align="center">ตั้งเวลา</td>
-										<%}else{ %>
-											<td align="center">ส่งทุกวัน</td>
-										<%} %>
+										<td align="center"><%=custList.getTypeName()%></td>
+									
 									</tr>
 									<%		}
 							 			} else {

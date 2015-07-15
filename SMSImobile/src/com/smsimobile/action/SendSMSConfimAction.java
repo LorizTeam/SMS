@@ -34,37 +34,34 @@ import org.jsmpp.extra.ResponseTimeoutException;
  
 import org.jsmpp.session.BindParameter;
 import org.jsmpp.session.SMPPSession;
-import org.jsmpp.session.ServerMessageReceiverListener;
-import org.jsmpp.util.MessageId;
+
 
 import com.smsimobile.data.SMSTemplateDB;
+import com.smsimobile.data.SendSMSDB;
 import com.smsimobile.data.TBLCustomer;
 import com.smsimobile.form.SendSMSForm;
  
-
-/** 
- * MyEclipse Struts
- * Creation date: 10-04-2009
- * 
- * XDoclet definition:
- * @struts.action path="/sendSMS" name="sendSMSForm" scope="request" validate="true"
- */
 public class SendSMSConfimAction extends Action {
 	
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
-		//SendSMSForm sendSMSForm = (SendSMSForm) form;// TODO Auto-generated method stub
-		//SMSService smsService = new SMSService();
-		//SamartWIPProxy ws = new SamartWIPProxy();
+		
+		SendSMSForm sendSMSForm = (SendSMSForm) form;
+		String confim 	= sendSMSForm.getConfim();
+		String edit		= sendSMSForm.getEdit();
+		
+		if(confim!=null){
 		HttpSession session = request.getSession();
 		List recipientList = new ArrayList();
-	//	String username = session.getAttribute("loginUsername").toString();
+		String userName = session.getAttribute("userName").toString();
 		String sender = session.getAttribute("sender").toString();
 		String message = session.getAttribute("message").toString();
-	//	String sendType = session.getAttribute("sendType").toString();
-	//	String sendDate = session.getAttribute("sendDate").toString();
-		String serviceName = "SMS Service";
+		String sendDate = session.getAttribute("sendDate").toString();
+		int unit = Integer.parseInt(session.getAttribute("unit").toString());
+		double cost = Double.parseDouble(session.getAttribute("cost").toString());
 		
+		String serviceName = "SMS Service";
+		String alertMessage = null;
 		System.out.println("----------------------- SEND SMS -----------------------");
 		
 		String systemHost = "127.0.0.1";
@@ -97,8 +94,7 @@ public class SendSMSConfimAction extends Action {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-        
-	//	SendFinal sendFinal = new SendFinal();
+		SendSMSDB sendSMSDB = new SendSMSDB();
 		
 		recipientList = (List) session.getAttribute("recipientList");
 		List recipientStatusList = new ArrayList();
@@ -128,7 +124,7 @@ public class SendSMSConfimAction extends Action {
                     	
                         System.out.println("Message submitted, message_id is " + messageId);
                         
-                        
+                        sendSMSDB.AddSMS(recipient, message, sender, sendDate, unit, cost, userName);
            //  Request Status ///
                         
                    
@@ -137,21 +133,26 @@ public class SendSMSConfimAction extends Action {
                     } catch (PDUException e) {
                         // Invalid PDU parameter
                         System.err.println("Invalid PDU parameter");
+                        alertMessage = "Invalid PDU parameter";
                         e.printStackTrace();
                     } catch (ResponseTimeoutException e) {
                         // Response timeout
                         System.err.println("Response timeout");
+                        alertMessage = "Response timeout";
                         e.printStackTrace();
                     } catch (InvalidResponseException e) {
                         // Invalid response
                         System.err.println("Receive invalid respose");
+                        alertMessage = "Receive invalid respose";
                         e.printStackTrace();
                     } catch (NegativeResponseException e) {
                         // Receiving negative response (non-zero command_status)
                         System.err.println("Receive negative response");
+                        alertMessage = "Receive negative response";
                         e.printStackTrace();
                     } catch (IOException e) {
                         System.err.println("IO error occur");
+                        alertMessage = "IO error occur";
                         e.printStackTrace();
                     }
             		
@@ -172,9 +173,40 @@ public class SendSMSConfimAction extends Action {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-	//	session.setAttribute("recipientStatusList", recipientStatusList);
+
 		session1.unbindAndClose();
+		
+		request.setAttribute("alertMessage", alertMessage);
+		}
+		if(edit!=null){
+			HttpSession session = request.getSession();
+			String recipient = session.getAttribute("recipient").toString();
+			String sender = session.getAttribute("sender").toString();
+			String message = session.getAttribute("message").toString();
+			String unit = session.getAttribute("unit").toString();
+			String cost = session.getAttribute("cost").toString();
+			cost = cost.replace(".0", "");
+			
+			request.setAttribute("recipient", recipient);
+			request.setAttribute("sender", sender);
+			request.setAttribute("message", message);
+			request.setAttribute("unit", unit);
+			request.setAttribute("cost", cost);
+			
+			TBLCustomer tblcustomer = new TBLCustomer();
+			SMSTemplateDB smstemplateDB = new SMSTemplateDB();
+			List customerList; List smsTemplateList;
+			try {
+				customerList = tblcustomer.GetCustomerList("", "");
+				request.setAttribute("customerList", customerList);
+				smsTemplateList= smstemplateDB.GetSMSTemplateList("");
+				request.setAttribute("smsTemplateList", smsTemplateList);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		return mapping.findForward("success");
 	}
 }

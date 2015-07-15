@@ -10,6 +10,10 @@
   	<form-bean name="sendSMSForm" type="com.smsimobile.form.SendSMSForm" />
   	<form-bean name="smstemplateForm" type="com.smsimobile.form.SMSTemplateForm" />
   	<form-bean name="schduleForm" type="com.smsimobile.form.SchduleForm" />
+  	<form-bean name="sendSMSEveryDayForm" type="com.smsimobile.form.SendSMSEveryDayForm" />
+  	<form-bean name="typeCustomerForm" type="com.smsimobile.form.TypeCustomerForm" />
+  	<form-bean name="typeSMSTemplateForm" type="com.smsimobile.form.TypeSMSTemplateForm" />
+  	<form-bean name="reportForm" type="com.smsimobile.form.ReportForm" />
   </form-beans>
  <global-exceptions />
   <global-forwards />
@@ -98,9 +102,9 @@
       	<forward name="success"  	path="/sms_template.jsp" />
     </action>
     <action
-      attribute="customerForm"
+      attribute="smstemplateForm"
       input="/sms_template.jsp"
-      name="customerForm"
+      name="smstemplateForm"
       path="/SMStemplate"
       scope="request"
       type="com.smsimobile.action.SMSTemplateAction" >
@@ -125,7 +129,74 @@
       <forward name="success" path="/schdule_sms.jsp" />
     </action>
     <!--################################   Schdule sms    #################################-->
+    
+    <!--################################     send sms every day  #################################-->
+  	<action path="/sendSMSEveryDayStart" 	name="sendSMSEveryDayForm"  
+  		type="com.smsimobile.action.SendSMSEveryDayStartAction">
+      	<forward name="success"  	path="/sendsms_everyday.jsp" />
+    </action>
+    <action
+      attribute="sendSMSEveryDayForm"
+      input="/sendsms_everyday.jsp"
+      name="sendSMSEveryDayForm"
+      path="/sendSMSEveryDay"
+      scope="request"
+      type="com.smsimobile.action.SendSMSEveryDayAction" >
+      <forward name="error" path="/sendsms_everyday.jsp" />
+      <forward name="success" path="/sendsms_everyday.jsp" />
+    </action>
+    <!--################################   Schdule sms every day   #################################-->
   	
+  	 <!--################################     type Customer  #################################-->
+  	<action path="/typeCustomerStart" 	name="typeCustomerForm"  
+  		type="com.smsimobile.action.TypeCustomerStartAction">
+      	<forward name="success"  	path="/type_customer.jsp" />
+    </action>
+    <action
+      attribute="typeCustomerForm"
+      input="/type_customer.jsp"
+      name="typeCustomerForm"
+      path="/typeCustomer"
+      scope="request"
+      type="com.smsimobile.action.TypeCustomerAction" >
+      <forward name="error" path="/type_customer.jsp" />
+      <forward name="success" path="/type_customer.jsp" />
+    </action>
+    <!--################################   type Customer    #################################-->
+  	
+  	<!--################################     type sms template  #################################-->
+  	<action path="/typeSMSTemplateStart" 	name="typeSMSTemplateForm"  
+  		type="com.smsimobile.action.TypeSMSTemplateStartAction">
+      	<forward name="success"  	path="/typesms_template.jsp" />
+    </action>
+    <action
+      attribute="typeSMSTemplateForm"
+      input="/typesms_template.jsp"
+      name="typeSMSTemplateForm"
+      path="/typeSMSTemplate"
+      scope="request"
+      type="com.smsimobile.action.TypeSMSTemplateAction" >
+      <forward name="error" path="/typesms_template.jsp" />
+      <forward name="success" path="/typesms_template.jsp" />
+    </action>
+    <!--################################   type sms template   #################################-->
+  	
+  	<!--################################   sms report  #################################-->
+  	<action path="/smsReportStart" 	name="reportForm"  
+  		type="com.smsimobile.action.SMSReportStartAction">
+      	<forward name="success"  	path="/sms_report.jsp" />
+    </action>
+    <action
+      attribute="reportForm"
+      input="/sms_report.jsp"
+      name="reportForm"
+      path="/smsReport"
+      scope="request"
+      type="com.smsimobile.action.SMSReportAction" >
+      <forward name="print" path="/report/send_sms.jsp" />
+      <forward name="success" path="/sms_report.jsp" />
+    </action>
+    <!--################################   sms report   #################################-->
   </action-mappings>
 
   <message-resources parameter="com.yourcompany.struts.ApplicationResources" />

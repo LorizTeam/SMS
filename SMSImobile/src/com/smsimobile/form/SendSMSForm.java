@@ -19,11 +19,16 @@ public class SendSMSForm extends ActionForm {
 	private String sendType;
 	private String sendDateTime;
 	
+	private String userName;
+	
 	private String date;
 	private String time;
 	
 	private int unit;
 	private double cost;
+	
+	private String confim;
+	private String edit;
 	
 	public String getCustID() {
 		return custID;
@@ -102,6 +107,24 @@ public class SendSMSForm extends ActionForm {
 	}
 	public void setTime(String time) {
 		this.time = time;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getConfim() {
+		return confim;
+	}
+	public void setConfim(String confim) {
+		this.confim = confim;
+	}
+	public String getEdit() {
+		return edit;
+	}
+	public void setEdit(String edit) {
+		this.edit = edit;
 	}
 
 } 

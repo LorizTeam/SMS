@@ -132,8 +132,8 @@
                 	<!-- row table -->
                 	<div class="row">
                 		<div class="col-md-6 col-md-offset-5 col-lg-6 col-lg-offset-5">
-                			<button type="button" class="btn btn-primary">Edit SMS</button>
-                			<input type="submit" class="btn btn-primary" value="Send SMS">
+                			<input type="submit" class="btn btn-primary" value="Edit SMS" id="edit" name="edit">
+                			<input type="submit" class="btn btn-primary" value="Send SMS" id="confim" name="confim">
                 		</div>
                 	</div>
                 	<br/>

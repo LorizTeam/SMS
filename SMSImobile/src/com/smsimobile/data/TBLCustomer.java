@@ -21,13 +21,13 @@ public class TBLCustomer {
 	public List GetCustomerList(String custID, String custName) 
 	throws Exception { //30-05-2014
 		List customerList = new ArrayList();
-		String custType = "";
+		String custType = "", typeName = "";
 		try {
 		
 			conn = agent.getConnectMYSql();
 			
-			String sqlStmt = "SELECT name, phone_a, custtype, phone_b " +
-			"FROM sms_phonbook " +
+			String sqlStmt = "SELECT name, phone_a, custtype, phone_b, groupname " +
+			"FROM sms_phonbook inner join master_group on(groupid = custtype) " +
 			"WHERE "; 
 			if(!custID.equals("")) sqlStmt = sqlStmt+ "phone_a like '"+custID+"%' AND ";
 			
@@ -40,7 +40,9 @@ public class TBLCustomer {
 				if (rs.getString("name") != null) custName = rs.getString("name"); else custName = "";
 				if (rs.getString("phone_a") != null) custID = rs.getString("phone_a"); else custID = "";
 				if (rs.getString("custtype") != null) custType = rs.getString("custtype"); else custID = "";
-				customerList.add(new CustomerForm(custID, custName, custType));
+				if (rs.getString("groupname") != null) typeName = rs.getString("groupname"); else typeName = "";
+				
+				customerList.add(new CustomerForm(custID, custName, custType, typeName));
 			}
 			rs.close();
 			pStmt.close();
@@ -64,8 +66,8 @@ public class TBLCustomer {
 	public void UpdateCustomer(String custID, String custName, String custType, String userName)  throws Exception{
 		conn = agent.getConnectMYSql();
 		
-		String sqlStmt = "UPDATE customer set name = '"+custName+"', custtype = '"+custType+"', " +
-		"WHERE username = '"+userName+"' and custid = '"+custID+"'";
+		String sqlStmt = "UPDATE sms_phonbook set name = '"+custName+"', custtype = '"+custType+"' " +
+		"WHERE phone_b = '"+userName+"' and phone_a = '"+custID+"'";
 		//System.out.println(sqlStmt);
 		pStmt = conn.createStatement();
 		pStmt.executeUpdate(sqlStmt);

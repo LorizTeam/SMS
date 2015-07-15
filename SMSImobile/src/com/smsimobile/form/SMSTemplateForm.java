@@ -9,12 +9,19 @@ public class SMSTemplateForm extends ActionForm {
 	
 	private String description;
 	private String type;
+	private String descriptionHD;
+	private String typeHD;
+	private String typeName;
+	
+	private String save;
+	private String update;
 	
 	public SMSTemplateForm(){};
-	public SMSTemplateForm (String description, String type){
+	public SMSTemplateForm (String description, String type, String typeName){
 		super();
 		this.description 	= description;
 		this.type 	= type;
+		this.typeName = typeName;
 }
 	public String getDescription() {
 		return description;
@@ -27,6 +34,36 @@ public class SMSTemplateForm extends ActionForm {
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+	public String getSave() {
+		return save;
+	}
+	public void setSave(String save) {
+		this.save = save;
+	}
+	public String getUpdate() {
+		return update;
+	}
+	public void setUpdate(String update) {
+		this.update = update;
+	}
+	public String getDescriptionHD() {
+		return descriptionHD;
+	}
+	public void setDescriptionHD(String descriptionHD) {
+		this.descriptionHD = descriptionHD;
+	}
+	public String getTypeHD() {
+		return typeHD;
+	}
+	public void setTypeHD(String typeHD) {
+		this.typeHD = typeHD;
+	}
+	public String getTypeName() {
+		return typeName;
+	}
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
 	}
 
 } 

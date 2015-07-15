@@ -17,18 +17,9 @@ import org.apache.struts.action.ActionMapping;
 
 
 import com.smsimobile.data.TBLCustomer;
+import com.smsimobile.data.TypeCustomerDB;
 import com.smsimobile.form.CustomerForm;
 
-
-/** 
-
-/** 
- * MyEclipse Struts
- * Creation date: 09-30-2009
- * 
- * XDoclet definition:
- * @struts.action path="/import" name="importForm" scope="request" validate="true"
- */
 public class PhoneBookAction extends Action {
 
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
@@ -43,13 +34,24 @@ public class PhoneBookAction extends Action {
 	     String custName = new String(customerForm.getCustName().getBytes("ISO8859-1"), "UTF-8");
 	     String custType = customerForm.getCustType();
 	  
+	     String save = customerForm.getSave();
+	     String update = customerForm.getUpdate();
+	     
 	     TBLCustomer customerDB = new TBLCustomer();
-	   
-	     customerDB.AddCustomer(custID, custName, custType, userName);
-	    		
+	     if(save!=null){
+	    	 customerDB.AddCustomer(custID, custName, custType, userName);
+	     }
+	     if(update!=null){
+	    	 customerDB.UpdateCustomer(custID, custName, custType, userName);
+	     }
+	     
 	     List customerList = customerDB.GetCustomerList("", "");
 		 request.setAttribute("customerList", customerList);
 	     
+		TypeCustomerDB typeCustomerDB = new TypeCustomerDB();
+		List TpyeCustomerList = typeCustomerDB.GetTpyeCustomerList();
+		request.setAttribute("TpyeCustomerList", TpyeCustomerList);
+		 
 		forwardText = "success";
 
 	   return mapping.findForward(forwardText);

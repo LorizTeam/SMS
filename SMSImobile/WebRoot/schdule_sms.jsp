@@ -63,7 +63,7 @@
                       <%@ include file="/menu_left.jsp" %> 
                     <!-- /.menu left --> 
         </nav>
-
+<html:form action="/schdule">
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
@@ -75,7 +75,7 @@
 	                    	<label>รายการตั้งเวลาส่ง SMS ล่วงหน้า</label>
 	                	</div>
                 	</div>
-                	<html:form action="/schdule">
+                	
                 	<div class="row">
 	    				<div class="col-md-2 col-md-offset-10 col-lg-2 col-lg-offset-9">	
 	                    	<input type="submit" class="btn btn-primary" value="ลบ">
@@ -83,12 +83,11 @@
                 	</div>
                 	<div class="row">
                 		<div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 table-responsive">
-                			<table class="table table-bordered table-striped table-hover">
+                			<table class="table table-bordered table-striped table-hover" id="dataTables-schedule">
                 				<thead>
                 					<th><center>ลำดับ</center></th>
                 					<th><center>เบอร์ผู้รับ</center></th>
                 					<th><center>ข้อความ</center></th>
-                					<th><center>วันที่ส่ง SMS</center></th>
                 					<th><center>เวลาทำรายการ</center></th>
                 					<th><center>ผู้ส่ง</center></th>
                 					<th><center>จำนวน (ข้อความ)</center></th>
@@ -106,16 +105,15 @@
 									%>
                 					<tr>
                 						<td align="center"><%=x %></td>
-                						<td align="center"><a href="javascript:getSchedule('<%=scheduleList.getCustid()%>','<%=scheduleList.getMessage()%>'),
-                						'<%=scheduleList.getSending()%>'),'<%=scheduleList.getDatetime()%>'),'<%=scheduleList.getUnit()%>'),
-                						'<%=scheduleList.getCost()%>'),'<%=scheduleList.getUsername()%>');"><%=scheduleList.getCustid()%></a>
+                						<td align="center"><a href="javascript:getSchedule('<%=scheduleList.getCustid()%>','<%=scheduleList.getMessage()%>',
+                						'<%=scheduleList.getSending()%>','<%=scheduleList.getDatetime()%>','<%=scheduleList.getUnit()%>',
+                						'<%=scheduleList.getCost()%>','<%=scheduleList.getUsername()%>');"><%=scheduleList.getCustid()%></a>
                 						</td>
                 						<td align="center"><%=scheduleList.getMessage()%></td>
-                						<td align="center"><%=scheduleList.getSending()%></td>
                 						<td align="center"><%=scheduleList.getDatetime()%></td>
+                						<td align="center"><%=scheduleList.getSending()%></td>
                 						<td align="center"><%=scheduleList.getUnit()%></td>
                 						<td align="center"><%=scheduleList.getCost()%></td>
-                						<td align="center"><%=scheduleList.getUsername()%></td>
                 						<td align="center">
                 						
                 							<input type="checkbox" id="chk1" name="chk1" value="<%=scheduleList.getCustid()%>">
@@ -130,7 +128,7 @@
                 				</tbody>
                 			</table>
                 		</div>
-                	</div></html:form>
+                	</div>
                 	<!-- row table -->
             	</div>
             	<!-- thumbnail -->
@@ -138,7 +136,7 @@
             <!-- /.container-fluid -->
         </div>
         <!-- /#page-wrapper -->
-
+</html:form>
     </div>
     <!-- /#wrapper -->
 
@@ -153,6 +151,15 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+
+	<script>
+    $(document).ready(function() {
+        $('#dataTables-schedule').DataTable({
+                responsive: true
+        });
+    });
+    
+    </script>
 
 </body>
 

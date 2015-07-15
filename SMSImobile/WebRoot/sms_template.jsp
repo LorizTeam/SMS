@@ -5,6 +5,7 @@
 <%@ page import ="javax.servlet.http.HttpServletResponse.*"%>
 <%@ page import ="javax.servlet.http.HttpSession.*"%>
 <%@ page import="com.smsimobile.form.SMSTemplateForm" %>
+<%@ page import="com.smsimobile.form.TypeSMSTemplateForm" %>
 <%
 	String name = "";
 	
@@ -26,21 +27,23 @@
     <title>SMS</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	
 	<script language="javascript">
 	function getSMSTemplate(tdesID, tType) {
 				document.smstemplateForm.description.value = tdesID;		
 				document.smstemplateForm.type.value = tType;
+				document.smstemplateForm.descriptionHD.value = tdesID;		
+				document.smstemplateForm.typeHD.value = tType;
 	}
 	</script>
 
@@ -59,7 +62,7 @@
                       <%@ include file="/menu_left.jsp" %>  
                     <!-- /.menu left --> 
         </nav>
-
+<html:form action="/SMStemplate" method="POST">
         <!-- Page Content -->
          <div id="page-wrapper">
             <div class="container-fluid">
@@ -76,20 +79,26 @@
 	    				<div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">	
 	                    	<label>Message</label>
     						<textarea class="form-control" rows="3" cols="" id="description" name="description"></textarea>
+    						<input type="hidden" id="descriptionHD" name="descriptionHD" > 
+    						<input type="hidden" id="typeHD" name="typeHD" >
 	                	</div>
                 	</div>
                 	<!-- /.row -->
                 	<div class="row">
 	    				<div class="col-md-2 col-md-offset-3 col-lg-2 col-lg-offset-3">	
     						<label for="sel1">Message Type</label>
-						    <select class="form-control" id="custType" name="custType" >
-						    	<option value="Z">Select</option>
-						    	<option value="A">วันปีใหม่</option>
-						        <option value="B">วันเกิด</option>
-						        <option value="C">วันพ่อ</option>
-						        <option value="D">วันแม่</option>
-						        <option value="E">วันสงการณ์</option>
-						        <option value="F">วันตรุษจีน</option>
+						    <select class="form-control" id="type" name="type" >
+						    	<% if (request.getAttribute("TypeSMSList") != null) {
+											List TypeSMSList = (List)request.getAttribute("TypeSMSList");
+					   						for (Iterator iterItem = TypeSMSList.iterator(); iterItem.hasNext();) {
+					   							TypeSMSTemplateForm grpInfo = (TypeSMSTemplateForm) iterItem.next();
+					       			%>
+				        			<option value="<%=grpInfo.getGroupID()%>">
+				        				<%=grpInfo.getGroupName()%>
+				        			</option>
+									<% 		} 
+										} 
+									%>
 						    </select>
 	                	</div>
                 	</div>
@@ -97,15 +106,15 @@
                 	<br/>
                 	<div class="row">
     					<div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
-    						<input type="submit" class="btn btn-primary" value="บันทึก">
-                        	<button type="button" class="btn btn-primary">แก้ไข</button>
+    						<input type="submit" class="btn btn-primary" id="save" name="save" value="บันทึก">
+                        	<input type="submit" class="btn btn-primary" id="update" name="update" value="แก้ไข">
                         </div>
     				</div>
     				<!-- /.row -->
     				<br/>
     				<div class="row">
                 		<div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 table-responsive">
-                			<table class="table table-bordered table-striped table-hover" id="dataTables-customer">
+                			<table class="table table-bordered table-striped table-hover" id="dataTables-template">
                 				<thead>
                 					<th><center>ลำดับ</center></th>
                 					<th>ข้อความ</th>
@@ -122,22 +131,9 @@
 									%>
 									<tr>
 										<td align="center"><%=x%> </td>
-										<td align="left"><a href="javascript:getSMSTemplate('<%=smstempList.getDescription()%>','<%=smstempList.getType()%>');"><%=smstempList.getDescription()%></a></td>
-										<%if(smstempList.getType().equals("A")) { %>
-											<td align="left">วันปีใหม่</td>
-										<%}else if(smstempList.getType().equals("B")){%>
-											<td align="left">วันเกิด</td>
-										<%}else if(smstempList.getType().equals("C")){%>
-											<td align="left">วันพ่อ</td>
-										<%}else if(smstempList.getType().equals("D")){%>
-											<td align="left">วันแม่</td>
-										<%}else if(smstempList.getType().equals("E")){%>
-											<td align="left">วันสงการณ์</td>
-										<%}else if(smstempList.getType().equals("F")){%>
-											<td align="left">วันตรุษจีน</td>
-										<%}else{ %>
-											<td align="left">Select</td>
-										<%} %>
+										<td align="left"><a href="javascript:getSMSTemplate('<%=smstempList.getDescription()%>',
+										'<%=smstempList.getType()%>');"><%=smstempList.getDescription()%></a></td>
+										<td align="center"><%=smstempList.getTypeName()%></td>
 									</tr>
 									<%		}
 							 			} else {
@@ -156,25 +152,25 @@
             <!-- /.container-fluid -->
         </div>
         <!-- /#page-wrapper -->
-
+</html:form>
     </div>
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="dist/js/sb-admin-2.js"></script>
+    <script src="../dist/js/sb-admin-2.js"></script>
     
     <script>
     $(document).ready(function() {
-        $('#dataTables-customer').DataTable({
+        $('#dataTables-template').DataTable({
                 responsive: true
         });
     });

@@ -11,6 +11,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import com.smsimobile.data.SMSTemplateDB;
+import com.smsimobile.data.TypeSMSTemplateDB;
 
 public class SMSTemplateStartAction extends Action {
 
@@ -20,9 +21,12 @@ public class SMSTemplateStartAction extends Action {
 		String forwardText = null; 
 		
 		SMSTemplateDB smstemplate = new SMSTemplateDB();
-		
 		List smsTemplateList = smstemplate.GetSMSTemplateList("");
 		request.setAttribute("smsTemplateList", smsTemplateList);
+		
+		TypeSMSTemplateDB typeSMSTemplateDB = new TypeSMSTemplateDB();
+		List TypeSMSList = typeSMSTemplateDB.GetTpyeSMSList();
+		request.setAttribute("TypeSMSList", TypeSMSList);
 		
 		forwardText = "success";	
 	

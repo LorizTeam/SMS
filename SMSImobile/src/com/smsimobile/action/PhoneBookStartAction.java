@@ -10,6 +10,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import com.smsimobile.data.TypeCustomerDB;
 import com.smsimobile.data.TBLCustomer;
 
 public class PhoneBookStartAction extends Action {
@@ -22,6 +23,10 @@ public class PhoneBookStartAction extends Action {
 		TBLCustomer tblcustomer = new TBLCustomer();
 		List customerList = tblcustomer.GetCustomerList("", "");
 		request.setAttribute("customerList", customerList);
+		
+		TypeCustomerDB typeCustomerDB = new TypeCustomerDB();
+		List TpyeCustomerList = typeCustomerDB.GetTpyeCustomerList();
+		request.setAttribute("TpyeCustomerList", TpyeCustomerList);
 		
 		forwardText = "success";	
 	

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.smsimobile.util.DBConnect;
+import com.smsimobile.util.DateUtil;
 import com.smsimobile.form.SchduleForm;
 
 
@@ -15,8 +16,8 @@ public class SchduleDB {
 	DBConnect agent 	= new DBConnect();
 	Connection conn		= null;
 	Statement pStmt 	= null;
-	Statement pStmt1 	= null;
 	ResultSet rs		= null;
+	DateUtil dateUtil = new DateUtil();
 	
 	public List GetScheduleList(String custid) 
 	throws Exception { //30-05-2014
@@ -27,6 +28,8 @@ public class SchduleDB {
 		String unit = "";
 		String cost = "";
 		String username = "";
+		String date = "";
+		String time = "";
 		try {
 		
 			conn = agent.getConnectMYSql();
@@ -50,6 +53,11 @@ public class SchduleDB {
 				unit = rs.getString("unit"); 
 				cost = rs.getString("cost"); 
 				username = rs.getString("username"); 
+				
+				date = datetime.substring(0, 10);
+				date = dateUtil.CnvToDDMMYYYY(date);
+				time = datetime.substring(10, 19);
+				datetime = date+" "+time;
 				
 				scheDuleList.add(new SchduleForm(forwhat, custid, message, sending, datetime, unit, cost, username));
 			}

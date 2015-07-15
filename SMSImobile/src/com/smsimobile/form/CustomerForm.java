@@ -11,13 +11,18 @@ public class CustomerForm extends ActionForm {
 	private String custName;
 	private String hdCustID;
 	private String custType;
+	private String typeName;
+	
+	private String save;
+	private String update;
 	
 	public CustomerForm(){};
-	public CustomerForm (String custID, String custName, String custType){
+	public CustomerForm (String custID, String custName, String custType, String typeName){
 		super();
 		this.custID 	= custID;
 		this.custName	= custName;
 		this.custType	= custType;
+		this.typeName	= typeName;
 }
 	
 	public String getCustID() {
@@ -43,6 +48,24 @@ public class CustomerForm extends ActionForm {
 	}
 	public void setCustType(String custType) {
 		this.custType = custType;
+	}
+	public String getSave() {
+		return save;
+	}
+	public void setSave(String save) {
+		this.save = save;
+	}
+	public String getUpdate() {
+		return update;
+	}
+	public void setUpdate(String update) {
+		this.update = update;
+	}
+	public String getTypeName() {
+		return typeName;
+	}
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
 	}
 
 } 

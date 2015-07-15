@@ -42,10 +42,16 @@ public class SendSMSAction extends Action {
 		String errorMsg = null;
 		String sender = null;
 		String message = null;
+		DateUtil dateUtil = new DateUtil();
+        
+        String date = dateUtil.CnvToYYYYMMDD(dateUtil.curDate(), '-');
+        String time = dateUtil.curTime();
+        String sendDate = date+" "+time;
 		
 		try {
 			sender = new String(sendSMSForm.getSendName().getBytes("ISO8859-1"), "UTF-8");
 			message = new String(sendSMSForm.getDescription().getBytes("ISO8859-1"), "UTF-8");
+			
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -56,7 +62,7 @@ public class SendSMSAction extends Action {
 		String recipient = sendSMSForm.getCustID();
 		String recipientArray[] = separatedString.separatedToStringArray(recipient);
 		List correctRecipient = new ArrayList();
-		
+		String word = sendSMSForm.getWord();
     	
 		//Check message language
     	int maxMsgLen = 480;
@@ -122,9 +128,11 @@ public class SendSMSAction extends Action {
 			session.setAttribute("recipient", recipient);
 			session.setAttribute("sender", sender);
 			session.setAttribute("message", message);
-			//session.setAttribute("sendType", sendType);
-			//session.setAttribute("sendDate", sendDate);
-			//System.out.print("MESSAGE[บอย] " + message + " : " + sender);
+			session.setAttribute("sendDate", sendDate);
+			session.setAttribute("baht", unit * price);
+			session.setAttribute("word", word);
+			session.setAttribute("unit", unit);
+			session.setAttribute("cost", unit * price);
 	    }
 
 		String lang = "th";
@@ -210,6 +218,56 @@ public class SendSMSAction extends Action {
 		
 	}else if(sendType.equals("C")){
 		
+		String userName = session.getAttribute("userName").toString();
+		String custID = sendSMSForm.getCustID();
+		String sender = new String(sendSMSForm.getSendName().getBytes("ISO8859-1"), "UTF-8");
+		String message = new String(sendSMSForm.getDescription().getBytes("ISO8859-1"), "UTF-8");
+		String date = sendSMSForm.getDate();
+		String time = sendSMSForm.getTime();
+		DateUtil dateUtil = new DateUtil();
+		if(!date.equals("")) date	= dateUtil.CnvToYYYYMMDD(date, '-');
+		String dateTime = date+" "+time+":00";
+		
+		SendSMSDB sendSMSDB = new SendSMSDB();
+		VerifySMS verifySMS = new VerifySMS();
+		SeparatedString separatedString = new SeparatedString();
+		//Check message language
+    
+    	String recipientArray[] = separatedString.separatedToStringArray(custID);
+    	List correctRecipient = new ArrayList();
+		String chkPhoneNo = "", telNo = ""; boolean chkPhone = false;
+		
+		int unit = verifySMS.findUnitByMessage(message + " : " + sender);
+		double price = 1.0; double cost = 0;
+		cost = unit * price;
+    	//Check Mobile Number
+		for(int i=0; i<recipientArray.length; i++) {
+			System.out.println("All Recipient [" + recipientArray[i] + "]");
+	    	if(verifySMS.isMobileNo(recipientArray[i])) {
+	    		System.out.println("Correct Recipient [" + recipientArray[i] + "]\n");
+	    		chkPhoneNo = recipientArray[i];
+	    		for(int j=0; j<correctRecipient.size(); j++){
+	    			String tmpRecipient = (String) correctRecipient.get(j);
+	    			if(chkPhoneNo.equals(tmpRecipient)) chkPhone = true;
+	    		}
+	    		if(chkPhone==false){
+	    			telNo = recipientArray[i];
+	    		}	
+	    	}  
+	    	
+	    	sendSMSDB.AddSMSEveryDay(telNo, message, sender, unit, cost, userName);
+	    	
+		}
+		
+		TBLCustomer tblcustomer = new TBLCustomer();
+		List customerList = tblcustomer.GetCustomerList("", "");
+		request.setAttribute("customerList", customerList);
+		
+		SMSTemplateDB smstemplateDB = new SMSTemplateDB();
+		List smsTemplateList = smstemplateDB.GetSMSTemplateList("");
+		request.setAttribute("smsTemplateList", smsTemplateList);
+		
+		forwardText = "error";
 	}
 		
 		return mapping.findForward(forwardText);

@@ -46,6 +46,9 @@
                                 <li>
                                     <a href="phoneBookStart.do">Phone Book</a>
                                 </li>
+                                <li>
+                                    <a href="typeCustomerStart.do">Type Customer Template</a>
+                                </li>
                             </ul>
                             <!-- /.nav-second member-level -->
                         </li>
@@ -56,10 +59,16 @@
                                     <a href="sendSMSStart.do">Send SMS</a>
                                 </li>
                                 <li>
-                                    <a href="schDuleStart.do">Schdule SMS</a>
+                                    <a href="schDuleStart.do">Schedule SMS</a>
                                 </li>
                                 <li>
-                                    <a href="smsTemplatStart.do">SMS Tempate</a>
+                                    <a href="sendSMSEveryDayStart.do">Send SMS Every Day</a>
+                                </li>
+                                <li>
+                                    <a href="smsTemplatStart.do">SMS Template</a>
+                                </li>
+                                <li>
+                                    <a href="typeSMSTemplateStart.do">Type SMS Template</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -68,7 +77,12 @@
                             <a href="select_centact.jsp"><i class="fa fa-list fa-fw"></i> Select Contact</a>
                         </li>
                         <li>
-                            <a href="report_sms.jsp"><i class="fa fa-print fa-fw"></i> Report SMS</a>
+                             <a href="#"><i class="fa fa-user-md fa-fw"></i> Report SMS<span class="fa arrow"></span></a>
+                             <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="smsReportStart.do">Send SMS</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>

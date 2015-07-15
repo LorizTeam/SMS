@@ -21,26 +21,27 @@ public class SMSTemplateDB {
 	public List GetSMSTemplateList(String description) 
 	throws Exception { //30-05-2014
 		List smsTemplateList = new ArrayList();
-		String type = "";
+		String type = "", typeName = "";
 		try {
 		
 			conn = agent.getConnectMYSql();
 			
-			String sqlStmt = "SELECT description, type " +
-			"FROM sms_template " +
+			String sqlStmt = "SELECT description, type, groupname " +
+			"FROM sms_template inner join master_type on(groupid = type) " +
 			"WHERE "; 
 			if(!description.equals("")) sqlStmt = sqlStmt+ "description like '"+description+"%' AND ";
 			
-			sqlStmt = sqlStmt + "description <> '' order by description ";
+			sqlStmt = sqlStmt + "type <> '' order by type ";
 			
 			//System.out.println(sqlStmt);				
 			pStmt = conn.createStatement();
 			rs = pStmt.executeQuery(sqlStmt);	
 			while (rs.next()) {
 				if (rs.getString("description") != null) description = rs.getString("description"); else description = "";
-				type = rs.getString("type"); 
+				type = rs.getString("type");
+				typeName = rs.getString("groupname");
 				
-				smsTemplateList.add(new SMSTemplateForm(description,type));
+				smsTemplateList.add(new SMSTemplateForm(description, type, typeName));
 			}
 			rs.close();
 			pStmt.close();
@@ -50,7 +51,26 @@ public class SMSTemplateDB {
 		}
 		return smsTemplateList;
 	 }
+	public void AddTemplate(String description, String type)  throws Exception{
+		conn = agent.getConnectMYSql();
+		
+		String sqlStmt = "INSERT IGNORE INTO sms_template(description, type) " +
+		"VALUES ('"+description+"', '"+type+"')";
+		//System.out.println(sqlStmt);
+		pStmt = conn.createStatement();
+		pStmt.executeUpdate(sqlStmt);
+		pStmt.close();
+		conn.close();
+	}
+	public void UpdateTemplate(String description, String type, String descriptionHD, String typeHD)  throws Exception{
+		conn = agent.getConnectMYSql();
+		
+		String sqlStmt = "UPDATE sms_template set description = '"+description+"', type = '"+type+"' " +
+		"WHERE description = '"+descriptionHD+"' and type = '"+typeHD+"'";
+		//System.out.println(sqlStmt);
+		pStmt = conn.createStatement();
+		pStmt.executeUpdate(sqlStmt);
+		pStmt.close();
+		conn.close();
+	}
 }
-
-
-

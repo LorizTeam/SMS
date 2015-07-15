@@ -8,12 +8,26 @@
 <%@ page import="com.smsimobile.form.SMSTemplateForm" %>
 <%@ page import="com.smsimobile.form.SendSMSForm" %>
 <%
-	String name = "";
+	String recipient = "", sender = "", message = "", word = "", baht = "", alertMessage = "";
 	
-	if(session.getAttribute("name") != null) {
-		name = (String) session.getAttribute("name");
+	if(request.getAttribute("recipient") != null) {
+		recipient = (String) request.getAttribute("recipient");
 	}
- 
+	if(request.getAttribute("sender") != null) {
+		sender = (String) request.getAttribute("sender");
+	}
+	if(request.getAttribute("message") != null) {
+		message = (String) request.getAttribute("message");
+	}
+	if(request.getAttribute("word") != null) {
+		word = (String) request.getAttribute("word");
+	}
+	if(request.getAttribute("baht") != null) {
+		baht = (String) request.getAttribute("baht");
+	}
+ 	if(request.getAttribute("alertMessage") != null) {
+		alertMessage = (String) request.getAttribute("alertMessage");
+	}
  %>
 <!DOCTYPE html>
 <html lang="en">
@@ -159,6 +173,13 @@
             	<br/>
             	<div class="thumbnail col-md-12 col-lg-12">
             		<div><br/></div>
+            		<%if(alertMessage!=null){ %>
+            		<div class="row">
+    					<div class="col-md-6 col-md-offset-3">	
+                        	<label><%=alertMessage %></label>
+                        </div>
+    				</div>
+            		<%} %>
             		<div class="row">
     					<div class="col-md-6 col-md-offset-3">	
                         	<label>ขั้นตอนที่ 1 - กรุณาระบุเลขหมายมือถือ 10 หลักของผู้รับ</label>
@@ -168,7 +189,7 @@
             			
     					<div class="col-md-6 col-md-offset-3">	
                         	<label>Phone Number.</label>
-                        	<textarea class="form-control" rows="3" id="custID" name="custID" onkeyup="getTel1();"></textarea>
+                        	<textarea class="form-control" rows="3" id="custID" name="custID"  onkeyup="getTel1();"><%=recipient %></textarea>
                         </div>
                        
     				</div>
@@ -193,7 +214,7 @@
             		<div class="row">
     					<div class="col-md-6 col-md-offset-3">
     						<label>Name Sending.</label>
-    						<input class="form-control" placeholder="Name" id=sendName name="sendName" 
+    						<input class="form-control" placeholder="Name" id=sendName name="sendName" value="<%=sender %>" 
     						onkeyup="
 							msgCheckerOnchange(document.sendSMSForm.sendName,document.sendSMSForm.description,
 							document.sendSMSForm.word,document.sendSMSForm.baht);">
@@ -205,12 +226,12 @@
                         	<textarea class="form-control" rows="3" id="description" name="description" 
                         	onkeyup="getTemp1();
 							msgCheckerOnchange(document.sendSMSForm.sendName,document.sendSMSForm.description,
-							document.sendSMSForm.word,document.sendSMSForm.baht);" ></textarea>
+							document.sendSMSForm.word,document.sendSMSForm.baht);" ><%=message %></textarea>
                     	</div>
                     	<div class="col-md-1">
                     		<br/>
-                    		<input class="form-control" id="word" name="word" type="text" placeholder="Word" disabled>
-                    		<input class="form-control" id="baht" name="baht" type="text" placeholder="Baht" disabled>
+                    		<input class="form-control" placeholder="Word" id="word" name="word" value="<%=word %>" readonly="readonly">
+                    		<input class="form-control" placeholder="Baht" id="baht" name="baht"  value="<%=baht %>" readonly="readonly">
                     	</div>
     				</div>
     				
@@ -285,7 +306,7 @@
 		        <div class="modal-body">
 		        	<div class="row">
 		        	<div  class="col-md-10 col-md-offset-1">
-		        		<textarea class="form-control" rows="3" id="hdCustID" name="hdCustID" onkeyup="getTel();"></textarea>
+		        		<textarea class="form-control" rows="3" id="hdCustID" name="hdCustID" onkeyup="getTel();"><%=recipient %></textarea>
                      </div>
 		        	</div>
 		        	<div><br/></div>
@@ -297,6 +318,7 @@
 										<th class="text-center">Number</th>
 										<th class="text-center">Phone Number</th>
 										<th class="text-center">Name</th>
+										<th class="text-center">Group</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -312,6 +334,7 @@
 										<td align="center"><%=x%> </td>
 										<td align="center"><a href="javascript:getCustomer('<%=custList.getCustID()%>');"><%=custList.getCustID()%></a></td>
 										<td align="center"><%=custList.getCustName()%></td>
+										<td align="center"><%=custList.getTypeName()%></td>
 									</tr>
 									<%		}
 							 			} else {
@@ -344,7 +367,7 @@
 		        	<div  class="col-md-10 col-md-offset-1">
 		        		<textarea class="form-control" rows="3" id="hdDescription" name="hdDescription" onkeyup="getTemp();
 							msgCheckerOnchange(document.sendSMSForm.sendName,document.sendSMSForm.description,
-							document.sendSMSForm.word,document.sendSMSForm.baht);"></textarea>
+							document.sendSMSForm.word,document.sendSMSForm.baht);"><%=message %></textarea>
                      </div>
 		        	</div>
 		        	<div><br/></div>
@@ -355,6 +378,7 @@
 									<tr>
 										<th class="text-center">Number</th>
 										<th class="text-center">Description</th>
+										<th class="text-center">Type</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -372,6 +396,7 @@
 										onclick="
 										msgCheckerOnchange(document.sendSMSForm.sendName,document.sendSMSForm.description,
 										document.sendSMSForm.word,document.sendSMSForm.baht);"><%=smstempList.getDescription()%></a></td>
+										<td align="center"><%=smstempList.getTypeName()%></td>
 									</tr>
 									<%		}
 							 			} else {
@@ -481,7 +506,7 @@ hljs.initHighlightingOnLoad();
 
     <!-- DataTables JavaScript -->
     <script src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-	 <script src="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+	<script src="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 	 
 	 <!-- datet -->
 	 <script src="js/jquery-ui.js"></script>
