@@ -41,9 +41,8 @@
 	
 </head>
 <body>
-
     <div id="wrapper">
-        <br><!-- Navigation -->
+        <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             		<!-- /.menu top -->	
                       <%@ include file="/menu_top.jsp" %>  
@@ -53,7 +52,8 @@
                       <%@ include file="/menu_left.jsp" %> 
                     <!-- /.menu left --> 
         </nav>
-<html:form action="/smsReport" method="POST">
+		<!-- end nav -->
+		<html:form action="/smsReport" method="POST">
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
@@ -64,30 +64,22 @@
 	    				<div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">	
 	                    	<label>SMS Report</label>
 	                	</div>
-	                	
-	                	<div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">	
-	                    <br/>	
-	                	</div>
                 	</div>
                 	<!-- /.row -->
                 	<div class="row">
-	    				<div class="col-md-3 col-md-offset-3">	
+	    				<div class="col-md-3 col-md-offset-3 col-lg-3 col-lg-offset-3">	
 	                    	<label>From Date</label>
     						<input id="fromDate" name="fromDate" class="form-control" placeholder="From Date">
 	                	</div>
-                	</div>
-                	<!-- /.row -->
-                	<div class="row">
-	    				<div class="col-md-3 col-md-offset-3">	
+	                	<div class="col-md-3 col-lg-3">	
 	                    	<label>To Date</label>
     						<input id="toDate" name="toDate" class="form-control" placeholder="To Date">
 	                	</div>
                 	</div>
                 	<!-- /.row -->
-             
                 	<br/>
                 	<div class="row">
-    					<div class="col-md-6 col-md-offset-3">
+    					<div class="col-md-3 col-md-offset-3 col-lg-3  col-lg-offset-3">
     						<input type="submit" class="btn btn-primary" id="print" name="print" value="Print">
                         </div>
     				</div>

@@ -56,8 +56,8 @@
 	padding: 40px 0;
 }
 .input-group {
-	width: 120px;
-	margin-bottom: 0px;
+	width: 110px;
+	margin-bottom: 10px;
 }
 .pull-center {
 	margin-left: auto;
@@ -200,6 +200,7 @@
 
 	<!-- datetime -->
 <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="dist/bootstrap-clockpicker.min.js"></script>
 <script type="text/javascript">
 $('.clockpicker').clockpicker()
