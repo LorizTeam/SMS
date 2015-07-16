@@ -41,8 +41,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="dist/bootstrap-clockpicker.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/github.min.css">
-	
-	<style type="text/css">
+<style type="text/css">
 .navbar h3 {
 	color: #f5f5f5;
 	margin-top: 14px;
@@ -57,8 +56,8 @@
 	padding: 40px 0;
 }
 .input-group {
-	width: 110px;
-	margin-bottom: 10px;
+	width: 120px;
+	margin-bottom: 0px;
 }
 .pull-center {
 	margin-left: auto;
@@ -143,9 +142,6 @@
 	                	</div>
                 	</div>
                 	<div class="row">
-	    				<br/>
-                	</div>
-                	<div class="row">
                 		<div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
                 			<table class="table table-bordered table-striped table-hover" id="dataTables-everyday">
                 				<thead>
@@ -202,6 +198,73 @@
     </div>
     <!-- /#wrapper -->
 
+	<!-- datetime -->
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="dist/bootstrap-clockpicker.min.js"></script>
+<script type="text/javascript">
+$('.clockpicker').clockpicker()
+	.find('input').change(function(){
+		console.log(this.value);
+	});
+var input = $('#single-input').clockpicker({
+	placement: 'bottom',
+	align: 'left',
+	autoclose: true,
+	'default': 'now'
+});
+
+$('.clockpicker-with-callbacks').clockpicker({
+		donetext: 'Done',
+		init: function() { 
+			console.log("colorpicker initiated");
+		},
+		beforeShow: function() {
+			console.log("before show");
+		},
+		afterShow: function() {
+			console.log("after show");
+		},
+		beforeHide: function() {
+			console.log("before hide");
+		},
+		afterHide: function() {
+			console.log("after hide");
+		},
+		beforeHourSelect: function() {
+			console.log("before hour selected");
+		},
+		afterHourSelect: function() {
+			console.log("after hour selected");
+		},
+		beforeDone: function() {
+			console.log("before done");
+		},
+		afterDone: function() {
+			console.log("after done");
+		}
+	})
+	.find('input').change(function(){
+		console.log(this.value);
+	});
+
+// Manually toggle to the minutes view
+$('#check-minutes').click(function(e){
+	// Have to stop propagation here
+	e.stopPropagation();
+	input.clockpicker('show')
+			.clockpicker('toggleView', 'minutes');
+});
+if (/mobile/i.test(navigator.userAgent)) {
+	$('input').prop('readOnly', true);
+}
+</script>
+<script type="text/javascript" src="assets/js/highlight.min.js"></script>
+<script type="text/javascript">
+hljs.configure({tabReplace: '    '});
+hljs.initHighlightingOnLoad();
+</script>
+	 <!-- datetime end -->
+
     <!-- jQuery -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
 
@@ -213,8 +276,21 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
-	
+
+	<!-- DataTables JavaScript -->
+    <script src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+
+	<script>
+    $(document).ready(function() {
+        $('#dataTables-everyday').DataTable({
+                responsive: true
+        });
+    });
+    
+    </script>
 
 </body>
+
 </html>
 

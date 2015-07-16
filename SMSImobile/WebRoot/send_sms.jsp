@@ -441,7 +441,6 @@
 	 <script src="js/jquery-ui.js"></script>	 
 	 <!-- datetime -->
 <script type="text/javascript" src="assets/js/jquery.min.js"></script>
-<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="dist/bootstrap-clockpicker.min.js"></script>
 <script type="text/javascript">
 $('.clockpicker').clockpicker()
