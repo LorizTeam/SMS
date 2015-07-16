@@ -23,7 +23,7 @@ import com.smsimobile.form.SendSMSForm;
 import com.smsimobile.util.DateUtil;
 import com.smsimobile.util.SeparatedString;
 import com.smsimobile.util.VerifySMS;
- 
+
 public class SendSMSAction extends Action {
 
 	public ActionForward execute(ActionMapping mapping, ActionForm form,

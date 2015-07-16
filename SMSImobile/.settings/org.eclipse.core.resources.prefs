@@ -1,8 +1,8 @@
-#Thu Jul 09 15:35:03 ICT 2015
+#Thu Jul 16 16:57:13 ICT 2015
 eclipse.preferences.version=1
 encoding//WebRoot/js/CheckSendSMS.js=UTF-8
 encoding//src/com/smsimobile/action/LoginAction.java=UTF-8
 encoding//src/com/smsimobile/action/SendSMSAction.java=UTF-8
-encoding//src/com/smsimobile/action/SendSMSConfimAction.java=UTF-8
 encoding//src/com/smsimobile/form/LoginForm.java=UTF-8
 encoding//src/com/smsimobile/util/VerifySMS.java=UTF-8
+encoding//src/org/jsmpp/util/SendSMSConfimAction.java=UTF-8

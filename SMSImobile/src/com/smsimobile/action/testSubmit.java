@@ -13,7 +13,6 @@ import org.jsmpp.bean.DataCoding;
 import org.jsmpp.bean.ESMClass;
 import org.jsmpp.bean.MessageMode;
 import org.jsmpp.bean.NumberingPlanIndicator;
-import org.jsmpp.bean.OptionalParameter;
 import org.jsmpp.bean.RegisteredDelivery;
 import org.jsmpp.bean.TypeOfNumber;
 
@@ -21,12 +20,12 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Message;
 import org.apache.camel.component.smpp.SmppConfiguration;
 import org.apache.camel.component.smpp.SmppConstants;
+import org.apache.camel.component.smpp.SmppSplitter;
 import org.apache.camel.component.smpp.SmppUtils;
  
 
 public class testSubmit {
 	
-/*	 
 	public void execute(Exchange exchange) {
 		SMPPSession session = new SMPPSession();
 		SmppConfiguration config = new SmppConfiguration();
@@ -35,7 +34,7 @@ public class testSubmit {
        
         for (int i = 0; i < submitSms.length; i++) {
             SubmitSm submitSm = submitSms[i];
-            String messageID;
+            String messageID = null;
             String message = "";
             
             try {
@@ -64,18 +63,23 @@ public class testSubmit {
            
             messageIDs.add(messageID);
         }
-
+      
 
         Message message = getResponseMessage(exchange);
         message.setHeader(SmppConstants.ID, messageIDs);
         message.setHeader(SmppConstants.SENT_MESSAGE_COUNT, messageIDs.size());
     }
 
-    protected SubmitSm[] createSubmitSm(Exchange exchange) {
+    private Message getResponseMessage(Exchange exchange) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	protected SubmitSm[] createSubmitSm(Exchange exchange) {
         byte[] shortMessage = getShortMessage(exchange.getIn());
 
         SubmitSm template = createSubmitSmTemplate(exchange);
-       SmppSplitter splitter = createSplitter(exchange.getIn());
+        SmppSplitter splitter = createSplitter(exchange.getIn());
         byte[][] segments = splitter.split(shortMessage);
 
         // multipart message
@@ -93,7 +97,17 @@ public class testSubmit {
         return submitSms;
     }
 
-    protected SubmitSm createSubmitSmTemplate(Exchange exchange) {
+    private SmppSplitter createSplitter(Message in) {
+    
+		return null;
+	}
+
+	private byte[] getShortMessage(Message in) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	protected SubmitSm createSubmitSmTemplate(Exchange exchange) {
         Message in = exchange.getIn();
         SubmitSm submitSm = new SubmitSm();
         SmppConfiguration config = new SmppConfiguration();
@@ -191,5 +205,4 @@ public class testSubmit {
 
         return submitSm;
     }
-	*/
 }
