@@ -73,9 +73,6 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-						<li>
-                            <a href="select_centact.jsp"><i class="fa fa-list fa-fw"></i> Select Contact</a>
-                        </li>
                         <li>
                              <a href="#"><i class="fa fa-user-md fa-fw"></i> Report SMS<span class="fa arrow"></span></a>
                              <ul class="nav nav-second-level">
