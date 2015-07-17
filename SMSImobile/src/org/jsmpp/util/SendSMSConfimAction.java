@@ -8,18 +8,13 @@ package org.jsmpp.util;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.camel.Exchange;
-import org.apache.camel.Message;
-import org.apache.camel.component.smpp.SmppConfiguration;
-import org.apache.camel.component.smpp.SmppConstants;
-import org.apache.camel.component.smpp.SmppUtils;
+import org.apache.camel.component.smpp.SmppProducer;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -30,8 +25,6 @@ import org.jsmpp.PDUStringException;
 import org.jsmpp.bean.Alphabet;
 import org.jsmpp.bean.BindType;
 import org.jsmpp.bean.Command;
-import org.jsmpp.bean.DeliverSmResp;
-import org.jsmpp.bean.DeliveryReceipt;
 import org.jsmpp.bean.DataCoding;
 import org.jsmpp.bean.ESMClass;
 import org.jsmpp.bean.GeneralDataCoding;
@@ -49,7 +42,6 @@ import org.jsmpp.extra.ResponseTimeoutException;
  
 import org.jsmpp.session.BindParameter;
 import org.jsmpp.session.SMPPSession;
-import org.jsmpp.session.SubmitSmCommandTask;
 import org.jsmpp.util.StringParameter;
 import org.jsmpp.util.StringValidator;
 
@@ -57,9 +49,14 @@ import com.smsimobile.data.SMSTemplateDB;
 import com.smsimobile.data.SendSMSDB;
 import com.smsimobile.data.TBLCustomer;
 import com.smsimobile.form.SendSMSForm;
- 
-public class SendSMSConfimAction extends Action {
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class SendSMSConfimAction extends Action {
+	
+	private static final transient Logger LOG = LoggerFactory.getLogger(SmppProducer.class);
+	
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)throws PDUException,
             ResponseTimeoutException, InvalidResponseException,
@@ -139,8 +136,8 @@ public class SendSMSConfimAction extends Action {
             					period, null,
             					registeredDelivery.setSMSCDeliveryReceipt(SMSCDeliveryReceipt.SUCCESS_FAILURE), (byte) 0, dataCoding,
             					(byte) 0, data);  */
-                    	
                     	SubmitSm requestSM = new SubmitSm();
+                    	requestSM.setServiceType(systemHost);
                     	requestSM.setSourceAddr(sender);
                     	requestSM.setDestAddress(recipient);
                     	requestSM.setShortMessage(data);
@@ -153,12 +150,18 @@ public class SendSMSConfimAction extends Action {
                     			null, null, registeredDelivery.setSMSCDeliveryReceipt(SMSCDeliveryReceipt.SUCCESS_FAILURE),
                     			(byte) 0, dataCoding, 
                     			(byte) 0, requestSM.getShortMessage());
+                    	 
+                   // 	SubmitSmResp resp = (requestSM);
+                   // 	submitSm(data);
                     	
-                    	submitSm(data);
+                    	LOG.debug("Service '"+ requestSM.getServiceType() + "'...");
+                    	LOG.debug("sourceAddr '"+ requestSM.getSourceAddr() + "'...");
+                    	LOG.debug("destAddr '"+ requestSM.getDestAddress() + "'...");
+                    	LOG.debug("message '"+ requestSM.getShortMessage() + "'...");
                     	
                         System.out.println("Message submitted, message_id is " + response1);
                         
-                        sendSMSDB.AddSMS(recipient, message, sender, sendDate, unit, cost, userName);
+                    //    sendSMSDB.AddSMS(recipient, message, sender, sendDate, unit, cost, userName);
            //  Request Status ///
                         
                    
@@ -243,7 +246,7 @@ public class SendSMSConfimAction extends Action {
 		
 		return mapping.findForward("success");
 	}
-	
+
 	public SubmitSm submitSm(byte[] b) throws PDUStringException {
         SubmitSm req = new SubmitSm();
         SequentialBytesReader reader = new SequentialBytesReader(b);
@@ -255,32 +258,32 @@ public class SendSMSConfimAction extends Action {
 
         req.setSourceAddrTon(reader.readByte());
         req.setSourceAddrNpi(reader.readByte());
-   //     req.setSourceAddr(reader.readCString());
+        req.setSourceAddr(reader.readCString());
         StringValidator.validateString(req.getSourceAddr(),
                 StringParameter.SOURCE_ADDR);
 
         req.setDestAddrTon(reader.readByte());
-        req.setDestAddrNpi(reader.readByte());
-      //  req.setDestAddress(reader.readCString());
+     //   req.setDestAddrNpi(reader.readByte());
+     //   req.setDestAddress(reader.readCString());
         StringValidator.validateString(req.getDestAddress(),
                 StringParameter.DESTINATION_ADDR);
 
-        req.setEsmClass(reader.readByte());
-        req.setProtocolId(reader.readByte());
-        req.setPriorityFlag(reader.readByte());
-        req.setScheduleDeliveryTime(reader.readCString());
-        StringValidator.validateString(req.getScheduleDeliveryTime(),
-                StringParameter.SCHEDULE_DELIVERY_TIME);
+     //   req.setEsmClass(reader.readByte());
+     //   req.setProtocolId(reader.readByte());
+     //   req.setPriorityFlag(reader.readByte());
+    //    req.setScheduleDeliveryTime(reader.readCString());
+    //    StringValidator.validateString(req.getScheduleDeliveryTime(),
+    //            StringParameter.SCHEDULE_DELIVERY_TIME);
       //  req.setValidityPeriod(reader.readCString());
-        StringValidator.validateString(req.getValidityPeriod(),
-                StringParameter.VALIDITY_PERIOD);
+    //    StringValidator.validateString(req.getValidityPeriod(),
+     //           StringParameter.VALIDITY_PERIOD);
      //   req.setRegisteredDelivery(reader.readByte());
      //   req.setReplaceIfPresent(reader.readByte());
      //   req.setDataCoding(reader.readByte());
-        req.setSmDefaultMsgId(reader.readByte());
-        byte smLength = reader.readByte();
+    //    req.setSmDefaultMsgId(reader.readByte());
+     //   byte smLength = reader.readByte();
         // req.setShortMessage(reader.readString(req.getSmLength()));
-        req.setShortMessage(reader.readBytes(smLength));
+    //    req.setShortMessage(reader.readBytes(smLength));
         StringValidator.validateString(req.getShortMessage(),
                 StringParameter.SHORT_MESSAGE);
 //       req.setOptionalParameters(readOptionalParameters(reader));

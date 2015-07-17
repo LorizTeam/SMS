@@ -25,7 +25,7 @@ import org.apache.camel.component.smpp.SmppUtils;
  
 
 public class testSubmit {
-	
+ 
 	public void execute(Exchange exchange) {
 		SMPPSession session = new SMPPSession();
 		SmppConfiguration config = new SmppConfiguration();
@@ -63,17 +63,24 @@ public class testSubmit {
            
             messageIDs.add(messageID);
         }
-      
+      /*  if (log.isDebugEnabled()) {
+            log.debug("Sent short message for exchange id '{}' and received message ids '{}'",
+                    exchange.getExchangeId(), messageIDs);
+        } */
 
         Message message = getResponseMessage(exchange);
         message.setHeader(SmppConstants.ID, messageIDs);
         message.setHeader(SmppConstants.SENT_MESSAGE_COUNT, messageIDs.size());
     }
 
-    private Message getResponseMessage(Exchange exchange) {
+ 
+
+	private Message getResponseMessage(Exchange exchange) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 	protected SubmitSm[] createSubmitSm(Exchange exchange) {
         byte[] shortMessage = getShortMessage(exchange.getIn());
@@ -96,16 +103,20 @@ public class testSubmit {
 
         return submitSms;
     }
-
-    private SmppSplitter createSplitter(Message in) {
-    
+ 
+	private SmppSplitter createSplitter(Message in) {
+		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 	private byte[] getShortMessage(Message in) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 	protected SubmitSm createSubmitSmTemplate(Exchange exchange) {
         Message in = exchange.getIn();

@@ -11,9 +11,9 @@
 	String sender = null;
 	List recipientList = new ArrayList();
 	
-	String name = "";
-	if(session.getAttribute("name") != null) {
-		name = (String) session.getAttribute("name");
+	String userName = "";
+	if(session.getAttribute("userName") != null) {
+		userName = (String) session.getAttribute("userName");
 	}
 	if(session.getAttribute("recipientList") != null) {
 		recipientList = (List) session.getAttribute("recipientList");
