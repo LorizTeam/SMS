@@ -15,7 +15,7 @@ public Connection getConnectMYSql()  throws Exception, IOException {
 			Class.forName ("com.mysql.jdbc.Driver");
 			//Class.forName ("org.gjt.mm.mysql.Driver");
 			String dbUserName = "root";
-			String dbPassword = "";
+			String dbPassword = "password";
 			String url = "jdbc:mysql://localhost/smsimobiledb";
 
 			conn = DriverManager.getConnection (url, dbUserName, dbPassword);

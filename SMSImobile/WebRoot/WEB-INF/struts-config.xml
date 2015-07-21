@@ -197,6 +197,40 @@
       <forward name="success" path="/sms_report.jsp" />
     </action>
     <!--################################   sms report   #################################-->
+    
+    <!--################################   sms schedule report  #################################-->
+  	<action path="/smsSchedulaReportStart" 	name="reportForm"  
+  		type="com.smsimobile.action.SchedulaSMSReportStartAction">
+      	<forward name="success"  	path="/sms_schedula_report.jsp" />
+    </action>
+    <action
+      attribute="reportForm"
+      input="/sms_schedula_report.jsp"
+      name="reportForm"
+      path="/smsschedulaReport"
+      scope="request"
+      type="com.smsimobile.action.SchedulaSMSReportAction" >
+      <forward name="print" path="/report/schedula_sms.jsp" />
+      <forward name="success" path="/sms_schedula_report.jsp" />
+    </action>
+    <!--################################   sms schedule report   #################################-->
+    
+    <!--################################   sms everyday report  #################################-->
+  	<action path="/smsEverydayReportStart" 	name="reportForm"  
+  		type="com.smsimobile.action.EverydaySMSReportStartAction">
+      	<forward name="success"  	path="/sms_everyday_report.jsp" />
+    </action>
+    <action
+      attribute="reportForm"
+      input="/sms_everyday_report.jsp"
+      name="reportForm"
+      path="/smseverydayReport"
+      scope="request"
+      type="com.smsimobile.action.EverydaySMSReportAction" >
+      <forward name="print" path="/report/everyday_sms.jsp" />
+      <forward name="success" path="/sms_everyday_report.jsp" />
+    </action>
+    <!--################################   sms everyday report   #################################-->
   </action-mappings>
 
   <message-resources parameter="com.yourcompany.struts.ApplicationResources" />

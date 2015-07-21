@@ -79,6 +79,12 @@
                                 <li>
                                     <a href="smsReportStart.do">Send SMS</a>
                                 </li>
+                                 <li>
+                                    <a href="smsSchedulaReportStart.do">Schedule SMS</a>
+                                </li>
+                                <li>
+                                    <a href="smsEverydayReportStart.do">Every Day SMS</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
